@@ -1,0 +1,1657 @@
+sample,label
+"    wall_w, wall_h = calc_face_dimensions(face)
+    # horizontal split
+    h_widths = [wall_w/2 + offset.x - size.x/2, size.x, wall_w/2 - offset.x - size.x/2]
+    h_faces = subdivide_face_horizontally(bm, face, h_widths)
+    # vertical split
+",0
+"    bmesh.ops.inset_individual(bm, faces=[face], thickness=0.0001) # to isolate the working quad and not leave adjacent face as n-gon
+    quads = subdivide_face_into_quads(bm, face, prop.pane_count_x, prop.pane_count_y)
+
+    inset = map_new_faces(userframe)(bmesh.ops.inset_individual)
+    inset(bm, faces=quads, thickness=prop.pane_margin, depth=-prop.pane_depth)
+",0
+"    else:
+        _, [window_face], _, frame_faces = add_frame_depth(bm, [], [window_face], [], frame_faces, prop.frame_depth, normal)
+
+",0
+"from .util_mesh import *
+from .util_common import *
+",0
+"        max=10,
+        default=1,
+        description=""Number of horizontal glass panes"",
+",0
+"            self.head = self.head.next
+        vertex.lav = None
+
+    def unify(self, vertex_a, vertex_b, point):
+        replacement = LAVertex(
+",0
+"    up.rotate(Quaternion(horizon, math.pi/2).to_euler())
+",0
+"# for classifier link
+from chainer.functions.loss import softmax_cross_entropy
+from chainer import link
+from chainer import reporter
+",1
+"    group.add_argument(""--key_file"", type=str_or_none)
+",1
+"def snapshot_object(target, filename):
+    """"""Returns a trainer extension to take snapshots of a given object.
+
+    Args:
+        target (model): Object to serialize.
+",1
+"            ""--use-scaled-pos-enc"",
+            default=True,
+            type=strtobool,
+            help=""Use trainable scaled positional encoding ""
+",1
+"
+    def zero_state(self, hs_pad):
+        return hs_pad.new_zeros(hs_pad.size(0), self.dunits)
+",1
+"            )
+
+        if is_batch:
+",1
+"import numpy
+
+from espnet.utils.training.evaluator import BaseEvaluator
+from espnet.utils.training.tensorboard_logger import TensorboardLogger
+",1
+"    def add_arguments(parser):
+        parser.add_argument(
+            ""--type"",
+",1
+"import functools
+import logging
+import numbers
+",1
+"                        )
+
+            # 2. LR Scheduler step
+            for scheduler in schedulers:
+",1
+"            default="""",
+",1
+"            # Remove existing params, and overwrite
+            setattr(namespace, self.dest, value)
+import inspect
+",1
+"
+    def forward(self, state, x):
+        # update state with input label x
+",1
+"
+    The keys for specified modules are modified to match ASR decoder modules keys.
+
+    Args:
+        model_state_dict (OrderedDict): trained model state_dict
+",1
+"            loss /= accum_grad
+",1
+"               [ 1.,  1.,  1.]], dtype=float32)
+
+    """"""
+",1
+"        cbhg_conv_bank_layers=4,
+        cbhg_conv_bank_chans=32,
+",1
+"
+        :param state: The state
+        :return The final log probabilities
+",1
+"        x_list = [
+",1
+"
+        from espnet.utils import spec_augment
+
+        # TODO(karita): make this differentiable again
+",1
+"
+            hyp_chars = """".join(seq_hat)
+            ref_chars = """".join(seq_true)
+            if len(ref_chars) > 0:
+                cers.append(editdistance.eval(hyp_chars, ref_chars))
+",1
+"
+    The scorer performs scoring of the all tokens in vocabulary.
+
+    Examples:
+        * Search heuristics
+",1
+"                    js[name], nbest_hyps, train_args.char_list
+",1
+"        n_len = h.shape[1]
+        xp = self.xp
+        h_mask = xp.ones((1, n_len))
+",1
+"    def log_message(self, epoch: int = None) -> str:
+        if epoch is None:
+",1
+"class CustomUpdater(training.StandardUpdater):
+",1
+"        # add recognition results
+        out_dic[""rec_text""] = rec_text
+        out_dic[""rec_token""] = rec_token
+",1
+"    # If Slurm
+    elif Path(args.cmd[0]).name == ""slurm.pl"":
+",1
+"def test_backward_leaf_in(norm_vars, norm_means):
+",1
+"
+    def __repr__(self) -> str:
+        return str(self.h5_file)
+",1
+"    logfmt = ""%(asctime)s (%(module)s:%(lineno)d) %(levelname)s: %(message)s""
+    if args.verbose > 0:
+        logging.basicConfig(level=logging.INFO, format=logfmt)
+    else:
+        logging.basicConfig(level=logging.WARN, format=logfmt)
+",1
+"        if ""idim"" in dic:
+            in_dic[""shape""] = (
+                int(dic[""ilen""]),
+                int(dic[""idim""]),
+            )
+",1
+"        processes.append(process)
+
+    logging.info(f""log file: {args.log}"")
+
+    failed = False
+",1
+"            # If --dist_* is specified:
+            #    Use the value of --dist_rank and overwrite it environ just in case.
+            # elif environ is set:
+            #    Use the value of environ and set it to self
+            self.dist_rank = get_rank(self.dist_rank, self.dist_launcher)
+",1
+"        ""to automatically find maximum hypothesis lengths"",
+    )
+    group.add_argument(
+",1
+"
+from __future__ import print_function
+",1
+"                optimizer.zero_grad()
+
+",1
+"    def argmax(self, hs_pad):
+        """"""argmax of frame activations
+
+        :param chainer variable hs_pad: 3d tensor (B, Tmax, eprojs)
+",1
+"        torch_load(args.outdir + ""/rnnlm.model.best"", model)
+        test = read_tokens(args.test_label, args.char_list_dict)
+        n_test_tokens, n_test_oovs = count_tokens(test, unk)
+",1
+"        idim,
+",1
+"        self.decoder = decoder
+        if ctc_weight == 0.0:
+            self.ctc = None
+",1
+"
+    outyaml.parent.mkdir(parents=True, exist_ok=True)
+    with outyaml.open(""w"") as f:
+        yaml.dump(indict, f, Dumper=yaml.Dumper, indent=4, sort_keys=False)
+    print(outyaml)
+",1
+"            ""every y frame at 2nd layer etc."",
+        )
+        return parser
+
+    @staticmethod
+",1
+"from typing import Union
+
+import librosa
+import numpy as np
+import torch
+",1
+"                args.dunits,
+                args.adim,
+                args.aconv_chans,
+                args.aconv_filts,
+                odim,
+",1
+"        # NOTE(kamo):
+        #   This iterator supports multiple chunk lengths and
+",1
+"        w[""b/target""] = np.random.randint(0, 10, (13,))
+",1
+"
+    def __init__(self, eprojs, dunits, att_dim, han_mode=False):
+        super(AttCov, self).__init__()
+",1
+"        """"""[] operator.""""""
+        return self.transform(self.data[idx])
+
+
+",1
+"                # treat all other speakers' psd_speech as noises
+                enh, w = apply_beamforming(
+",1
+"                cer, wer = self.error_calculator(ys, ys_pad)
+
+        if alpha == 0.0:
+            self.loss = loss_att
+            loss_att_data = loss_att.data
+",1
+"                    layer's input and output in encoder.
+                - decoder_concat_after (bool): Whether to concatenate attention
+",1
+"
+            reporter.set_epoch(iepoch)
+",1
+"                # Directly specify the model path e.g. exp/train/loss.best.pt
+                pretrain_path=p,
+                # if pretrain_key is None -> model
+",1
+"    w[""b""] = np.random.randn(150, 80)
+    return str(p)
+",1
+"        else:
+            att_vis_fn = model.calculate_all_attentions
+            plot_class = model.attention_plot_class
+        att_reporter = plot_class(
+            att_vis_fn,
+",1
+"        self.subsample = get_subsample(args, mode=""mt"", arch=""transformer"")
+        self.reporter = Reporter()
+",1
+"        logging.debug(f""the number of running hypothes: {n_batch}"")
+        if self.token_list is not None:
+            logging.debug(
+                ""best hypo: ""
+",1
+"        self.att_dim_k = att_dim_k
+        self.att_dim_v = att_dim_v
+        self.scaling = 1.0 / math.sqrt(att_dim_k)
+",1
+"                ys_pad = ys_pad[:, 1:]  # remove target language ID in the beggining
+",1
+"            tensor([[0.0000, 0.1175, 0.3935, 0.6753, 0.8647],
+                    [0.1175, 0.0000, 0.1175, 0.3935, 0.6753],
+                    [0.3935, 0.1175, 0.0000, 0.1175, 0.3935],
+",1
+"# Copyright 2020 Nagoya University (Wen-Chin Huang)
+#  Apache 2.0  (http://www.apache.org/licenses/LICENSE-2.0)
+
+import argparse
+",1
+"
+            labels = hts.load(lab_path)
+            assert ""sil"" in labels[0][-1]
+            assert ""sil"" in labels[-1][-1]
+            segment_begin = ""{:.3f}"".format(labels[0][1] * 1e-7)
+",1
+"            data = copy.deepcopy(data)
+            for idx in range(len(data)):
+                ilen = data[idx][1][""input""][0][""shape""][0]
+",1
+"        if dec_z is None:
+",1
+"        self.encoder = Encoder(
+            idim=idim,
+            attention_dim=args.adim,
+",1
+"        if state is None:
+            h = [
+",1
+"
+        # preprare sos
+        y = self.sos
+        vy = h.new_zeros(1).long()
+
+",1
+"        if recog_args.ctc_weight > 0.0:
+            lpz = self.ctc.log_softmax(hs_pad)
+            normalize_score = False
+",1
+"        """"""Return ""collate_fn"", which is a callable object and given to DataLoader.
+
+",1
+"            torch.from_numpy(ilens_list[idx]).long() for idx in range(num_inputs)
+",1
+"                vy = to_device(
+                    self, torch.full((1, 1), new_hyp[""yseq""][-1], dtype=torch.long)
+                )
+                ey = self.dropout_emb(self.embed(vy))
+",1
+"        self.n_mels = n_mels
+        self.n_fft = n_fft
+        self.n_shift = n_shift
+",1
+"    def __init__(self, path):
+        self.path = pathlib.Path(path)
+",1
+"        else:
+            ys_in = [torch.cat([sos, y], dim=0) for y in ys]
+        ys_out = [torch.cat([y, eos], dim=0) for y in ys]
+
+        # padding for ys with -1
+",1
+"        An extension function.
+
+    """"""
+",1
+"            choices=[""lstm"", ""gru""],
+            help=""Which type of RNN to use"",
+",1
+"    if args.opt == ""adadelta"":
+        if args.criterion == ""acc"":
+            trainer.extend(
+                restore_snapshot(
+",1
+"        group.add_argument(
+            ""--use-weighted-masking"",
+            default=False,
+            type=strtobool,
+",1
+"        """"""
+        # merge states
+        n_batch = len(ys)
+",1
+"
+        :param torch.Tensor xs: input tensor
+",1
+"  auto hvd_cpu_buffer = std::make_shared<TorchTensor>(cpu_buffer);
+  auto ready_event = RecordReadyEvent(device);
+
+  auto hvd_context =
+",2
+"
+",2
+"protected:
+  void DoInitialization() override;
+
+  MPIContext& mpi_ctx_;
+
+",2
+"  if (results_.find(handle) == results_.end()) {
+    throw std::invalid_argument(""Handle "" + std::to_string(handle) +
+                                "" was not created or has been cleared."");
+  }
+  return results_[handle] != nullptr;
+",2
+"            # Skip if compiled with CUDA but without HOROVOD_GPU_OPERATIONS.
+            self.skipTest(""Not compiled with HOROVOD_GPU_OPERATIONS"")
+
+        hvd.init()
+",2
+"            logging.info('start worker process: {}[{}]'.format(slot_info.hostname, slot_info.local_rank))
+",2
+"
+",2
+"//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an ""AS IS"" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+",2
+"    for ext_base_name in EXTENSIONS:
+        built_fn = lambda ext: ext.ccl_built()
+        result = _check_extension_lambda(
+            ext_base_name, built_fn, 'built with CCL', verbose)
+",2
+"# 3 / N batches of validation data on every worker, where N is the number of workers.
+# Over-sampling of validation data helps to increase probability that every validation
+",2
+"        elif average != None:
+            warnings.warn('Parameter `average` has been replaced with `op` and will be removed in v0.21.0',
+",2
+"                        if issubclass(python_type, numbers.Integral):
+                            value = round(value)
+                        field = python_type(value)
+                    else:
+                        field = DenseVector(pred.reshape(-1))
+",2
+"                 epochs=None,
+                 verbose=1,
+                 shuffle_buffer_size=None,
+                 partitions_per_process=None,
+                 run_id=None,
+",2
+"
+",2
+"        #if hvd.rank() == 0:
+        #    print(step, loss.item(), net.param.grad.data[0].item(), net.param.grad.data[1].item())
+",2
+"        DoWriteEvent(r);
+",2
+"            if current_hosts != next_hosts:
+                print('host changes: {} -> {}'.format(current_hosts, next_hosts))
+                start = int(time.time())
+                while state._host_messages.empty():
+",2
+"
+  attr.ai_family = AF_UNSPEC;
+  auto dev = gloo::transport::tcp::CreateDevice(attr);
+  auto timeout = GetTimeoutFromEnv();
+
+",2
+"namespace horovod {
+namespace torch {
+",2
+"#
+# Licensed under the Apache License, Version 2.0 (the ""License"");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+",2
+"                # Average gradients among sub-batches
+                loss.div_(math.ceil(float(len(data)) / args.batch_size))
+                loss.backward()
+            # Gradient is applied across all ranks
+            optimizer.step()
+",2
+"
+#ifndef HOROVOD_GLOO_CONTEXT_H
+#define HOROVOD_GLOO_CONTEXT_H
+",2
+"}
+
+MXTensor::MXTensor(NDArray* tensor) : tensor_(tensor) {}
+
+const DataType MXTensor::dtype() const {
+",2
+"        rank = hvd.rank()
+",2
+"                    else:
+",2
+"//
+// Licensed under the Apache License, Version 2.0 (the ""License"");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+",2
+"# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+",2
+"        try:
+            ext = importlib.import_module('.' + ext_base_name, 'horovod')
+",2
+"
+  int64_t num_elements_per_rank = global_state_->controller->IsHomogeneous()
+                                      ? num_elements / local_size
+                                      : 0;
+",2
+"}
+
+LibType ParseControllerOpsFromEnv() {
+",2
+"    @staticmethod
+    def serialize_optimizer(*args, **kwargs):
+",2
+"        return self.next()
+
+    def reset(self):
+",2
+"if args.eager:
+    tf.enable_eager_execution(config)
+
+# Set up standard model.
+",2
+"                            int num_elements, DataType horovod_datatype,
+",2
+"
+            model = keras.models.Sequential()
+            model.add(keras.layers.Dense(2, input_shape=(3,)))
+",2
+"        if kwargs[k] is None:
+            del kwargs[k]
+
+    # backup environment
+",2
+"// the rank wants to do and the tensor that it wants to apply the operation to.
+class Request {
+public:
+",2
+"
+            backend = CallbackBackend()
+            with local_store() as store:
+",2
+"                                  PUT_WORKER_ADDRESSES,
+                                  self._create_id(hostname, local_rank),
+                                  value)
+
+",2
+"                StructField('int', IntegerType()),
+                StructField('float', FloatType()),
+                StructField('null', NullType()),
+",2
+"
+#include ""common.h""
+#include ""fusion_buffer_manager.h""
+#include ""global_state.h""
+",2
+"}
+",2
+"        metrics = self.getMetrics()
+",2
+"    this->put_(response, params, joined);
+  }
+}
+
+",2
+"
+",2
+"  Status status = horovod_global.tensor_queue.AddToTensorQueue(e, message);
+  if (status.ok()) {
+    LOG(TRACE, horovod_global.controller->GetRank()) << ""Enqueued "" << name;
+  }
+",2
+"// limitations under the License.
+// =============================================================================
+
+",2
+"
+    if gpu_allreduce == 'NCCL' or gpu_allgather == 'NCCL' or gpu_broadcast == 'NCCL':
+        have_nccl = True
+",2
+"  MXOpContext(int device, NDArray* output);
+  virtual Status
+  AllocatePersistent(int64_t size,
+",2
+"            data_bad_size = [
+                [DenseVector([1.0, 1.0])],
+                [DenseVector([1.0])]
+            ]
+",2
+"  }
+
+  hipError_t ReleaseGpuEvent(hipEvent_t event) {
+    int device;
+",2
+"        stdout: Horovod stdout is redirected to this stream. Defaults to sys.stdout.
+        stderr: Horovod stderr is redirected to this stream. Defaults to sys.stderr.
+",2
+"  return tensor_fusion_buffers_[std::make_tuple(device, framework, stream_id)].first;
+}
+",2
+"        return True
+",2
+"
+",3
+"    def test_index(self):
+        f = Flow().add(yaml_path='yaml/test-index.yml', replicas=3, separated_workspace=True)
+",3
+"
+    @property
+    def input_fn(self) -> Union[Iterator['jina_pb2.Document'], Iterator[bytes], Callable]:
+        """""" An iterator of bytes, each element represents a document's raw content,
+",3
+"
+if False:
+    import argparse
+
+
+",3
+"        except:
+            default_logger.error(f'input_fn is not valid!')
+",3
+"        if self._shutdown:
+            raise RuntimeError('Cannot schedule new futures after shutdown')
+
+        if not self._loop.is_running():
+",3
+"class MyTestCase(JinaTestCase):
+
+    def test_cli(self):
+        for j in ('pod', 'pea', 'gateway', 'log',
+                  'check', 'ping', 'client', 'flow', 'hello-world', 'export-api'):
+",3
+"                If given other, then ``np.moveaxis(data, channel_axis, -1)`` is performed before :meth:`encode`.
+        """"""
+        super().__init__(*args, **kwargs)
+        if self.model_name is None:
+",3
+"
+class DocKVIndexDriver(KVIndexDriver):
+",3
+"                    default=2,
+                    help='number of replicas when index and query')
+    gp = add_arg_group(parser, 'index arguments')
+    gp.add_argument('--index-yaml-path', type=str,
+                    default=resource_filename('jina', '/'.join(('resources', 'helloworld.flow.index.yml'))),
+",3
+"        # hit chunks
+",3
+"
+
+def reduce_cls(data, mask_2d, cls_pos='head'):
+    mask_pruned = prune_mask(mask_2d, cls_pos)
+    return reduce_mean(data, mask_pruned)
+",3
+"        self.metric = metric
+        self.n_trees = n_trees
+
+    def get_query_handler(self):
+",3
+"            else:
+                return (result,) * tuple_size
+
+",3
+"        self.logger.info('executor\'s yaml config is save to %s' % f)
+",3
+"
+        with f:
+            f.dry_run()
+            f.index(input_fn=random_docs(1000), input_type=ClientInputType.PROTOBUF)
+",3
+"
+    def recv_message(self, callback: Callable[['jina_pb2.Message'], None] = None) -> 'jina_pb2.Message':
+        """"""Receive a protobuf message from the input socket
+",3
+"            raise ValueError('ambiguous head node, maybe it is deducted already?')
+
+    @head_args.setter
+    def head_args(self, args):
+",3
+"
+import numpy as np
+
+",3
+"
+        :param target_size: desired output size. If size is a sequence like (h, w), the output size will be matched to
+            this. If size is an int, the output will have the same height and width as the `target_size`.
+        :param strides: the strides between two neighboring sliding windows. `strides` is a sequence like (h, w), in
+",3
+"__license__ = ""Apache-2.0""
+",3
+"import gzip
+import os
+",3
+"    if images is not None:
+        assert type(images), ""images is a list.""
+        for im in images:
+",4
+"import hashlib
+import requests
+",4
+"				height: parseInt(h),
+				x: parseInt(x),
+				y: parseInt(y)
+",4
+"#     http://www.apache.org/licenses/LICENSE-2.0
+",4
+"        if self.get_prediction:
+            pool = fluid.layers.pool2d(
+",4
+"        return im_mean
+
+    def get_pretrained_images_std(self):
+        im_std = np.array([0.229, 0.224, 0.225]).reshape(1, 3)
+        return im_std
+",4
+"        # calculate the ap
+        r = len(sortidx)
+",4
+"        self.with_mixup = with_mixup
+
+    def __call__(self, im):
+",4
+"            config_file_path = os.path.join(CONF_HOME, 'config.json')
+        if not os.path.exists(CONF_HOME):
+",4
+"        results = self.object_detection(images=images_decode, **kwargs)
+        return results
+",4
+"				}
+				if (this.adType == 'end') {
+					this.endedHandler();
+				} else {
+",4
+"                         keys,
+                         values,
+                         attn_bias,
+",4
+"            result['data']['right']), int(result['data']['bottom']), int(
+                result['data']['left'])
+
+        #将当前帧保存为图片
+        img_name = ""avatar_%d.png"" % (maskIndex)
+",4
+"            if name == ""@HUB_porn_detection_gru@layer_norm_0.tmp_2"":
+",4
+"                range_size = scale_ind + 1
+",4
+"        result_i = results[lod[index]:lod[index + 1]]
+        for row in result_i:
+            if len(row) != 6:
+",4
+"def check_dir(dir_path):
+",4
+"import sys
+import numpy as np
+",4
+"                # trainable
+                for param in context_prog.global_block().iter_parameters():
+                    param.trainable = trainable
+        return inputs, outputs, context_prog
+
+",4
+"        data_reader=data_reader,
+",4
+"
+",4
+"        stride=[1, 1],
+        padding=[1, 1],
+        dilation=[1, 1],
+        groups=32,
+",4
+"					stopTween();
+					try {
+						var defY = this.arrIndexOf(this.elementTempArr, obj['element'].className);
+",4
+"        self.contrast = contrast
+        self.brightness = brightness
+        self.random_apply = random_apply
+",4
+"        """"""
+        Get the sentiment prediction results results with the texts as input
+
+        Args:
+             texts(list): the input texts to be predicted, if texts not data
+",4
+"    img = np.array(img).astype('float32').transpose((2, 0, 1)) / 255
+    img -= img_mean
+    img /= img_std
+    return img
+",4
+"    def setUp(self):
+        self.test_prog = fluid.Program()
+        ""Call setUp() to prepare environment\n""
+
+    def tearDown(self):
+",4
+"            img = self.apply_saturation(img)
+",4
+"            bias_attr=False)
+        if name == ""conv1"":
+",4
+"            self.label_list = file.read().split(""\n"")[:-1]
+        self._set_config()
+
+    def get_expected_image_width(self):
+",4
+"        'im_file', 'im_id', 'h', 'w', 'is_crowd', 'gt_class', 'gt_bbox',
+        'gt_poly'
+    ]
+
+",4
+"                        pow(1.0 / self.scheduler[""discriminative""][""factor""], power)
+",4
+"                backbone = DarkNet(norm_type='sync_bn', norm_decay=0., depth=53)
+                # body_feats
+                body_feats = backbone(image)
+                # im_size
+                im_size = fluid.layers.data(
+",4
+"        cpu_config = AnalysisConfig(self.default_pretrained_model_path)
+        cpu_config.disable_glog_info()
+        cpu_config.disable_gpu()
+        cpu_config.switch_ir_optim(False)
+",4
+"        self.freeze_norm = freeze_norm
+        self.variant = variant
+",4
+"        param_attr='x2paddle_1',
+        name='x2paddle_20',
+        bias_attr='x2paddle_2')
+    x2paddle_21 = fluid.layers.relu(x2paddle_20, name='x2paddle_21')
+",4
+"        vocab_path=module.get_vocab_path(),
+        max_seq_len=args.max_seq_len,
+        sp_model_path=module.get_spm_path(),
+",4
+"        cpu_config = AnalysisConfig(self.default_pretrained_model_path)
+        cpu_config.disable_glog_info()
+",4
+"        tp.add_line(
+            contents=[""Author-Email"", model_info['author_email']],
+            colors=[""yellow"", None],
+            aligns=[""^"", ""<""])
+",4
+"# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+",4
+"            self.optimizer = fluid.optimizer.DecayedAdagrad(
+                learning_rate=self.learning_rate)
+        elif self._optimizer_name.lower() == ""rmsprop"":
+            self.optimizer = fluid.optimizer.RMSPropOptimizer(
+                learning_rate=self.learning_rate)
+",4
+"
+
+def calculate_precision_at_equal_recall_rate(predictions, actuals):
+    """"""Performs a local (numpy) calculation of the PERR.
+",4
+"        max_seq_len=args.max_seq_len,
+        sp_model_path=module.get_spm_path(),
+",4
+"parser.add_argument(""--use_gpu"", type=ast.literal_eval, default=True, help=""Whether use GPU for fine-tuning, input should be True or False"")
+",4
+"        if len(t['gt_box'][1]) == 0:
+            # gt_box, gt_label, difficult read as zero padded Tensor
+",4
+"    """"""
+    data generator
+
+",4
+"                print(pic_path)
+                result = self.classifier.classification(
+                    paths=[pic_path], use_gpu=False)
+",4
+"
+",4
+"        }
+        return inputs, outputs, program
+",4
+"# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+",4
+"import six
+import json
+
+import paddle.fluid as fluid
+",4
+"        text = bbox['label'] + "": %.2f%%"" % (100 * bbox['confidence'])
+        textsize_width, textsize_height = draw.textsize(text=text)
+",4
+"    for index, e in enumerate(examples):
+        if index < 10:
+",4
+"            current_auc, _, _ = fluid.layers.auc(
+",4
+"    @serving
+    def serving_method(self, images, **kwargs):
+        """"""
+",4
+"        class_dim (int): number of class while classification
+    """"""
+
+    def __init__(self,
+",4
+"            return blocks
+",4
+"        self.min_size = min_size
+",4
+"                    'im_size': var_prefix + im_size.name
+                }
+                # name of outputs
+                if get_prediction:
+",4
+"            if not os.path.isfile(xml_file):
+                continue
+            tree = ET.parse(xml_file)
+            if tree.find('id') is None:
+                im_id = np.array([ct])
+",4
+"        if use_gpu:
+",4
+"                filter_size=3,
+                stride=1,
+                padding=1,
+                is_test=is_test,
+",4
+"                    if_first=block == 0,
+                    name=conv_name)
+
+        pool = fluid.layers.pool2d(
+",4
+"            extension_scope=None,
+",4
+"        :type use_gpu: bool
+        :param batch_size: bathc size.
+",4
+"                v[3],
+",4
+"				}
+			}
+",4
+"        # permuate the dimensions into:
+",4
+"            stride=1,
+            act='relu',
+",4
+"                   name=''):
+    imgs = group_scale(imgs, short_size)
+
+    np_imgs = np.array([np.array(img).astype('float32') for img in imgs])  #dhwc
+",4
+"
+    def inverted_residual_unit(self,
+                               input,
+",4
+"    """"""
+    # name prefix of original image
+    org_im_name = os.path.split(org_im_path)[-1]
+",4
+"        emb_out = emb_out + position_emb_out
+        emb_out = emb_out + sent_emb_out
+",4
+"
+    def __init__(self, images=[], samples=-1, load_img=True, **kwargs):
+        super(SimpleSource, self).__init__()
+",4
+"        cpu_config = AnalysisConfig(self.default_pretrained_model_path)
+        cpu_config.disable_glog_info()
+        cpu_config.disable_gpu()
+        self.cpu_predictor = create_paddle_predictor(cpu_config)
+",4
+"        self.arg_config_group = self.parser.add_argument_group(
+            title=""Config options"",
+            description=
+            ""Run configuration for controlling module behavior, not required."")
+",4
+"import logging
+",4
+"
+        bn_name = name + "".bn""
+        bn_param_attr = ParamAttr(
+",4
+"            dev_file = 'dev_matched.tsv'
+            predict_file = ""test_matched.tsv""
+",4
+"        if not self.has_extra_convs and self.max_level - self.min_level == len(
+                spatial_scale):
+            body_top_name = fpn_name_list[0]
+            body_top_extension = fluid.layers.pool2d(
+                fpn_dict[body_top_name],
+",4
+"
+        Args:
+",4
+"                              gt_bboxes,
+",4
+"        mask_lm_loss = fluid.layers.softmax_with_cross_entropy(
+            logits=fc_out, label=mask_label)
+        mean_mask_lm_loss = fluid.layers.mean(mask_lm_loss)
+
+",4
+"__all__ = ['bbox_area', 'jaccard_overlap', 'DetectionMAP']
+",4
+"                   (box[0][0] - 1, box[0][1] + 1)],
+                  fill='red')
+
+    if draw_txt:
+",4
+"import random
+
+",4
+"    def context(self,
+",4
+"						b = parseInt(obj['start'] * 100);
+					}
+",4
+"        relu_dropout,
+        hidden_act,
+",4
+"        self._c1_out_chan_num = 64
+        self.na = NameAdapter(self)
+        self.prefix_name = weight_prefix_name
+",4
+"    for char in in_str:
+        if char in sp_char:
+            continue
+        else:
+",4
+"            return examples
+
+
+if __name__ == ""__main__"":
+",4
+"                    ceil_mode=True,
+                    pool_type='avg')
+                return self._conv_norm(input, ch_out, 1, 1, name=name)
+            return self._conv_norm(input, ch_out, 1, stride, name=name)
+",4
+"        mean=[104, 117, 123],
+        std=[1, 1, 1],
+",4
+"            initializer=fluid.initializer.Constant(value=0.0))
+        if self._weight_sharing:
+",4
+"        return boxes_batch
+
+
+def draw_boxes(image, boxes, scores=None, drop_score=0.5):
+",4
+"        data_reader = partial(reader, paths, images)
+        batch_reader = fluid.io.batch(data_reader, batch_size=batch_size)
+        res = []
+        for iter_id, feed_data in enumerate(batch_reader()):
+",4
+"
+    def add_module_config_arg(self):
+        """"""
+        Add the command config options.
+        """"""
+",4
+"                         d_model,
+                         n_head=1,
+                         dropout_rate=0.,
+                         cache=None,
+",4
+"from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+
+",4
+"                                main_program):
+        assert os.path.exists(
+",4
+"        """"""
+        postprocessing the run result, get readable result.
+
+",4
+"    def _add_loss(self):
+        if self.add_crf:
+            labels = fluid.layers.sequence_unpad(self.labels[0],
+",4
+"			cNextFillRect();
+			var cNextOver = function(event) {
+				cNext.clearRect(0, 0, bWidth, bHeight);
+				cNext.fillStyle = bOverColor;
+",4
+"
+    # Setup feed list for data feeder
+",4
+"			}
+			if (!this.isM3u8) {
+				if (vArr.length == 1) {
+",4
+"        if shuffle:
+",4
+"                   num_filters,
+                   stride,
+                   is_first,
+",4
+"                input=downsample_,
+                ch_out=32 * 2**i,
+                count=stage,
+",4
+"            gpu_config.enable_use_gpu(
+",4
+"        for img in images:
+            img_list.append(img)
+
+    for im in img_list:
+        # im_size
+",4
+"from paddlehub.common import paddle_helper, tmp_dir
+from paddlehub.common.logger import logger
+from paddlehub.common.utils import sys_stdin_encoding, version_compare
+",4
+"
+
+@moduleinfo(
+    name=""resnet50_vd_imagenet_ssld"",
+",4
+"from __future__ import division
+",4
+"                sb.grid()
+",5
+"            return False
+        if not self.cards:
+            return c0.rank == below_found.cards[0].rank
+        if c0.suit != self.cards[0].suit:
+            return False
+",5
+"        self.button = kw.default
+        frame = tkinter.Frame(top_frame)
+        frame.pack(fill='both', expand=True, padx=kw.padx, pady=kw.pady)
+        msg = tkinter.Label(frame, text=kw.text, justify=kw.justify,
+",5
+"    def createGame(self):
+        l, s = Layout(self), self.s
+",5
+"
+def latin1_to_ascii(n):
+    if sys.version_info > (3,):
+        return n
+",5
+"
+    def createGame(self):
+        # create layout
+        l, s = Layout(self), self.s
+        self.setSize(l.XM+8*l.XS, l.YM+2*l.YS+12*l.YOFFSET)
+",5
+"        return ((), (), ())
+
+",5
+"#  * Dashavatara Foundation Stacks
+#  ***********************************************************************/
+
+
+class Dashavatara_FoundationStack(AbstractFoundationStack):
+",5
+"            if from_stack.id % self.RSTEP == 0 and \
+                    from_stack.cards[-1].rank == self.RBASE:
+                # do not move the leftmost card of a row if the rank is correct
+                return -1
+",5
+"    for fn, state, shadow in (
+",5
+"#    ""pbapdapfspfaphap"" +
+#    ""jhqfXqfaraareorf"" +
+#    ""argarkhsahsfhska"" +
+#    ""taateatgatkhuahu"" +
+#    ""fhukavaaveavgavk"" +
+",5
+"    def startGame(self):
+        for i in (5, 5, 5, 5, 0, 0, 0, 0, 0):
+            self.s.talon.dealRow(rows=self.s.rows[:i], flip=0, frames=0)
+",5
+"    ""eamdcmcembgmaima"" +
+    ""qmbsmcumdwmeym"")
+",5
+"                    score = score + 100
+            # add hint
+",5
+"# Copyright (C) 1998-2003 Markus Franz Xaver Johannes Oberhumer
+# Copyright (C) 2003 Mt. Hood Playing Card Co.
+",5
+"# Copyright (C) 2005-2009 Skomoroh
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+",5
+"    ""hibicaieaigaiibk"" +
+    ""cblgbmcbmeamione"" +
+    ""hniankanmcocboev"" +
+    ""oebogaoiooihokho"" +
+    ""mbooopehpiapkapm"" +
+",5
+"            if sound:
+",5
+"            return True
+        return False
+
+    def key_press_event(self, w, e):
+        if gdk.keyval_name(e.keyval) == 'Escape':
+",5
+"        if orient == 'horizontal':
+            self.config(width=width, height=height)
+            self.grid(row=0,
+",5
+"                    # create a uniq pair
+",5
+"            self.player_var.delete(0, 'end')
+            self.player_var.insert(0, d.username)
+",5
+"        for i in range(size):
+            x = x0 + i * l.XS // 2
+",5
+"            return
+",5
+"
+        # create stacks
+        x, y, = l.XM, l.YM
+        for i in range(4):
+            stack = BasicRowStack(x, y, self, max_move=1, max_accept=0)
+",5
+"        am = AUpdateStackMove(stack, flags)
+        self.__storeMove(am)
+        am.do(self)
+        # #self.hints.list = None
+
+",5
+"    ""hfvtfvfgvvgvmhvo"" +
+    ""hvqhveivwivfkvvk"" +
+    ""vhlvtlvjmvrmvlnv"" +
+    ""nnvpnCifCsfCggCu"" +
+    ""gCnhCphCfiCviCgk"" +
+",5
+"    # copy model data - see Hint.AClonedStack
+",5
+"# Copyright (C) 1998-2003 Markus Franz Xaver Johannes Oberhumer
+# Copyright (C) 2003 Mt. Hood Playing Card Co.
+# Copyright (C) 2005-2009 Skomoroh
+#
+# This program is free software: you can redistribute it and/or modify
+",5
+"    def _getEnabledState(self, enabled):
+        print('_getEnabledState: %s' % enabled)
+",5
+"        for key in self.timeouts:
+",5
+"    def _addGamesMenuItem(self, menu, gi, short_name=False):
+        if not gi:
+            return
+        if short_name:
+",5
+"        self.all_objects = manager.getAllSortedByName()
+",5
+"# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+",5
+"
+    def _fillRow(self, frames=-1, sound=False):
+",5
+"        FreeCell.createGame(self, rows=13, reserves=3)
+
+    def startGame(self):
+",5
+"                 RK_RowStack, UD_RK_RowStack, \
+                 Spider_AC_RowStack, Spider_SS_RowStack
+            r = self.s.rows[0]
+",5
+"# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+",5
+"    ""gaoiapchpdvpdope"" +
+    ""vpfapghphaqahqbo"" +
+    ""qcaqehqfoqgaqiar"" +
+    ""chrdprearghrhasa"" +
+    ""hsboscasehsfosga"" +
+",5
+"        cw, ch = self.app.images.getSize()
+        items = []
+        for s, c1, c2, color in info:
+            items.append(
+",5
+"
+    def isSuitSequence(self, cards, dir=None):
+        if not dir:
+",5
+"                while True:
+                    if not self._dealToFound():
+                        break
+                if talon.cards:
+",5
+"
+",5
+"from pysollib.mfxutil import format_time
+from pysollib.mygettext import _
+from pysollib.resource import CSI
+from pysollib.ui.tktile.selecttree import SelectDialogTreeData
+from pysollib.ui.tktile.tkutil import unbind_destroy
+",5
+"
+# ************************************************************************
+# * Shifting
+",5
+"        x, y = l.XM, self.height-l.YS
+",5
+"        return Golf.shallHighlightMatch(self, stack1, card1, stack2, card2)
+
+
+class RelaxedGolf(Golf):
+    Solver_Class = BlackHoleSolverWrapper(preset='golf', base_rank=0,
+",5
+"                    f = os.path.normpath(f)
+",5
+"        tkopt.shadow.set(opt.shadow)
+        tkopt.shade.set(opt.shade)
+        tkopt.toolbar.set(opt.toolbar)
+        tkopt.toolbar_style.set(opt.toolbar_style)
+        tkopt.toolbar_relief.set(opt.toolbar_relief)
+",5
+"                self.s.talon.dealRow(rows=self.s.internals, frames=0)
+            else:
+                if frames == 0 and i >= 39:
+",5
+"            for suit in gi.suits:
+                _iter_ranks(gi.ranks, suit)
+            _iter_ranks(gi.trumps, len(gi.suits))
+        if progress:
+",5
+"        sx, sy = self.SHADOW_XOFFSET, self.SHADOW_YOFFSET
+        mask = mask.crop((sx, sy, w, h))
+",5
+"        # to_stack.refreshView()
+",5
+"
+    def __init__(self, app, parent, title, **kw):
+        logging.info('PysolAboutDialog:')
+",5
+"        s.waste = WasteStack(x, y, self)
+        l.createText(s.waste, ""n"")
+
+",5
+"            if isinstance(s, tuple):
+                s = s[0]
+            if s:
+",5
+"        for key, val in self.cardset.items():
+            config['cardsets'][str(key)] = val
+        for key in ('scale_cards', 'scale_x', 'scale_y',
+                    'auto_scale', 'preserve_aspect_ratio'):
+            config['cardsets'][key] = getattr(self, key)
+",5
+"    # Game layout
+    #
+
+",5
+"# ---------------------------------------------------------------------------##
+#
+# Copyright (C) 1998-2003 Markus Franz Xaver Johannes Oberhumer
+# Copyright (C) 2003 Mt. Hood Playing Card Co.
+# Copyright (C) 2005-2009 Skomoroh
+",5
+"
+        # set size so that at least 2//3 of a card is visible with 12 cards
+        h = CH * 2 // 3 + (playcards - 1) * self.YOFFSET
+        h = max(h, 2 * YS)
+
+",5
+"            stack = TwilightZone_RowStack(x, y, self, max_move=1)
+            stack.CARD_YOFFSET = 0
+",5
+"            for l, min, max, avr, tot, top in ll:
+",5
+"
+class Mississippi(LexingtonHarp):
+    def createGame(self):
+        LexingtonHarp.createGame(self, rows=7)
+
+",5
+"    ""iehifaiioijaikoi"" +
+",5
+"        else:
+",5
+"            # filename = os.path.normcase(filename)
+",5
+"
+    def redo(self, game):
+        self._doMove(game, game.allstacks[self.stack_id])
+
+",5
+"# ************************************************************************
+# * Labyrinth
+# ************************************************************************
+
+",5
+"        # right justify
+",5
+"                if '<1>' in self.group.bindings:
+                    ppos, psize = self.group.canvas.KivyToCore(
+                        touch.pos, self.size)
+",5
+"    def _setVbar(self, first, last):
+        if self.canvas.busy:
+            return
+        sb = self.vbar
+        if float(first) <= 0 and float(last) >= 1:
+",5
+"                         # bitmap=""warning""
+",5
+"                d.highlight_cards_timeout
+            self.app.opt.timeouts['highlight_samerank'] = \
+",5
+"            if abs(dx) < 10 and abs(dy) < 10:
+                # move cards back to their origin stack
+",5
+"
+    def winfo_ismapped(self):
+        return True
+        # ???
+",5
+"            label=_(w.capitalize()),
+            variable=menubar.tkopt.toolbar_vars[w],
+            command=lambda m=menubar, w=w: m.mOptToolbarConfig(w))
+
+
+",5
+"                cmp(self.to_stack_id, other.to_stack_id))
+",5
+"
+# ************************************************************************
+# *
+",5
+"        x = x + l.XS
+",5
+"    def mDone(self, button):
+",5
+"        # create stacks
+        x, y, = l.XM, l.YM
+        s.talon = OpenTalonStack(x, y, self)
+",5
+"            x += l.XS
+
+        x, y = l.XM, l.YM
+",5
+"        tv.add_node(LTreeNode(
+            text=_('Redo all'), command=self.menubar.mRedoAll))
+",5
+"        l.defaultStackGroups()
+
+    def startGame(self):
+        self._startDealNumRowsAndDealSingleRow(12)
+",5
+"def statusbar_main(args):
+    tk = tkinter.Tk()
+    TestStatusbar(tk, args)
+    tk.mainloop()
+",5
+"            app.saveOptions()
+        except Exception:
+            traceback.print_exc()
+            pass
+        # save statistics
+",5
+"#
+# You should have received a copy of the GNU General Public License
+",5
+"        for obj in self.tree.data.all_objects:
+            if self.select_func(obj):
+",5
+"    ""maseosfasgoshCsh"" +
+",5
+"        self._resizeHandlerID = self.canvas.after(250, self._resizeHandler)
+",5
+"        if touch.is_triple_tap:
+            print('Touch is a triple tap !')
+",5
+"    def __init__(self, msg, cards, line_num):
+        """"""docstring for __init__""""""
+        self.msg = msg
+",5
+"
+    def getContents(self):
+        # cached values
+",5
+"from pysollib.ui.tktile.colorsdialog import BaseColorsDialog
+
+# ************************************************************************
+",5
+"    #      for gt, name in TYPE_NAMES.items():
+",5
+"            self.s.talon.dealRow(rows=self.s.rows[:7-i], frames=0)
+            if i:
+",5
+"
+",5
+"        # create talon
+        self.s.talon = S(w - XS * 2, h - YS)
+        if texts:
+",5
+"
+    def _setButtonImage(self, button, name):
+        image = self._loadImage(name)
+        setattr(self, name + ""_image"", image)
+        if Image:
+",5
+"            # print self.canvas.xview()
+",5
+"                list(range(13*row, 13*row+13))
+",5
+"            for s in self.game.s.foundations:
+                if s is not self and s.acceptsCards(self, cards):
+                    self.game.playSample(""autodrop"", priority=30)
+                    self.playSingleCardMove(i, s, sound=False)
+                    return 1
+",5
+"    def getHighlightPilesStacks(self):
+",5
+"
+
+# A Yukon_AlternateColor_RowStack builds down by rank and alternate color,
+# but can move any face-up cards regardless of sequence.
+",5
+"        Pyramid.createGame(self, pyramid_len=9)
+",5
+"
+from pysollib.mfxutil import KwStruct
+from pysollib.mygettext import _
+",5
+"        app.audio = c()
+        app.audio.startServer()
+",5
+"    RowStack_Class = KingAC_RowStack
+
+    def createGame(self):
+        Dover.createGame(self, rows=7)
+
+",5
+"        stack.updateText()
+",5
+"        if tooltip:
+            b = MfxTooltip(label)
+",5
+"        'running_on_spot_bugfix', 'shake_arms', 'shake_hips', 'shake_shoulders'
+    ]
+
+    def __init__(self,
+",6
+"    best_val_acc = final_test_acc = 0
+    for epoch in range(1, 101):
+",6
+"    data.test_pos_edge_index = torch.stack([r, c], dim=0)
+
+    r, c = row[n_v + n_t:], col[n_v + n_t:]
+    data.train_pos_edge_index = torch.stack([r, c], dim=0)
+",6
+"    in_channels, out_channels = (16, 32)
+    edge_index = torch.tensor([[0, 0, 0, 1, 2, 3], [1, 2, 3, 0, 0, 0]])
+",6
+"import os.path as osp
+
+",6
+"              normalization_out='sym',
+              diffusion_kwargs=dict(method='ppr', alpha=0.15),
+              sparsification_kwargs=dict(method='threshold',
+",6
+"             pred.new_zeros(neg_p.size(0))])
+        pred, y = pred.numpy(), y.numpy()
+",6
+"    r""""""Randomly drops edges from the adjacency matrix
+    :obj:`(edge_index, edge_attr)` with probability :obj:`p` using samples from
+",6
+"                s = slice(start, end)
+            data[key] = item[s]
+        return data
+
+",6
+"        acc = pred.eq(data.y[mask]).sum().item() / mask.sum().item()
+
+",6
+"        data = data.to(device)
+        pred = model(data).max(dim=1)[1]
+        correct += pred.eq(data.y).sum().item()
+",6
+"
+        self.reset_parameters()
+
+    def reset_parameters(self):
+        size = self.num_bases * self.in_channels
+",6
+"    torch.manual_seed(5)
+",6
+"    x = torch.Tensor([[-1, 0], [0, 0], [2, 0]])
+    edge_index = torch.tensor([[0, 1], [1, 2]])
+
+",6
+"
+    def __repr__(self):
+        return '{}({}, {}, K={})'.format(self.__class__.__name__,
+                                         self.in_channels, self.out_channels,
+                                         self.K)
+",6
+"
+    .. math::
+        L(\mathcal{G}) &= (\mathcal{V}^{\prime}, \mathcal{E}^{\prime})
+
+        \mathcal{V}^{\prime} &= \mathcal{E}
+",6
+"            :math:`\mathbf{M} \in {\{ 0, 1 \}}^{B \times N}` indicating
+            the valid nodes for each graph. (default: :obj:`None`)
+
+    :rtype: (:class:`Tensor`, :class:`Tensor`, :class:`Tensor`,
+",6
+"        return data
+
+",6
+"            self.convs.append(SAGEConv(16, out_channels))
+",6
+"class InnerProductDecoder(torch.nn.Module):
+    r""""""The inner product decoder from the `""Variational Graph Auto-Encoders""
+    <https://arxiv.org/abs/1611.07308>`_ paper
+
+    .. math::
+",6
+"        subj, rel, obj = g1.t()
+
+        x_dict = {}
+        with open(feature_path, 'r') as f:
+",6
+"    def processed_file_names(self):
+        return 'data.pt'
+",6
+"import os.path as osp
+
+import torch
+import torch.nn.functional as F
+",6
+"
+try:
+    import rdkit
+",6
+"    data.edge_index = None
+",6
+"
+def test_inits():
+",6
+"            :obj:`torch_geometric.data.Data` object and returns a transformed
+            version. The data object will be transformed before every access.
+            (default: :obj:`None`)
+",6
+"                # edge_index: [2, E] with max entry N - 1.
+                # edge_attr: [E, F_e]
+                # u: [B, F_u]
+                # batch: [N] with max entry B - 1.
+                row, col = edge_index
+",6
+"from torch_geometric.nn.conv import MessagePassing
+
+
+class SignedConv(MessagePassing):
+",6
+"from .gin_conv import GINConv, GINEConv
+from .arma_conv import ARMAConv
+",6
+"    def __init__(self, in_channels, out_channels, aggr='add', bias=True):
+        assert aggr in ['add', 'mean', 'max']
+        super(DenseGraphConv, self).__init__()
+",6
+"
+
+def test_compute_edge_score_softmax():
+    edge_index = torch.tensor([[0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 5],
+                               [1, 2, 3, 0, 2, 3, 0, 1, 3, 0, 1, 2, 5, 4]])
+",6
+"
+",6
