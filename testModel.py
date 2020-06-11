@@ -6,7 +6,6 @@ from sklearn.metrics import accuracy_score, confusion_matrix
 import preprocessing as pre
 
 
-
 LAMBDA = 1.5
 
 
@@ -23,7 +22,7 @@ def calculate_accuracies(X_train, X_test, y_train, y_test,
     :return: test, train accuracy and list of features names
     """
     pipe = Pipeline([('vectorizer', TfidfVectorizer(
-        max_features=num_features)), ('clf', clasiffier),])
+        max_features=num_features)), ('classifier', clasiffier),])
     pipe.fit(X_train, y_train)
     y_pred = pipe.predict(X_test)
     y_pred_train = pipe.predict(X_train)

@@ -7,27 +7,36 @@ from tqdm import tqdm
 from sklearn.pipeline import Pipeline
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from sklearn.metrics import accuracy_score, confusion_matrix
-from sklearn.model_selection import KFold
-from sklearn.linear_model import LogisticRegression
-import generate_set as gen
 
 
 def calculate_accuracies(X_train, X_test, y_train, y_test,
                          clasiffier, num_features=None):
-    X_train, y_train = X_train, y_train
-    X_test, y_test =  X_test, y_test
-    nb = Pipeline([('vectorizer', TfidfVectorizer(max_features=num_features)),
-                   ('clf', clasiffier),
+    """
+    calculate test and train accuracy
+    :param X_train: train sample
+    :param X_test: test sample
+    :param y_train: train lables
+    :param y_test: test lables
+    :param clasiffier: clasiffier learner
+    :param num_features: max features for word embedding
+    :return: test, train accuracy and list of features names
+    """
+
+    pipe = Pipeline([('vectorizer', TfidfVectorizer(max_features=num_features)),
+                   ('classifier', clasiffier),
                   ])
-    nb.fit(X_train, y_train)
-    y_pred = nb.predict(X_test)
-    y_pred_train = nb.predict(X_train)
+    pipe.fit(X_train, y_train)
+    y_pred = pipe.predict(X_test)
+    y_pred_train = pipe.predict(X_train)
     return accuracy_score(y_pred, y_test), accuracy_score(y_pred_train,
                                                           y_train)
 
 
-
 def calc_acc(file):
+    """
+    calculate accuracy as fanction of model complexity
+    :param file: path to train set
+    """
     df_train = pd.read_csv(file)
     X_train, X_test, y_train, y_test = train_test_split(df_train['sample'], df_train['label'],
                                                                test_size=0.2)
@@ -58,5 +67,6 @@ def calc_acc(file):
     plt.legend()
     plt.savefig("svm_sample_complexity_val")
     plt.show()
+
 
 calc_acc("validation_train.csv")

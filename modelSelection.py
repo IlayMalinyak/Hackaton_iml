@@ -25,8 +25,7 @@ def calculate_accuracies(X_train, X_test, y_train, y_test,
     X_train, y_train = X_train, y_train
     X_test, y_test =  X_test, y_test
     pipe = Pipeline([('vectorizer', TfidfVectorizer(max_features=num_features)),
-                   ('clf', classifier),
-                  ])
+                   ('classifier', classifier)])
     pipe.fit(X_train, y_train)
     y_pred = pipe.predict(X_test)
     y_pred_train = pipe.predict(X_train)
