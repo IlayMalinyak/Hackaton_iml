@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.svm import LinearSVC
 from sklearn.pipeline import Pipeline
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, confusion_matrix
 import preprocessing as pre
 
 
@@ -27,6 +27,9 @@ def calculate_accuracies(X_train, X_test, y_train, y_test,
     pipe.fit(X_train, y_train)
     y_pred = pipe.predict(X_test)
     y_pred_train = pipe.predict(X_train)
+    c = confusion_matrix(y_test, y_pred)
+    print("confusion matrix: ")
+    print(c)
     return accuracy_score(y_pred, y_test), accuracy_score(y_pred_train,
                                                           y_train), \
            pipe['vectorizer'].get_feature_names()
