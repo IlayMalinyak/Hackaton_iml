@@ -73,3 +73,26 @@ def generate_sets(path, train_ratio, path_to_train, path_to_test):
 
 generate_sets("train_set.csv", 0.5, "model_train.csv",
               "model_preprocess.csv")
+
+
+def get_sets(path, train_ratio):
+
+    full_set, ratios = analyze_data(path)
+    train_size = int(train_ratio * len(full_set.label))
+    samples_amount = (ratios * train_size).astype(int)
+    X_train, y_train, X_test, y_test = [], [], [], []
+
+    for file_sgn, df_file in full_set.groupby(['label']):
+
+        lines = np.asarray(df_file['sample'])
+        indices_train = np.random.choice(len(lines), samples_amount[file_sgn], replace=False)
+        test_samples = np.delete(lines, indices_train)
+        train_samples = np.take(lines, indices_train)
+
+        X_train.extend(train_samples)
+        X_test.extend(test_samples)
+        y_train.extend([file_sgn] * len(train_samples))
+        y_test.extend([file_sgn] * len(test_samples))
+
+
+    return X_train, y_train, X_test, y_test
