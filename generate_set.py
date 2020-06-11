@@ -35,19 +35,19 @@ def split_randomly(X, y, content, file_sgn):
         i += num_of_lines
 
 
-def analyze_data(path):
+def analyze_data(df):
 
-    df = pd.read_csv(path)
     labels = np.asarray(df.label)
     unique, counts = np.unique(labels, return_counts=True)
     ratios = counts / len(labels)
 
-    return df, ratios
+    return ratios
 
 
 def generate_sets(path, train_ratio, path_to_train, path_to_test):
 
-    full_set, ratios = analyze_data(path)
+    full_set = pd.read_csv(path)
+    ratios = analyze_data(full_set)
     train_size = int(train_ratio * len(full_set.label))
     samples_amount = (ratios * train_size).astype(int)
     X_train, y_train, X_test, y_test = [], [], [], []
@@ -75,7 +75,12 @@ generate_sets("train_set.csv", 0.5, "model_train.csv",
               "model_preprocess.csv")
 
 
-def get_sets(path, train_ratio):
+def get_sets(train_ratio, path=None, st=None):
+
+    if path:
+        full_set = pd.read_csv(path)
+    else:
+        full_set = st
 
     full_set, ratios = analyze_data(path)
     train_size = int(train_ratio * len(full_set.label))
