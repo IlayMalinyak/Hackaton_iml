@@ -1,0 +1,6603 @@
+sample,label
+"        e4 = bmesh.ops.contextual_create(bm, geom=[v4, v6])[""edges""][0]
+        railing_edges = [e1, e2, e3, e4]
+    else:
+        v1, v2 = railing_verts(bm, sort_verts(first_step.verts, normal)[:2], normal, prop.rail.offset, prop.step_width/2)
+",0
+"
+",0
+"        elif isinstance(prop, bpy.types.PropertyGroup) and not isinstance(
+            prop, type(props)
+",0
+"
+                i = Line2(selfedge).intersect(Line2(edge.edge))
+                if i is not None and not approximately_equals(i, self.point):
+                    # locate candidate b
+                    linvec = (self.point - i).normalized()
+",0
+"    def __eq__(self, other):
+        if isinstance(other, Vector2):
+",0
+"    new_faces = {
+        f
+",0
+"
+    return sorted(edges, key=sort_function, reverse=True)
+
+",0
+"    final_position = 0.0
+    for i, edge in enumerate(sort_edges(inner_edges, dir)):
+",0
+"
+    tw1: FloatProperty(
+        name=""Tail Width 1"",
+",0
+"def extrude_up_and_delete_faces(bm, faces, extrude_depth):
+    """""" Extrude faces upwards and delete ones at top
+    """"""
+",0
+"    _intersect_point2 = _intersect_unimplemented
+",0
+"                    b = bisector.intersect(self.bisector)
+",0
+"
+    def init(self, wall_dimensions):
+        self['wall_dimensions'] = wall_dimensions
+",0
+"
+def make_fill(bm, face, prop):
+",0
+"    return cube
+import bpy
+import bmesh
+",0
+"        if self.layout_type in {""DEFAULT"", ""COMPACT""}:
+            layout.prop(fmap, ""name"", text="""", emboss=False, icon=""FACE_MAPS"")
+        elif self.layout_type == ""GRID"":
+",0
+"
+
+class FillUser(Enum):
+",0
+"@map_new_faces(FaceMap.ROOF_HANGS)
+def create_roof_hangs(bm, edges, size):
+    """"""Extrude edges outwards and slope the downward to form proper hangs
+    """"""
+",0
+"    # get verts in anti-clockwise order
+    verts = [v for v in sort_verts_by_loops(face)]
+    points = [v.co.to_tuple()[:2] for v in verts]
+",0
+"
+def extrude_faces_add_slope(bm, faces, extrude_normal, extrude_depth):
+    """"""Extrude faces and move top edge back to form a wedge
+    """"""
+    res = bmesh.ops.extrude_discrete_faces(bm, faces=faces)
+",0
+"        return context.object is not None and context.mode == ""EDIT_MESH""
+
+    def execute(self, context):
+        self.props.init(get_selected_face_dimensions(context))
+",0
+"        bpy.utils.register_class(cls)
+
+    bpy.types.Object.tracked_properties = PointerProperty(type=TrackedProperty)
+    bpy.types.Object.facemap_materials = CollectionProperty(type=FaceMapMaterial)
+",0
+"    return approximately_equals(point_a.x, point_b.x) and approximately_equals(
+        point_a.y, point_b.y
+",0
+"def create_slope_steps(bm, face, step_widths, step_height):
+",0
+"                        ""or <key>:<filepath>:<type>  ""
+                        ""e.g. feat:data/feat.scp ""
+                        ""or shape:data/feat.scp:shape: {}"".format(key_scp)
+                    )
+
+",1
+"
+    def merge_states(self, states: Any, part_states: Any, part_idx: int) -> Any:
+        """"""Merge states for new hypothesis.
+
+",1
+"            att,
+",1
+"        norm_means:
+        norm_vars:
+",1
+"        self.var_word_eos = torch.LongTensor([self.word_eos])
+        self.var_word_unk = torch.LongTensor([self.word_unk])
+        self.space = subword_dict[""<space>""]
+",1
+"            else:
+",1
+"
+import espnet.lm.chainer_backend.lm as lm_chainer
+",1
+"            .repeat(1, beam)
+            .view(-1, 1)
+        )
+        self.bb_idx = torch.arange(self.n_bb, device=self.device).view(-1, 1)
+
+",1
+"            ""if set -1, all of the layers will be applied."",
+        )
+",1
+"    assert torch.allclose(legacy, latest)
+
+    legacy_net = torch.nn.Sequential(
+        LegacyScaledPositionalEncoding(4, 0.0), torch.nn.Linear(4, 2)
+",1
+"        self.idim = idim
+",1
+"        if args.tie_src_tgt_embedding:
+",1
+"        pass
+
+",1
+"            Tensor: Batch of the sequences of encoder states(B, Tmax, eunits).
+            LongTensor: Batch of lengths of each sequence (B,)
+
+        """"""
+        xs = self.embed(xs).transpose(1, 2)
+",1
+"            win_length: Window length in points.
+            window: Window function type.
+",1
+"    def __init__(
+        self,
+",1
+"    lm_args = Namespace(type=""lstm"", layer=1, unit=2, embed_unit=2, dropout_rate=0.0)
+    lm = dynamic_import_lm(""default"", backend=""pytorch"")(len(char_list), lm_args)
+    lm.eval()
+
+",1
+"                    raise RuntimeError(
+                        f""The batch-size must be equal or more than world_size: ""
+                        f""{len(batch)} < {world_size}""
+                    )
+            batches = [batch[rank::world_size] for batch in batches]
+",1
+"        talk_id = utt_id.split(""_"")[0].replace("".en"", """").replace("".de"", """")
+        ref = "" "".join(line.split()[1:])
+
+        if talk_id not in dic.keys():
+",1
+"    batches = [[0, 1], [2, 3], [4, 5], [6, 7], [8, 9]]
+",1
+"                logging.info(""prediction [%d]: "" % i + seq_hat)
+
+        if self.labeldist is not None:
+            if self.vlabeldist is None:
+",1
+"        # to support mutiple encoder asr mode, in single encoder mode,
+        # convert torch.Tensor to List of torch.Tensor
+        if self.num_encs == 1:
+",1
+"    args = make_arg(grad_noise=True)
+    args_org = make_arg()
+",1
+"                delay=self.delay,
+                inverse_power=self.inverse_power,
+            )
+
+",1
+"        :param list char_list: list of characters
+        :param torch.nn.Module rnnlm: language model module
+        :return: N-best decoding results
+        :rtype: list
+",1
+"            type=int,
+",1
+"                - transformer_enc_positional_dropout_rate (float):
+                    Dropout rate after encoder positional encoding.
+                - transformer_enc_attn_dropout_rate (float):
+",1
+"
+        :param torch.Tensor x: encoder hidden state sequences (B, Tmax, Henc)
+        :param namespace trans_args: argument namespace containing options
+        :param list char_list: list of characters
+",1
+"    assert (
+        isinstance(model, MTInterface)
+        or isinstance(model, ASRInterface)
+        or isinstance(model, TTSInterface)
+",1
+"            seq_true_text = seqs_true[i]
+            hyp_chars = seq_hat_text.replace("" "", """")
+",1
+"            )
+        elif args.criterion == ""loss"":
+            trainer.extend(
+                restore_snapshot(
+                    model, args.outdir + ""/model.loss.best"", load_fn=torch_load
+",1
+"
+def main():
+    args = sys.argv
+",1
+"    parser = get_parser()
+    args = parser.parse_args(cmd)
+    args.cmd = shlex.split(args.cmd)
+
+",1
+"        Args:
+            x (ndarray): Input acouctic feature (B, T, D) or (T, D).
+",1
+"            signal, rate = soundfile.read(filepath, dtype=np.int16)
+",1
+"        if prev_state is not None and self.nbrnn.bidirectional:
+            # We assume that when previous state is passed,
+            # it means that we're streaming the input
+            # and therefore cannot propagate backward BRNN state
+",1
+"                        # ======= Legacy format for output =======
+                        # {""output"": [{""tokenid"": ""1 2 3 4""}])
+                        x = np.fromiter(
+                            map(int, inp[""tokenid""].split()), dtype=np.int64
+                        )
+",1
+"
+",1
+"        if self.normalize_before:
+            x = self.after_norm(x)
+        if self.output_layer is not None:
+            x = self.output_layer(x)
+",1
+"                    dunits=3,
+                    elayers=2,
+                    dlayers=2,
+                    mtlalpha=0.5,
+",1
+"                                f""Must be ndarray, torch.Tensor, str or Number: ""
+",1
+"                ),
+            )
+            trainer.extend(
+                adadelta_eps_decay(args.eps_decay),
+                trigger=CompareValueTrigger(
+",1
+"            self.d_k
+        )
+        if mask is not None:
+",1
+"        Args:
+            inputs (Tensor): Batch of input tensor (B, input_size).
+            hidden (tuple):
+                - Tensor: Batch of initial hidden states (B, hidden_size).
+",1
+"        if args.report_cer or args.report_wer:
+            recog_args = {
+",1
+"        else:
+            key = arg
+            value = None
+
+        keys = key.split(""."")
+",1
+"        super(DecoderLayer, self).__init__()
+        self.self_attn = self_attn
+        self.feed_forward = feed_forward
+
+        self.norm1 = LayerNorm(size)
+",1
+"from espnet.asr.pytorch_backend.asr_init import load_trained_model
+from espnet.asr.pytorch_backend.asr_init import load_trained_modules
+",1
+"            f""Use WarmupLR(warmup_steps={warmup_steps}) with Optimizer(lr={new_lr})"",
+        )
+
+        # __init__() must be invoked before setting field
+",1
+"            raise ValueError(
+                f""The number of fold_lengths must be equal to ""
+                f""the number of shape_files: ""
+                f""{len(fold_lengths)} != {len(shape_files)}""
+",1
+"    # train
+    logging.info(""backend = "" + args.backend)
+
+",1
+"    for x in args.jsons:
+        with codecs.open(x, encoding=""utf-8"") as f:
+            j = json.load(f)
+",1
+"        v = js[0][""utts""][k]
+        intersec_org_dic[k] = v
+",1
+"            try:
+",1
+"        return parser
+
+
+class ClassifierWithState(link.Chain):
+    """"""A wrapper for a chainer RNNLM
+",1
+"                            typ=typ,
+                        ),
+                    ]
+",1
+"        self.encoder = nn.Embedding(vocab_size, ninp, padding_idx=ignore_id)
+        if rnn_type in [""LSTM"", ""GRU""]:
+            rnn_class = getattr(nn, rnn_type)
+            self.rnn = rnn_class(
+",1
+"        return retval
+
+
+def pack(
+    files: Dict[str, Union[str, Path]],
+",1
+"        1e-7,
+        1e-8,
+    )
+",1
+"        self.subsample_list = get_subsample(args, mode=""asr"", arch=""rnn_mulenc"")
+
+        # label smoothing info
+",1
+"        loss = self.trans_loss(pred_pad, target, pred_len, target_len)
+
+",1
+"                attention_dim,
+                linear_units,
+                positionwise_conv_kernel_size,
+",1
+"    :param int in_channel: number of input channels
+    """"""
+
+",1
+"            default=320,
+            type=int,
+            help=""Number of dimensions in joint space"",
+",1
+"            type=str,
+",1
+"        m = importlib.import_module(m_str)
+        model = m.E2E(40, 5, args)
+
+        if ""pytorch"" in m_str:
+",1
+"            xs_pad = torch.cat([tgt_lang_ids, xs_pad], dim=1)
+",1
+"        (True, ""test"", None, ""dec., att."", 1.0),
+        (None, ""enc."", True, ""test"", 0.0),
+        (None, ""enc."", True, ""test"", 0.5),
+",1
+"            if i == 0:
+                inputdim = idim
+            else:
+                inputdim = hdim
+
+",1
+"        replace_sos=False,
+",1
+"        if self.multilingual:
+            ilens = np.fromiter((len(xx[1:]) for xx in xs), dtype=np.int64)
+",1
+"    voice_part_tmp = np.zeros((tvn, 2), np.float)
+
+",1
+"        """"""Initialize Conv1dLinear module.
+
+        Args:
+",1
+"                data = list(
+",1
+"
+
+class CustomParallelUpdater(training.updaters.MultiprocessParallelUpdater):
+    """"""Custom Parallel Updater for chainer.
+",1
+"        ""g2p_en"",
+        ""nnmnkwii"",
+",1
+"            for i in range(x.size(0)):
+                _y = time_warp(
+                    x[i][None, : x_lengths[i]], window=self.window, mode=self.mode,
+                )[0]
+                ys.append(_y)
+",1
+"            default=32,
+",1
+"            new_state_dict[key] = value
+",1
+")
+def test_tacotron2_gpu_trainable_and_decodable(model_dict, inference_dict):
+",1
+"
+        if is_cuda:
+            xs = xs.cuda()
+            ilens = ilens.cuda()
+",1
+"            retval = CommonPreprocessor(
+",1
+"    model_path = download_zip_from_google_drive(tmpdir, download_info[1])
+
+    # load trained model parameters
+    m = importlib.import_module(module)
+",1
+"    pretrained_dict = torch.load(pretrain_path, map_location=map_location)
+    if ignore_not_existing_keys:
+        # Ignores the parameters not existing in the train-model
+",1
+"    """"""Partial scorer interface for beam search.
+
+    The partial scorer performs scoring when non-partial scorer finished scoring,
+    and recieves pre-pruned next tokens to score because it is too heavy to score
+",1
+"
+",1
+"        :param torch.Tensor xs_pad: batch of padded input sequences (B, Tmax, idim)
+        :param torch.Tensor ilens: batch of lengths of input sequences (B)
+",1
+"
+    # logging info
+    logfmt = ""%(asctime)s (%(module)s:%(lineno)d) %(levelname)s: %(message)s""
+    logging.basicConfig(level=logging.INFO, format=logfmt)
+",1
+"            #    calculate_all_attentions() uses single gpu only.
+            att_dict = calculate_all_attentions(model, batch)
+
+",1
+"            {""loss"": loss.item()},
+",1
+"        )
+
+        group = parser.add_argument_group(""Dataset related"")
+        _data_path_and_name_and_type_help = (
+            ""Give three words splitted by comma. It's used for the training data. ""
+",1
+"
+",1
+"    # NOTE: np_pred[i] seems to be transposed and used axis=-1 in e2e_asr.py
+    ch_pred = F.separate(F.pad_sequence(np_pred), axis=-2)
+",1
+"                # Write PPL of each utts for debugging or analysis
+                writer[""utt2ppl""][key] = str(utt_ppl)
+",1
+"            registered by the name ``'main'``.
+        optimizer (optimizer | dict[str, optimizer]): Optimizer to update
+            parameters. It can also be a dictionary that maps strings to
+            optimizers. If this is just an optimizer, then the optimizer is
+            registered by the name ``'main'``.
+",1
+"from argparse import Namespace
+
+from espnet.nets.pytorch_backend.e2e_tts_tacotron2 import Tacotron2
+from espnet.nets.pytorch_backend.nets_utils import pad_list
+",1
+"    parser.add_argument(""jsons"", nargs=""+"", type=str, help=""*_mls.json filenames"")
+    parser.add_argument(""out"", type=str, help=""output filename"")
+    parser.add_argument(
+        ""trans_type"",
+        type=str,
+",1
+"            total_count = 0
+        else:
+",1
+"    reporter = Reporter()
+",1
+"            var = square_sums / x.shape[0] - mean ** 2
+            std = np.maximum(np.sqrt(var), self.std_floor)
+            x = np.divide(x, std)
+
+",1
+"            x,
+            n_fft=self.n_fft,
+            n_shift=self.n_shift,
+            win_length=self.win_length,
+            window=self.window,
+",1
+"        return pad_list(durations, 0)
+
+    @staticmethod
+    def _calculate_duration(att_w, ilen, olen):
+        return torch.stack(
+",1
+"    @classmethod
+    def build_sequence_iter_factory(
+",1
+"        xp = cuda.cupy if device != -1 else np
+",1
+"    )
+    parser.add_argument(
+",1
+"    )
+    parser.add_argument(
+        ""--rnnlm"", type=str, default=None, help=""RNNLM model file to read""
+    )
+    parser.add_argument(
+",1
+"
+",1
+"            uttid = ""uttid{}"".format(i)
+            f[uttid] = x
+",1
+"            for line in orig_content:
+",1
+"        This generation based on `Fast WaveNet Generation Algorithm`_.
+",1
+"    parser.add_argument(
+",1
+"    def __call__(self, trainer):
+        observation = trainer.observation
+        if self.key in observation:
+",1
+"                EncoderPrenet(
+                    idim=idim,
+                    embed_dim=args.embed_dim,
+                    elayers=0,
+",1
+"        )
+    if batch_sort_key not in BATCH_SORT_KEY_CHOICES:
+        raise ValueError(
+            f""arg 'batch_sort_key' ({batch_sort_key}) should be ""
+",1
+"            wspecifier,
+            write_num_frames=write_num_frames,
+",1
+"
+    def __init__(self, num_spkrs):
+",1
+"    )
+",1
+"            output.contiguous().view(output.size(0) * output.size(1), output.size(2))
+        )
+        return (
+            decoded.view(output.size(0), output.size(1), decoded.size(1)),
+",1
+"            args.eunits,
+",1
+"            retval[k] = np.loadtxt(
+",1
+"        # compute forward probabilities log(r_t^n(h)), log(r_t^b(h)),
+        # and log prefix probabilites log(psi)
+        start = max(output_length, 1)
+        log_psi = r[start - 1, 0]
+        for t in six.moves.range(start, self.input_length):
+",1
+"            assert cache.shape == (
+                tgt.shape[0],
+                tgt.shape[1] - 1,
+                self.size,
+",1
+"        return type(data)(to_device(v, device, dtype, non_blocking, copy) for v in data)
+",1
+"        ""--num-spkrs"",
+        default=1,
+        type=int,
+",1
+"    except ValueError:
+        raise RuntimeError(f""e.g mnist_train_256x256: but got {loader_type}"")
+
+    return torchvision.datasets.MNIST(
+",1
+"                        # only in this case,
+                        # just using the original file as is.
+",1
+"        )
+        group.add_argument(
+            ""--bpemodel"",
+",1
+"from espnet2.text.token_id_converter import TokenIDConverter
+
+
+",1
+"
+        self.chunk_shift_ratio = chunk_shift_ratio
+",1
+"                The scorer will be ignored if its weight is 0
+            beam_size (int): The number of hypotheses kept during search
+",1
+"            tgt_lang_ids = ys_pad[:, 0:1]
+            ys_pad = ys_pad[:, 1:]  # remove target language ID in the beggining
+",1
+"        # initialize hidden states of decoder
+        c_list = [self._zero_state(hs)]
+        z_list = [self._zero_state(hs)]
+        for _ in six.moves.range(1, len(self.lstm)):
+            c_list += [self._zero_state(hs)]
+",1
+"    parser.add_argument(
+        ""--log_level"",
+        type=lambda x: x.upper(),
+        default=""INFO"",
+        choices=(""INFO"", ""ERROR"", ""WARNING"", ""INFO"", ""DEBUG"", ""NOTSET""),
+",1
+"            logging.info(
+                ""Setting istft config from the command line args\n{}"".format(istft)
+",1
+"            xs_pad = {""real"": xs_pad_real, ""imag"": xs_pad_imag}
+",1
+"            {""etype"": ""vggblstmp"", ""atype"": ""multi_head_loc""},
+        ),
+",1
+"def to_torch_tensor(x):
+    """"""Change to torch.Tensor or ComplexTensor from numpy.ndarray.
+
+    Args:
+        x: Inputs. It should be one of numpy.ndarray, Tensor, ComplexTensor, and dict.
+",1
+"            choices=[""lstm"", ""gru""],
+            help=""Type of decoder network architecture"",
+        )
+        group.add_argument(
+            ""--dlayers"", default=1, type=int, help=""Number of decoder layers""
+",1
+"#!/usr/bin/env python3
+import argparse
+import logging
+import os
+from pathlib import Path
+",1
+"                num_samples_per_epoch=num_iters_per_epoch,
+                shuffle=train,
+",1
+"
+        if rnn_type not in {""lstm"", ""gru""}:
+            raise ValueError(f""Not supported rnn_type={rnn_type}"")
+",1
+"            end_time = x[""end_time""][mictype]
+
+            # remove meta chars and convert to lower
+            words = (
+",1
+"            logging.error(
+                f'Error happened with path=""{path}"", ' f'id=""{k}"", value=""{v}""'
+            )
+            raise
+",1
+"
+    Returns:
+        ndarray: Quantized audio signal with the range from 0 to mu - 1.
+
+    """"""
+",1
+"            type=int,
+            action=""append"",
+            help=""Number of attention convolution channels \
+                           (negative value indicates no location-aware attention)"",
+",1
+"            with reporter.measure_time(""backward_time""):
+                if use_apex:
+                    try:
+                        from apex import amp
+",1
+"        required = parser.get_default(""required"")
+        required += [""token_list""]
+
+        group.add_argument(
+            ""--token_list"",
+",1
+"
+        :param torch.Tensor enc_hs_pad: padded encoder hidden state (B, T_max, D_enc)
+        :param list enc_hs_len: padded encoder hidden state length (B)
+        :param torch.Tensor dec_z: dummy (does not use)
+        :param torch.Tensor att_prev: dummy (does not use)
+",1
+"from espnet.scheduler.scheduler import dynamic_import_scheduler
+
+from espnet.asr.asr_utils import snapshot_object
+from espnet.asr.asr_utils import torch_load
+",1
+"        # save as .wav file
+        write(
+",1
+"    file_order = []
+    with codecs.open(args.file_order, ""r"", encoding=""utf-8"") as f:
+        for line in f:
+",1
+"                )
+            if ilen + olen > max_frames_inout and max_frames_inout != 0:
+                raise ValueError(
+                    f""Can't fit one sample in --batch-frames-out ({max_frames_inout}): ""
+                    f""Please increase the value""
+",1
+"                dropout_rate=args.dropout_rate_decoder,
+                positional_dropout_rate=args.dropout_rate_decoder,
+                attention_dropout_rate=args.transformer_attn_dropout_rate_decoder,
+            )
+        else:
+",1
+"            self.pre_compute_enc_h = F.tanh(self.mlp_enc(self.enc_h, n_batch_axes=2))
+
+",1
+"            self.att_list[att_idx].reset()  # reset pre-computation of h
+        else:
+",1
+"        self.acc = acc
+",1
+"        eos (int): Number to indicate the end of sequences.
+        att (Module): Attention module defined at
+            `espnet.espnet.nets.chainer_backend.attentions`.
+        verbose (int): Verbosity level.
+        char_list (List[str]): List of all charactors.
+",1
+"                max_epoch=args.max_epoch,
+                seed=args.seed,
+                patience=args.patience,
+",1
+"            onesided=self.onesided,
+        )
+        # output: (Batch, Freq, Frames, 2=real_imag)
+",1
+"#  Apache 2.0  (http://www.apache.org/licenses/LICENSE-2.0)
+",1
+"
+        if getattr(args, ""use_frontend"", False):  # use getattr to keep compatibility
+            self.frontend = frontend_for(args, idim)
+",1
+"        # define lstm network
+        prenet_units = prenet_units if prenet_layers != 0 else odim
+",1
+"            >>> a = A()
+            >>> assert A.linear.weight is get_attr(A, 'linear.weight')
+
+            """"""
+            if key.strip() == """":
+",1
+"        # 1. Encoder
+",1
+"        initial_decoder_alpha=1.0,
+        reduction_factor=1,
+        loss_type=""L1"",
+",1
+"            ""--dry_run"",
+            type=str2bool,
+            default=False,
+",1
+"        dist_rank=0,
+",1
+"                n_fft=self.n_fft,
+                n_shift=self.n_shift,
+",1
+"            if s1 == 0:
+                raise ValueError(""must be 1 or more value"")
+",1
+"
+import argparse
+import codecs
+import json
+",1
+"
+    @staticmethod
+",1
+"                [torch.from_numpy(np.array(y[1])).long() for y in ys_asr],
+                self.ignore_id,
+            ).to(device)
+",1
+"            except TypeError:
+                log_interval = 100
+
+",1
+"        self.adim = args.adim
+        if args.report_bleu:
+            from espnet.nets.e2e_mt_common import ErrorCalculator
+
+            self.error_calculator = ErrorCalculator(
+",1
+"        hop_length: int = 128,
+        center: bool = True,
+        pad_mode: str = ""reflect"",
+        normalized: bool = False,
+",1
+"        y = griffin_lim(
+            spc,
+",1
+"            default=None,
+            help=""The initialization method"",
+            choices=[
+                ""chainer"",
+                ""xavier_uniform"",
+",1
+"    else:
+        ssl._create_default_https_context = _create_unverified_https_context
+    nltk.download(""punkt"")
+
+
+",1
+"from espnet.asr.asr_utils import snapshot_object
+",1
+"                rnnlm_state = self._index_select_lm_state(rnnlm_state, 0, vidx)
+",1
+"        for uttid, info in batch:
+            ilen = int(info[""input""][0][""shape""][0])
+            olen = int(info[""output""][0][""shape""][0])
+            n += ilen * idim + olen * odim
+",1
+"            )
+            logging.info(""grad norm={}"".format(grad_norm))
+
+",1
+"        train_iter = self.get_iterator(""main"")
+",1
+"        args.maxlen_in,
+        args.maxlen_out,
+        args.minibatches,
+        min_batch_size=args.ngpu if args.ngpu > 1 else 1,
+",1
+"    with codecs.open(args.text, encoding=""utf-8"") as f:
+        for line in f:
+",1
+"    def inference(self, x):
+        """"""Inference.
+
+",1
+"        )
+
+    @staticmethod
+",1
+"    np.testing.assert_allclose(y.numpy(), y2.numpy())
+import pytest
+import torch
+
+",1
+"        if self.ctc_type == ""builtin"":
+            reduction_type = ""sum"" if reduce else ""none""
+            self.ctc_loss = torch.nn.CTCLoss(reduction=reduction_type)
+        elif self.ctc_type == ""warpctc"":
+",1
+"        ""--fastspeech-alpha"",
+        type=float,
+        default=1.0,
+",1
+"                att_ws.append(att_w_list)
+            ey = torch.cat((eys[:, i, :], att_c), dim=1)  # utt x (zdim + hdim)
+            z_list, c_list = self.rnn_forward(ey, z_list, c_list, z_list, c_list)
+",1
+"    iter_factory = SequenceIterFactory(
+        dataset=dataset, batches=batches, shuffle=True, collate_fn=collate
+    )
+",1
+"            1) multi-head case => attention weights (B, H, Lmax, Tmax),
+            2) other case => attention weights (B, Lmax, Tmax).
+        :rtype: float ndarray
+        """"""
+",1
+"                            k: self.full_scorers[k].select_state(v, full_prev_hyp_id)
+                            for k, v in states.items()
+                        },
+                        {
+                            k: self.part_scorers[k].select_state(v, part_prev_hyp_id)
+",1
+"                num_mask=num_time_mask,
+            )
+        else:
+",1
+"# encoding: utf-8
+",1
+"            train_iters[0],
+            optimizer,
+            converter=converter,
+            device=gpu_id,
+",1
+"                                f""{type(v)}""
+                            )
+                elif isinstance(value, (tuple, list)):
+                    for v in value:
+                        if not isinstance(
+",1
+"    def forward(
+        self, input: torch.Tensor, input_lengths: torch.Tensor
+    ) -> Tuple[torch.Tensor, torch.Tensor]:
+        # 1. Domain-conversion: e.g. Stft: time -> time-freq
+",1
+"                else:
+                    nll, lengths = data_parallel(
+                        wrapped_model, (), range(ngpu), module_kwargs=batch
+                    )
+
+",1
+"
+        :param torch.Tensor x: encoded source features (batch, max_time_in, size)
+",1
+"        # transpose state of [layer, batch] into [batch, layer]
+        state_list = [[states[i][b] for i in range(n_layers)] for b in range(n_batch)]
+        return logp, state_list
+import logging
+",1
+"                    ""%d/%d estimated time = %.3f sec (%.3f sec / sample)""
+",1
+"    y, _ = layer(x)
+    x2, _ = layer.inverse(y)
+    np.testing.assert_allclose(x.numpy(), x2.numpy())
+
+",1
+"#
+# needs_sphinx = '1.0'
+",1
+"
+",1
+"     the model, but in this implementation, this parameter is a constant value.
+     You need to change it if the model is changed.
+
+",1
+"        num_spkrs=1,
+        outdir=None,
+        penalty=0.5,
+",1
+"        if self.frontend is None:
+            raise RuntimeError(""Frontend doesn't exist"")
+        prev = self.training
+        self.eval()
+",1
+"            f""center={self.center}, ""
+",1
+"
+
+class FreqMask(FuncTrans):
+    _func = freq_mask
+",1
+"        patience: Optional[int],
+        keep_nbest_models: int,
+        early_stopping_criterion: Sequence[str],
+",1
+"        """"""Add scheduler args.""""""
+",1
+"                {""utts"": new_js}, indent=4, ensure_ascii=False, sort_keys=True
+            ).encode(""utf_8"")
+        )
+",1
+"            if x is not None:
+",1
+"from espnet.utils.cli_utils import strtobool
+from espnet.utils.training.batchfy import BATCH_COUNT_CHOICES
+",1
+"            raise RuntimeError(
+                f""model must inherit {AbsESPnetModel.__name__}, but got {type(model)}""
+            )
+        if args.train_dtype in (""float16"", ""float32"", ""float64""):
+",1
+"        f = torch.nn.DataParallel(f)
+",1
+"        chainer_load(args.rnnlm, rnnlm)
+",1
+"        preprocess=preprocess,
+",1
+"
+        # dot with gvec
+        # utt x frame x att_dim -> utt x frame
+        e = self.gvec(
+            torch.tanh(att_conv + self.pre_compute_enc_h + dec_z_tiled)
+",1
+"    )
+    parser.add_argument(""--utt_list"", type=str, help=""utt list file"")
+",1
+"            attention_dropout_rate=args.transformer_attn_dropout_rate,
+        )
+",1
+"    print(get_commandline_args(), file=sys.stderr)
+    parser = get_parser()
+",1
+"
+        # concat all of c
+        c = self.mlp_o(torch.cat(c, dim=1))
+
+",1
+"        return plt
+
+",1
+"def get_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+",1
+"
+",1
+"    # use deterministic computation or not
+    if args.debugmode < 1:
+        chainer.config.cudnn_deterministic = False
+",1
+"
+    if not os.path.exists(args.figdir):
+        os.makedirs(args.figdir)
+",1
+"
+    # Save model conf to json
+    model_conf = args.outdir + ""/model.json""
+    with open(model_conf, ""wb"") as f:
+        logging.info(""writing a model config file to "" + model_conf)
+",1
+"                ]
+",1
+"        ""--word-rnnlm"", type=str, default=None, help=""Word RNNLM model file to read""
+    )
+    parser.add_argument(
+        ""--word-rnnlm-conf"",
+        type=str,
+",1
+"        ...     def forward(self, input, input_lengths):
+        ...         ...
+",1
+"    distributed: bool = False
+    # torch.distributed.Backend: ""nccl"", ""mpi"", ""gloo"", or ""tcp""
+    dist_backend: str = ""nccl""
+    # if init_method=""env://"",
+",1
+"
+        :param torch.Tensor enc_hs_pad: padded encoder hidden state (B x T_max x D_enc)
+        :param list enc_hs_len: padded encoder hidden state length (B)
+        :param torch.Tensor dec_z: decoder hidden state (B x D_dec)
+",1
+"        if cvd is None:
+            logging.warning(""CUDA_VISIBLE_DEVICES is not set."")
+        elif args.ngpu != len(cvd.split("","")):
+            logging.error(""#gpus is not matched with CUDA_VISIBLE_DEVICES."")
+",1
+"
+        # modifiy mod part of groundtruth
+        if self.reduction_factor > 1:
+            olens = olens.new([olen - olen % self.reduction_factor for olen in olens])
+            max_out = max(olens)
+",1
+"    assert target.get_path(""abc"") == str(npy_path1)
+    assert target.get_path(""def"") == str(npy_path2)
+",1
+"):
+    for v in list(files.values()) + list(yaml_files.values()) + list(option):
+        if not Path(v).exists():
+",1
+"            default=True,
+",1
+"        preprocessing = Transformation(args.preprocess_conf)
+        logging.info(""Apply preprocessing: {}"".format(preprocessing))
+    else:
+",1
+"        default=0,
+        type=int,
+        nargs=""?"",
+",1
+"import os
+",1
+"        if self.output_activation_fn is not None:
+            before_outs = self.output_activation_fn(before_outs)
+            after_outs = self.output_activation_fn(after_outs)
+",1
+"            recog_args (Namespace): argument Namespace containing options
+",1
+"from espnet.nets.pytorch_backend.transducer.vgg import VGG2L
+from espnet.nets.pytorch_backend.transformer.attention import MultiHeadedAttention
+from espnet.nets.pytorch_backend.transformer.embedding import PositionalEncoding
+from espnet.nets.pytorch_backend.transformer.encoder_layer import EncoderLayer
+",1
+"    return parser
+
+
+def main():
+    args = get_parser().parse_args()
+",1
+"        )
+
+",1
+"            (only for use_cbhg=True).
+        use_cbhg: Whether to use CBHG module.
+        cbhg_conv_bank_layers: The number of convoluional banks in CBHG.
+",1
+"    nltk.download(""punkt"")
+
+",1
+"                device = f""cuda:{torch.cuda.current_device()}""
+",1
+"    ) -> Tuple[torch.Tensor, torch.LongTensor]:
+        # (B, T, F) or (B, T, C, F)
+",1
+"                        data = hdf5_file[h5_key]
+                    except Exception:
+                        logging.error(
+                            ""Error when loading {} with key={}"".format(path, h5_key)
+                        )
+",1
+"            pn = p.parent / (p.stem + "".1"" + p.suffix)
+",1
+"            lengths = lengths.detach().cpu().numpy()
+            total_nll += nll.sum()
+",1
+"        """"""
+        self.eval()
+        x = torch.as_tensor(x).unsqueeze(0)
+        enc_output, _ = self.encoder(x, None)
+",1
+"                logging.info(""(%d/%d) decoding "" + name, idx, len(js.keys()))
+                feat = [js[name][""output""][1][""tokenid""].split()]
+                nbest_hyps = model.translate(feat, args, train_args.char_list, rnnlm)
+                new_js[name] = add_results_to_json(
+",1
+"    def __init__(self):
+",1
+"        else:
+            intersec_ks = set(ks)
+        js.append(j)
+    logging.info(""new json has "" + str(len(intersec_ks)) + "" utterances"")
+
+",1
+"            type=str,
+            default=""lstm"",
+",1
+"    counts = {}
+",1
+"        #    uttB 201,...
+        utt2shapes = [
+",1
+"
+    def __init__(self, n_vocab, n_layers, n_units, typ=""lstm""):
+        super(RNNLM, self).__init__()
+        with self.init_scope():
+            self.embed = DL.EmbedID(n_vocab, n_units)
+",1
+"            default=""pytorch"",
+            help=""how to initialize transformer parameters"",
+        )
+",1
+"    """"""Apply monotonic attention constraint.
+",1
+"        ""epoch"",
+        ""iteration"",
+        ""main/loss"",
+        ""validation/main/loss"",
+",1
+"            f""cudnn.benchmark={torch.backends.cudnn.benchmark}, ""
+            f""cudnn.deterministic={torch.backends.cudnn.benchmark}""
+        )
+    return message
+from abc import ABC
+",1
+"import codecs
+
+import jaconv
+import pyopenjtalk
+
+",1
+"        # handle single-input and multi-input (paralell) asr mode
+        xs = list(x_feats_dict.values())
+
+        if self.load_output:
+",1
+"            )
+        else:
+            self.wpe = None
+",1
+"
+        return att_ws
+
+
+def decoder_for(args, odim, att=None, blank=0):
+",1
+"                y, (z_list, c_list) = self.rnn_forward(ey, (z_list, c_list))
+
+        return [hyp]
+
+",1
+"    def accept_input(self, x):
+        """"""Call this method each time a new batch of input is available.""""""
+",1
+"def preprocess(id: str, data):
+    new_data = {}
+    for k, v in data.items():
+",1
+"        y_hat = F.separate(y_hat, axis=1)  # ilen list of batch x hdim
+
+        # zero padding for ys
+",1
+"            ilens (Tensor): Batch of lengths of each input sequence (B,).
+            ys (Tensor):
+                Batch of the padded sequence of target features (B, Lmax, odim).
+            olens (Tensor): Batch of lengths of each output sequence (B,).
+",1
+"
+",1
+"                ),
+            )
+            trainer.extend(
+                adadelta_eps_decay(args.eps_decay),
+",1
+"                plot.clf()
+        else:
+            for idx, att_w in enumerate(att_ws):
+",1
+"
+    :param E2E e2e: E2E ASR object
+",1
+"            default=""blstmp"",
+            type=str,
+",1
+"        duration: {100, 1000}: Number of durations to control
+            the interval of the `sigma` change.
+        eta: {0.01, 0.3, 1.0}: The magnitude of `sigma`.
+        scale_factor: {0.55}: The scale of `sigma`.
+    """"""
+",1
+"from __future__ import print_function
+import os
+import re
+",1
+"                break
+",1
+"        args.etype,
+        idim,
+",1
+"            ys_in_pad_asr, ys_out_pad_asr = add_sos_eos(
+                ys_pad_src, self.sos, self.eos, self.ignore_id
+            )
+            ys_mask_asr = target_mask(ys_in_pad_asr, self.ignore_id)
+            pred_pad_asr, _ = self.decoder_asr(
+",1
+"            conv_bank_layers (int, optional): The number of convolution bank layers.
+            conv_bank_chans (int, optional): The number of channels in convolution bank.
+            conv_proj_filts (int, optional):
+                Kernel size of convolutional projection layer.
+            conv_proj_chans (int, optional):
+",1
+"        model_args[""spc_dim""],
+",1
+"                else float(sum(word_eds)) / sum(word_ref_lens)
+            )
+            cer = (
+",1
+"            ""--dropout-rate"", default=0.5, type=float, help=""Dropout rate""
+        )
+        group.add_argument(
+            ""--zoneout-rate"", default=0.1, type=float, help=""Zoneout rate""
+",1
+"                ""kaiming_normal"",
+            ],
+",1
+"    :param espnet.nets.pytorch_backend.transformer.attention.MultiHeadedAttention
+        self_attn: self attention module
+    :param espnet.nets.pytorch_backend.transformer.attention.MultiHeadedAttention
+",1
+"        super(VGG2L, self).__init__()
+        with self.init_scope():
+",1
+"                    )
+                    local_scores = (1.0 - ctc_weight) * local_att_scores[
+",1
+"            eos = np.array([self.eos], ""i"")
+            with chainer.no_backprop_mode():
+",1
+"                    attention_heads, attention_dim, attention_dropout_rate
+",1
+"        ilens = np.array([x.shape[0] for x in xs])
+
+        # perform padding and convert to tensor
+",1
+"    elif args.backend == ""chainer"":
+        # sum
+        for path in last:
+            states = np.load(path)
+",1
+"        :param int n_processes: How many processes to use
+        :param int n_prefetch: The number of prefetch to use
+        :param int shared_mem: How many memory to share between processes
+",1
+"                - transfer_encoder_from_teacher:
+",1
+"                seq = j[""utts""][x][""output""][ns][0][""text""]
+",1
+"            ""--dunits"", default=1536, type=int, help=""Number of decoder hidden units""
+        )
+        group.add_argument(
+            ""--positionwise-layer-type"",
+",1
+"        # the sum of squares. The last value of the first, i.e. stats[0,-1],
+",1
+"
+class NoAtt(torch.nn.Module):
+    """"""No attention""""""
+",1
+"def test_multi_gpu_trainable(module):
+    m = importlib.import_module(module)
+",1
+"
+        """"""
+        # subsample frame
+        x = x[:: self.subsample[0], :]
+        ilen = self.xp.array(x.shape[0], dtype=np.int32)
+",1
+"    model = m.E2E(40, 5, args)
+",1
+"
+        Note:
+",1
+"                assert n1 == n2, ""It seems that encoder structure is different.""
+                assert p1.shape == p2.shape, ""It seems that encoder size is different.""
+                p1.data.copy_(p2.data)
+        elif transferred_encoder_module == ""embed"":
+            student_shape = self.encoder.embed[0].weight.data.shape
+",1
+"    # The core part of the update routine can be customized by overriding.
+    def update_core(self):
+        """"""Main update routine for Custom Updater.""""""
+        train_iter = self.get_iterator(""main"")
+        optimizer = self.get_optimizer(""main"")
+",1
+"
+try:
+    # For phoneme conversion, use https://github.com/Kyubyong/g2p.
+",1
+"    parser.add_argument(
+        ""--preprocess-conf"",
+        type=str,
+",1
+"from abc import abstractmethod
+from typing import Iterator
+from typing import Tuple
+",1
+"        def utt2spk(x):
+            return None
+
+        if args.out_filetype == ""hdf5"":
+",1
+"    # and writing JSON elements per samples.
+    args.out.write('{\n    ""utts"": {\n')
+    nutt = 0
+    while True:
+",1
+"    parser.add_argument(
+",1
+"        (""transformer"", {""use_scaled_pos_enc"": False}),
+",1
+"
+    """"""
+    if ""snapshot"" in os.path.basename(path):
+        chainer.serializers.load_npz(path, model, path=""updater/model:main/"")
+",1
+"            # Unlike the recognition hypothesis,
+            # the reference is directly generated from a token without dictionary
+            # to avoid to include <unk> symbols in the reference to make scoring normal.
+",1
+"            ""--type"",
+            type=str,
+            default=""lstm"",
+",1
+"} // namespace common
+",2
+"            language='c++',
+            package=True,
+",2
+"#elif HAVE_ROCM
+#include <hip/hip_runtime_api.h>
+",2
+"            expected = np.ones(tensor_size)
+",2
+"        if train_steps_per_epoch is None:
+            steps_per_epoch = int(math.ceil(float(train_rows) / batch_size / hvd.size()))
+        else:
+            steps_per_epoch = train_steps_per_epoch
+
+",2
+"        elif SparseVector in col_types:
+            # If a col has only sparse vectors, convert all the data into custom dense vectors
+            is_sparse_vector_only = True
+            spark_data_type = SparseVector
+            convert_to_target = constants.CUSTOM_SPARSE
+",2
+"  std::unique_ptr<IGlooAlgorithms> gloo_algos(
+      GetAlgorithmsForType(first_entry.tensor->dtype(), gloo_context_));
+  gloo_algos->Allreduce(buffer_data, num_elements);
+  timeline.ActivityEndAll(entries);
+
+",2
+"            # the first five epochs. See https://arxiv.org/abs/1706.02677 for details.
+            hvd.callbacks.LearningRateWarmupCallback(warmup_epochs=5, initial_lr=scaled_lr, verbose=verbose),
+
+            # Reduce LR if the metric is not improved for 10 epochs, and stop training
+            # if it has not improved for 20 epochs.
+",2
+"
+  result_type operator()(argument_type const& in) const {
+    result_type seed = 0;
+    seed = hash_one<U>(std::get<0>(in), seed);
+    seed = hash_one<V>(std::get<1>(in), seed);
+",2
+"        if _executing_eagerly():
+            for var, val in zip(variables, values):
+",2
+"
+
+LOCK = threading.Lock()
+JOB_ID = -1
+",2
+"
+
+",2
+"    metric_fn_groups = estimator.getMetrics()
+    user_shuffle_buffer_size = estimator.getShufflingBufferSize()
+    user_verbose = estimator.getVerbose()
+",2
+"    # Horovod: initialize Horovod.
+    hvd.init()
+
+",2
+"    model.add(tf.keras.layers.Flatten())
+",2
+"          // tensors could be reduced at that time. However, mixed-precision
+          // training may yield requests of various dtype in a mixed-up
+          // sequence causing breakups in fusion. To counter this some look
+          // ahead is allowed.
+
+",2
+"
+import numpy as np
+
+import pyspark.sql.types as T
+from pyspark import SparkConf
+",2
+"        tensor = torch.FloatTensor(*dims).random_(-100, 100)
+        try:
+            hvd.allreduce(tensor)
+            assert False, 'hvd.allreduce did not throw error'
+        except (torch.FatalError, RuntimeError):
+",2
+"        q = q.astype(data_type)
+",2
+"
+
+def run(func):
+",2
+"                with util.prepare_data(backend.num_processes(),
+                                       store,
+                                       df,
+",2
+"        def hook(*ignore):
+            if p in self._handles and self._handles[p][0] is not None:
+                if self._allreduce_delay[p] <= 0:
+",2
+"
+int PollHandle(int handle) { return handle_manager.PollHandle(handle) ? 1 : 0; }
+
+void WaitAndClear(int handle) {
+  while (!handle_manager.PollHandle(handle)) {
+",2
+"
+",2
+"  while (!message_queue_.empty()) {
+",2
+"
+inline void InvokeCompleteCallback(CallbackOnComplete on_complete, const Status& status) {
+",2
+"    cmake_cxx_flag = '-DCMAKE_CXX_FLAGS_{type}:STRING={flags}'.format(
+        type=config.upper(), flags=additional_cxx_flags)
+",2
+"      int recvOffset = 0;
+      int firstHalfMyCount = (myCount >> 1);
+      int secondHalfMyCount = myCount - firstHalfMyCount;
+
+",2
+"
+class LearningRateScheduleCallback(_impl.LearningRateScheduleCallbackImpl, keras.callbacks.Callback):
+    """"""
+    LearningRateScheduleCallback sets learning rate between epochs `start_epoch` and
+",2
+"                self._handles[p] = (handle, ctx)
+",2
+"
+} // namespace common
+",2
+"parser.add_argument('--fp16-allreduce', action='store_true', default=False,
+                    help='use fp16 compression during allreduce')
+
+",2
+"        return dataset_idx
+
+
+def check_validation(validation, df=None):
+",2
+"    group_library_options = parser.add_argument_group('library arguments')
+    group_mpi_threads_disable = group_library_options.add_mutually_exclusive_group()
+    group_mpi_threads_disable.add_argument('--mpi-threads-disable', action=make_override_true_action(override_args),
+",2
+"// distributed under the License is distributed on an ""AS IS"" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+",2
+"
+using namespace horovod::common;
+
+typedef ::mxnet::NDArray NDArray;
+
+",2
+"//
+// Licensed under the Apache License, Version 2.0 (the ""License"");
+",2
+"class protect_files(object):
+    def __init__(self, *files):
+        self.files = files
+
+    def __enter__(self):
+",2
+"                with self._lock:
+                    # Check to make sure the reset was not caused by a change of state for this key
+                    rendezvous_id = self._rendezvous_id
+                    saved_state = self._states.get(key, state)
+",2
+"    in your code.
+
+",2
+"  gloo::BroadcastOptions opts(gloo_context_.GetGlooContext(communicator));
+  opts.setOutput((uint8_t*)buffer, size);
+",2
+"class LocalStore(FilesystemStore):
+    """"""Uses the local filesystem as a store of intermediate data and training artifacts.""""""
+",2
+"            expected_task_exec_args = (driver, settings, 'HOROVOD_RANK')
+            expected_task_exec_kwargs = {}
+",2
+"        """"""
+        rank = self.MPI_LIB_CTYPES.horovod_rank()
+        if rank == -1:
+            raise ValueError(
+",2
+"    @torch.jit.unused
+    def _maybe_run_sync_bn(self, input):
+        if size() == 1:
+            return self._run_bn(input)
+",2
+"    """"""
+",2
+"            assert len(timestamps) == expected, rank
+
+",2
+"                run(fn, np=2, use_mpi=True)
+# Copyright 2016 The TensorFlow Authors. All Rights Reserved.
+# Modifications copyright (C) 2018 Uber Technologies, Inc.
+#
+",2
+"    auto-generated name is used. The tensor type and shape must be the same on all
+    Horovod processes for a given name. The reduction will not start until all processes
+    are ready to send and receive the tensor.
+
+    Arguments:
+",2
+"
+private:
+  OpKernelContext* context_ = nullptr;
+};
+
+",2
+"  }
+
+  // Check buffer length and re-allocate if necessary
+",2
+"#endif
+
+Status NCCLBroadcast::Execute(std::vector<TensorTableEntry>& entries,
+                              const Response& response) {
+",2
+"               : CacheState::INVALID;
+  } else {
+    return CacheState::MISS;
+",2
+"    MACROS = [('EIGEN_MPL2_ONLY', 1)]
+",2
+"  std::unordered_map<int, std::queue<hipEvent_t>> hip_events;
+",2
+"    return m2*x*x + m1*x + m0
+
+def qu(x):
+    m3 = 10.
+    m2 = 5.
+",2
+"
+",2
+"import io
+import os
+",2
+"        Construct a new MetricAverageCallback that will average metrics
+        across all processes at the end of the epoch.
+
+        Args:
+            device: Device to be used for allreduce. Uses GPU by default
+",2
+"import torch
+from torch.utils.tensorboard import SummaryWriter
+
+from horovod.spark.common import constants
+from horovod.spark.common.util import to_list
+",2
+"        gradients. Defaults to ""Distributed"" followed by the provided
+        optimizer type.
+      use_locking:
+        Whether to use locking when updating variables.
+        See Optimizer.__init__ for more info.
+",2
+"        assert np.array_equal(prepped_row_vals[0][0], np.array([[3.]]))
+        assert np.array_equal(prepped_row_vals[0][1],
+                              np.array([[[0., 1., 2., 3., 4.], [5., 6., 7., 8., 9.]]]))
+",2
+"
+  return sqdist.unaryExpr(op);
+",2
+"#endif // HOROVOD_TORCH_READY_EVENT_H
+# Copyright 2019 Uber Technologies, Inc. All Rights Reserved.
+",2
+"        assert metric.avg.item() == 6.0 / 2.0
+
+    def test_construct_metric_value_holders_one_metric_for_all_labels(self):
+        hvd_mock = mock.MagicMock()
+        hvd_mock.allreduce = lambda tensor, name: 2 * tensor
+",2
+"
+        state.epoch += 1
+        state.batch = 0
+        state.commits += 1
+        state.commit()
+",2
+"    def notify_and_register(index):
+        task_client = task_service.SparkTaskClient(index,
+                                                   driver.task_addresses_for_driver(index),
+                                                   settings.key, settings.verbose)
+",2
+"                        if validation_steps_per_epoch is None:
+                            validation_steps = int(math.ceil(float(val_rows) / batch_size / hvd.size()))
+                        else:
+",2
+"        self._current_hosts = DiscoveredHosts(host_slots={}, host_assignment_order=[])
+        self._hosts_state = defaultdict(HostState)
+",2
+"  auto env_value = std::getenv(env_variable);
+  return env_value != nullptr ? std::strtod(env_value, nullptr) : default_value;
+}
+
+void SetEnv(const char* env_variable, const char* env_value) {
+",2
+"        metadata_path = os.path.join(path, ""metadata"")
+        metadata_json = HorovodParamsWriter. \
+            _get_metadata_to_save(instance,
+",2
+"            data, label = get_data_label(batch, context)
+            output = net(data.astype(args.dtype, copy=False))
+            acc_top1.update([label], [output])
+            acc_top5.update([label], [output])
+",2
+"            notification_manager.remove_listener(state)
+    return wrapper
+",2
+"        optimizer: Optional optimizer, can be compiled into model instead.
+        kwargs: Additional properties to sync, will be exposed as attributes of the object.
+    """"""
+    def __init__(self, model, optimizer=None, **kwargs):
+",2
+"
+    @staticmethod
+",2
+"  auto size = builder.GetSize();
+",2
+"    :type settings: Horovod.run.common.util.settings.Settings
+    :return:
+",2
+"                 input_shape=input_shape))
+model.add(Conv2D(64, (3, 3), activation='relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.25))
+",2
+"    }
+    timeline.ActivityEndAll(entries);
+
+    timeline.ActivityStartAll(entries, MEMCPY_OUT_HOST_BUFFER);
+    gpu_context_->MemcpyAsyncH2D(buffer_data_at_rank_offset, gpu_op_context_.host_buffer,
+",2
+"        # we are using to run the test.
+        is_mpi = gloo_size == -1
+        hvd.init()
+        size = hvd.size()
+        if is_mpi:
+",2
+"            shuffle_buffer_size = \
+                calculate_shuffle_buffer_size(hvd, avg_row_size, train_rows / hvd.size())
+",2
+"    }
+
+    size = ParseNextInt(ss);
+",2
+"                'third_party/boost/mpl/include',
+                'third_party/boost/parameter/include',
+                'third_party/boost/predef/include',
+",2
+"if __name__ == ""__main__"":
+",2
+"            except (torch.FatalError, RuntimeError):
+",2
+"            state.restore()
+
+            for w1, w2 in zip(model1.get_weights(), model1_weights):
+                self.assertAllClose(w1, w2)
+",2
+"            num_proc=1,
+            hosts='>host names go here<',
+            output_filename='>output filename goes here<',
+            run_func_mode=True
+",2
+"    host_to_slots = {}
+
+",2
+"            return 0
+
+",2
+"                    converted[col] = np.concatenate(
+                        (np.array([size]), col_data.indices, col_data.values,
+                         np.zeros(padding_zeros))).tolist()
+",2
+"  virtual const DataType dtype() const override;
+  virtual const TensorShape shape() const override;
+  virtual const void* data() const override;
+  virtual int64_t size() const override;
+
+",2
+"import os
+import queue
+import threading
+import time
+
+",2
+"
+    if not is_jsrun_installed():
+        raise Exception(
+",2
+"                # call the mocked _get_mpi_implementation_flags method
+                mpi_flags, binding_args = horovod.run.mpi_run._get_mpi_implementation_flags(False)
+",2
+"
+        # L-BFGS is currently unsupported, as are sparse tensors, which are
+        # required by SparseAdam optimizer
+        optimizers = [
+            (subclass.__name__, subclass)
+",2
+"
+",2
+"    group_controller.add_argument('--gloo', action='store_true', dest='use_gloo',
+                                  help='Run Horovod using the Gloo controller. This will '
+                                       'be the default if Horovod was not built with MPI support.')
+    group_controller.add_argument('--mpi', action='store_true', dest='use_mpi',
+",2
+"    return ExecuteAdasum(entries, response);
+  } else if (response.response_type() == Response::ERROR) {
+    return ExecuteError(entries, response);
+  } else {
+",2
+"
+rank: 0: { hostname: host1; cpu: {0-3} ; gpu: * ; mem: * }
+rank: 1: { hostname: host1; cpu: {4-7} ; gpu: * ; mem: * }
+rank: 2: { hostname: host1; cpu: {8-11} ; gpu: * ; mem: * }
+rank: 3: { hostname: host1; cpu: {12-15} ; gpu: * ; mem: * }
+",2
+"  }                                                                            \
+                                                                               \
+  template <>                                                                  \
+",2
+"  void MemcpyAsyncD2D(void* dst, const void* src, size_t count, gpuStream_t stream);
+  void MemcpyAsyncH2D(void* dst, const void* src, size_t count, gpuStream_t stream);
+  void MemcpyAsyncD2H(void* dst, const void* src, size_t count, gpuStream_t stream);
+",2
+"};
+
+",2
+"from distutils.version import LooseVersion
+
+if LooseVersion(sys.version) < LooseVersion('3.0.0'):
+    from urllib2 import urlopen
+    from urllib2 import Request
+",2
+"
+  // Time point when last cycle started.
+  std::chrono::steady_clock::time_point last_cycle_start;
+
+",2
+"
+
+    def test_horovod_adasum_multiple_allreduce_cpu(self):
+",2
+"    tf.config.experimental.set_visible_devices(gpus[hvd.local_rank()], 'GPU')
+
+(mnist_images, mnist_labels), _ = \
+",2
+"               const std::vector<TensorTableEntry>& entries,
+               const Response& response) const override;
+
+",2
+"            self.assertTrue(diff <= threshold,
+                            ""hvd.allreduce on GPU produces incorrect results"")
+
+    def test_horovod_allreduce_error(self):
+",2
+"def accuracy(output, target):
+    # get the index of the max log-probability
+    pred = output.max(1, keepdim=True)[1]
+    return pred.eq(target.view_as(pred)).cpu().float().mean()
+
+",2
+"            logging.info('KVStoreServer INFO: KVStore server finishes.')
+",2
+"def _get_min_start_hosts(settings):
+",2
+"                                  (size_t) num_elements_remaining,
+                                  GetNCCLDataType(first_entry.tensor), ncclSum,
+                                  root_rank, *nccl_op_context_.nccl_comm_, *gpu_op_context_.stream);
+    nccl_context_->ErrorCheck(""ncclReduce"", nccl_result, *nccl_op_context_.nccl_comm_);
+",2
+"void MemoryStore::wait(const std::vector<std::string>& keys) {
+  for (auto& key : keys) {
+    while (map_.find(key) == map_.end()) {
+      std::this_thread::sleep_for(std::chrono::milliseconds(10));
+",2
+"
+  // Perform Adasum allreduce using a vector-halving, distance-doubling (VHDD)
+  // approach. grad_buffer: holds the data to reduce and will hold the result.
+",2
+"        if gloo_rank >= 0:
+",2
+"void ParameterManager::SetAutoTuning(bool active) {
+  if (active != active_) {
+    warmup_remaining_ = warmups_;
+  }
+",2
+"// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an ""AS IS"" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+",2
+"# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+",2
+"
+",2
+"                            *nccl_op_context_.nccl_comm_);
+  if (global_state_->timeline.Initialized()) {
+",2
+"model = getattr(applications, args.model)(weights=None)
+opt = tf.optimizers.SGD(lr * hvd.size())
+",2
+"    if (global_state_->shared_buffer != nullptr) {
+      MPI_Win_fence(0, mpi_context_->window);
+",2
+"                 library_dirs=None,
+",2
+"            tensor_dict[count] = mx.nd.ones(shapes[dim], ctx=ctx) * rank
+",2
+"
+        self.do_test_happy_run(use_mpi=False, use_gloo=True)
+
+    """"""
+",2
+"            pkg_type = types.pop()
+",2
+"        # Determine the index grouping based on host hashes.
+        # Barrel shift until index 0 is in the first host.
+        host_hashes = list(driver.task_host_hash_indices().keys())
+",2
+"
+        // Find Join tensor to use its context.
+        auto join_iter = tensor_table_.find(JOIN_TENSOR_NAME);
+",2
+"
+",2
+"int DoJoin(int device) {
+  ThrowIfError(common::CheckInitialized());
+
+#if !HOROVOD_GPU_ALLREDUCE
+",2
+"
+void NCCLOpContext::PopulateNCCLCommStrategy(int& nccl_rank, int& nccl_size,
+                                             Communicator& nccl_id_bcast_comm) {
+  if (communicator_type_ == Communicator::GLOBAL) {
+",2
+"# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+",2
+"    @staticmethod
+    def forward(ctx, tensor, average, name, op):
+        ctx.average = average
+        ctx.op = op
+",2
+"        else:
+            return mx.current_context()
+
+",2
+"    from tensorflow.contrib.keras import backend as K
+
+from horovod.tensorflow import init
+from horovod.tensorflow import shutdown
+from horovod.tensorflow import size
+",2
+"
+    def blacklist(self, host):
+        if not self._hosts_state[host].is_blacklisted():
+            logging.warning('blacklist failing host: {}'.format(host))
+        self._hosts_state[host].blacklist()
+",2
+"// See the License for the specific language governing permissions and
+// limitations under the License.
+// =============================================================================
+
+",2
+"        assert serialized_backend is None
+",2
+"# Horovod: initialize Horovod.
+",2
+"    lock.unlock();
+",2
+"            timestamp = self._host_messages.get()
+            if timestamp > last_updated_timestamp:
+                last_updated_timestamp = timestamp
+
+        # In order to ensure all workers raise the exception at the same time, we need to sync
+",2
+"            retval = f(*args, **kwargs)
+            cache[key] = retval
+            return retval
+
+",2
+"    cache_.pop_back();
+    cache_.push_front(std::make_pair(response, std::move(params)));
+  } else {
+    // New entry added to front of cache_. Entry is associated with
+",2
+"    def test_autotune_args(self):
+        with override_args('horovodrun', '-np', '2',
+                           '--autotune',
+                           '--autotune-log-file', '/tmp/autotune.txt',
+                           '--autotune-warmup-samples', '1',
+",2
+"// =============================================================================
+
+#ifndef HOROVOD_FUSION_BUFFER_MANAGER_H
+",2
+"    tf.app.run()
+import argparse
+
+import keras
+from keras.datasets import mnist
+",2
+"
+const Response& ResponseCache::peek_response(uint32_t cache_bit) const {
+",2
+"using Eigen::VectorXd;
+using Eigen::MatrixXd;
+
+namespace horovod {
+namespace common {
+",2
+"if gpus:
+    tf.config.experimental.set_visible_devices(gpus[hvd.local_rank()], 'GPU')
+
+",2
+"            tensor_sizes = tensor_sizes[:size]
+
+            tensor = tf.ones([tensor_sizes[rank]] + [17] * (dim - 1)) * rank
+            if dtype == tf.bool:
+",2
+"template <DataType DT, DeviceType Dev, class T>
+int DoBroadcast(T* tensor, T* output, int root_rank, char* name) {
+",2
+"
+",2
+"        tensor: A tensor to allgather.
+        name: A name of the allgather operation.
+        priority: The priority of this operation. Higher priority operations
+                  are likely to be executed before other operations.
+
+",2
+"
+    # flush the line buffer if it is not empty
+    if len(line_buffer):
+        write(line_buffer)
+",2
+"    def get_data_metadata_path(self, path):
+        localized_path = self.get_localized_path(path)
+        if localized_path.endswith('/'):
+            localized_path = localized_path[:-1] # Remove the slash at the end if there is one
+",2
+"        return cls.FS_PREFIX
+
+
+",2
+"target = torch.LongTensor(batch_size).random_() % 2
+
+",2
+"
+#endif // HOROVOD_NCCL_OPERATIONS_H
+GPUContext::GPUContext() : pimpl{new impl} {}
+GPUContext::~GPUContext() = default;
+
+",2
+"
+        # Map state NI -> HB,NI to align with other data sources.
+        google_trend_all = google_trend_all \
+            .withColumn('State', F.when(google_trend_all.State == 'NI', 'HB,NI').otherwise(google_trend_all.State))
+
+",2
+"    return LogLevel::WARNING;
+  } else if (min_log_level == ""error"") {
+    return LogLevel::ERROR;
+",2
+"            and not os.environ.get('HOROVOD_ALLOW_MIXED_GPU_IMPL'):
+        raise DistutilsError(
+",2
+"    size = e.output->size();
+",2
+"import numpy as np
+import time
+from horovod.torch.mpi_ops import synchronize
+import os
+import math
+",2
+"# distributed under the License is distributed on an ""AS IS"" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+",2
+"
+            touch(os.path.join(local_dir, 'a.txt'), (1330712292, 1330712292))
+            touch(os.path.join(local_dir, 'b.txt'), (1330712292, 1330712292))
+            assert mock_fs.upload.call_count == 3
+
+",2
+"    Arguments:
+        optimizer: Optimizer to use for computing gradients and applying updates.
+        named_parameters: A mapping between parameter names and values. Used for naming of
+                          allreduce operations. Typically just ``model.named_parameters()``.
+",2
+"    def _exec_command(command):
+        host_output = io.StringIO()
+        try:
+            exit_code = safe_shell_exec.execute(command,
+                                                stdout=host_output,
+",2
+"        TensorUtil::CopyCPUToCuda<DT>(hvd_cpu_output->tensor(), output);
+        handle_manager.MarkDone(handle, status);
+      });
+  ThrowIfError(enqueue_result);
+",2
+"            evaluate(epoch)
+
+        # Save model
+",2
+"#include ""mpi_context.h""
+
+#include <iostream>
+#include <memory>
+",2
+"  }
+}
+
+",2
+"        # Horovod: adjust number of steps based on number of GPUs.
+        tf.train.StopAtStepHook(last_step=20000 // hvd.size()),
+",2
+"                'Could not find compiler compatible with this PyTorch installation.\n'
+",2
+"        with override_args('horovodrun', '-np', '2',
+                           '--fusion-threshold-mb', '128',
+",2
+"                averaged_gradients = []
+                with tf.name_scope(self._name + ""_Allreduce""):
+                    for grad in gradients:
+",2
+"          epochs=epochs,
+",2
+"                                       df=df,
+                                       feature_columns=['features'],
+                                       label_columns=['y']) as dataset_idx:
+                    train_rows, val_rows, metadata, avg_row_size = util.get_dataset_properties(dataset_idx)
+",2
+"// limitations under the License.
+",2
+"        cnt = 0
+        lr = 1E-4
+        trainer = gluon.Trainer(params, 'adam', {'learning_rate': lr},
+            update_on_kvstore=False)
+
+",2
+"                self.assertAllCloseAccordingToType(tmp, reduced_tensors)
+",2
+"
+
+class TensorFlowTests(tf.test.TestCase):
+",2
+"  if (entries.size() > 1) {
+    timeline.ActivityStartAll(entries, MEMCPY_OUT_FUSION_BUFFER);
+    MemcpyOutFusionBuffer(entry_component_offsets, entry_component_sizes,
+                          buffer_data, element_size, entries);
+
+",2
+"    'font_family': 'Helvetica Neue'
+}
+",2
+"        device: An id of the device to create temprorary zero tensors (default -1, CPU)
+",2
+"  static const RequestType values[] = {
+    RequestType_ALLREDUCE,
+    RequestType_ALLGATHER,
+    RequestType_BROADCAST,
+",2
+"                                           std::shared_ptr<Tensor>* tensor) {
+  int64_t* shape_array = new int64_t[shape.dims()];
+  for (int idx = 0; idx < shape.dims(); ++idx) {
+    shape_array[idx] = shape.dim_size(idx);
+  }
+",2
+"if __name__ == ""__main__"":
+    tf.app.run()
+import argparse
+",2
+"template <class T>
+void ParameterManager::TunableParameter<T>::UpdateBestValue(double score) {
+  if (score > best_score_) {
+    best_score_ = score;
+",2
+"import mxnet as mx
+
+from mxnet.base import MXNetError
+",2
+"class TFPersistentBuffer : public common::PersistentBuffer {
+",2
+"    # Horovod: using `lr = 1.0 * hvd.size()` from the very beginning leads to worse final
+    # accuracy. Scale the learning rate `lr = 1.0` ---> `lr = 1.0 * hvd.size()` during
+    # the first three epochs. See https://arxiv.org/abs/1706.02677 for details.
+    hvd.callbacks.LearningRateWarmupCallback(warmup_epochs=3, initial_lr=scaled_lr, verbose=1),
+]
+",2
+"
+
+",2
+"#define HOROVOD_LOCAL_SIZE ""HOROVOD_LOCAL_SIZE""
+#define HOROVOD_CROSS_RANK ""HOROVOD_CROSS_RANK""
+#define HOROVOD_CROSS_SIZE ""HOROVOD_CROSS_SIZE""
+#define HOROVOD_ELASTIC ""HOROVOD_ELASTIC""
+",2
+"import io
+
+from collections.abc import Iterable
+
+",2
+"#ifndef HOROVOD_MXNET_CUDA_UTIL_H
+#define HOROVOD_MXNET_CUDA_UTIL_H
+
+namespace horovod {
+",2
+"
+",2
+"def get_cuda_dirs(build_ext, cpp_flags):
+",2
+"    group_hosts.add_argument('-hostfile', '--hostfile', action='store', dest='hostfile',
+",2
+"# Copyright 2019 Uber Technologies, Inc. All Rights Reserved.
+",2
+"
+  void* buffer_data;
+  int num_elements = (int)NumElements(entries);
+",2
+"        def _prepare(self):
+            self._step_count = tf.get_variable(
+                name=""step_count"", shape=[], dtype=tf.int64, trainable=False,
+                initializer=tf.zeros_initializer)
+            self._is_first_step = tf.cast(tf.math.equal(self._step_count, 0), dtype=tf.bool)
+",2
+"        assert current_hosts.available_hosts == {'a', 'b'}
+        assert current_hosts.count_available_slots() == 4
+",2
+"        return cls.FS_PREFIX
+# Copyright 2019 Uber Technologies, Inc. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the ""License"");
+# you may not use this file except in compliance with the License.
+",2
+"def pyarrow_to_spark_data_type(dtype):
+",2
+"  std::vector<Eigen::VectorXd> x_samples_;
+  std::vector<double> y_samples_;
+",2
+"        super(DistributedTrainer, self).__init__(
+            params, optimizer, optimizer_params=optimizer_params, kvstore=None)
+",2
+"#include <immintrin.h>
+#endif
+
+#include ""../../common.h""
+",2
+"    long long ll = bitvector_[i];
+    while (ll) {
+      int idx = __builtin_ffsll(ll);
+      int shifted_bit = shift + idx - 1;
+      cache_hits_.insert(shifted_bit - NUM_STATUS_BITS);
+",2
+"// See the License for the specific language governing permissions and
+",2
+"parser = argparse.ArgumentParser(description='TensorFlow Synthetic Benchmark',
+                                 formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+parser.add_argument('--fp16-allreduce', action='store_true', default=False,
+                    help='use fp16 compression during allreduce')
+",2
+"
+    print('INFO: Unable to find gcc compiler (version %s).' % gxx_compiler_version)
+    return None
+",2
+"        self.assertEqual('Horovod detected that one or more processes exited with non-zero status, '
+                         'thus causing the job to be terminated. The first process to do so was:\n'
+                         'Process name: 0\n'
+                         'Exit code: 1\n', str(e.value))
+
+",2
+"                answer.append(adasum_reference_operation(a, b))
+            temp[i] = copy.copy(answer)
+    return temp[0]
+
+",2
+"
+void GPUOpContext::InitGPUQueue(const std::vector<TensorTableEntry>& entries, const Response& response) {
+",2
+"        # Days & months competition was open, cap to 2 years.
+",2
+"                        self.logger.warning(f'you are assigning a chunk_id in in {self.exec.__class__}, '
+                                            f'is it intentional? chunk_id will be override by {self.__class__} '
+                                            f'anyway')
+                    else:
+",3
+"            del d[k]
+        return d
+",3
+"
+    _tail_args = copy.deepcopy(args)
+    _tail_args.port_in = random_port()
+",3
+"        bad_routes = []
+        for k, v in r.items():
+            if len(v) == 1:
+                setattr(self, k, v[0][1])
+",3
+"        var stream = new EventSource('http://localhost:5000/log/stream');
+        stream.onmessage = function (e) {
+            console.info(e.data);
+",3
+"                     help='the name of this pea, used to identify the pod and its logs.')
+    gp0.add_argument('--identity', type=str, default=get_random_identity(),
+",3
+"from tests import JinaTestCase
+
+",3
+"from .zmq import Zmqlet, send_ctrl_message
+from ..clients.python import GrpcClient
+from ..helper import kwargs2list
+",3
+"    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+",3
+"        """"""Send a DRYRUN request to the server, passing through all pods on the server
+        useful for testing connectivity and debugging
+
+",3
+"        if 'mode' in kwargs:
+            tname = str(kwargs['mode']).lower()
+
+        if 'mime_type' not in kwargs:
+            self.logger.warning('starting from v0.2.0, '
+",3
+"      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='start_time', full_name='jina.Envelope.Route.start_time', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+",3
+"#                         required=True,
+#                         help='the path of the python file protocol buffer compiler')
+#     parser.add_argument('--pb2-grpc-path',
+",3
+"            default_logger.info(f'\n{logo_str}\n▶️  {"" "".join(sys.argv)}\n{param_str}\n')
+        return args
+    else:
+        parser.print_help()
+        exit()
+",3
+"    'DESCRIPTOR' : _SPAWNREQUEST_PODSPAWNREQUEST,
+",3
+"
+",3
+"        self.assertEqual(b._drivers['SearchRequest'][0]._exec, b[0])
+        self.assertEqual(b._drivers['SearchRequest'][-1]._exec, b[1])
+import unittest
+
+",3
+"        for num_tokens in np.sum(mask, axis=1).tolist():
+            result[num_tokens - 1] = 1
+",3
+"    def tail_args(self, args):
+        """"""Get the arguments for the `tail` of this BasePod. """"""
+        if self.is_tail_router and self.peas_args['tail']:
+            self.peas_args['tail'] = args
+",3
+"        super().__init__(*args, **kwargs)
+",3
+"        self.idle_dealer_ids = set()
+        self.is_pollin_paused = False
+
+",3
+"
+    One-hot Encoder encodes the characters into one-hot vectors. ONLY FOR TESTING USAGES.
+    :param on_value: the default value for the locations represented by characters
+    :param off_value: the default value for the locations not represented by characters
+",3
+"        """"""Build an executor from a YAML file.
+",3
+"
+        return self
+
+    @property
+    def num_pods(self) -> int:
+",3
+"def pb_obj2dict(obj, keys: Iterable[str]) -> Dict[str, Any]:
+    """"""Convert a protobuf object to a Dict by selected keys
+
+",3
+"JINA_GLOBAL.imported.executors = False
+JINA_GLOBAL.imported.drivers = False
+JINA_GLOBAL.stack = SimpleNamespace()
+JINA_GLOBAL.stack.id = random.randint(0, 10000)
+",3
+"        Flow.load_config('tmp.yml')
+
+        with Flow.load_config('tmp.yml') as fl:
+            fl.dry_run()
+",3
+"
+def get_random_identity() -> str:
+    return '%010x' % random.getrandbits(40)
+
+",3
+"        """"""Get all previous requests that has the same ``request_id``
+
+        This returns ``None`` when ``num_part=1``.
+        """"""
+        return self._prev_requests
+",3
+"    else:
+        _extract_fn = lambda c: c.text or c.buffer or (c.blob and pb2array(c.blob))
+",3
+"            self.logger.info('start logserver...')
+            self._start_log_server()
+
+        self._pod_stack = ExitStack()
+        for v in self._pod_nodes.values():
+",3
+"                @batching(batch_size = 64)
+                def train(self, batch: 'numpy.ndarray', *args, **kwargs):
+                    gpu_train(batch)
+
+",3
+"_sym_db.RegisterEnumDescriptor(_NDARRAY_QUANTIZATIONMODE)
+
+_ENVELOPE_STATUS = _descriptor.EnumDescriptor(
+  name='Status',
+  full_name='jina.Envelope.Status',
+",3
+"
+",3
+"
+import gzip
+",3
+"        self._target_output_dim = output_dim
+
+",3
+"    elif not bind_local and bind_conn_same_remote:
+",3
+"                 *args,
+",3
+"            words = jieba.cut(text, cut_all=True)
+        else:
+            words = jieba.cut(text)
+
+        chunks = []
+",3
+"        with f:
+            self.assertTrue(hasattr(JINA_GLOBAL.logserver, 'ready'))
+            a = requests.get(JINA_GLOBAL.logserver.ready, timeout=5)
+            self.assertEqual(a.status_code, 200)
+",3
+"    TAIL = 2
+    SHARD = 3
+
+
+class ClientMode(BetterEnum):
+",3
+"from typing import List, Dict
+
+",3
+"    def __eq__(self, other: 'BasePod'):
+        return self.num_peas == other.num_peas and self.name == other.name
+
+    def set_runtime(self, runtime: str):
+",3
+"                    └── variables.index
+
+        :param channel_axis: the axis id of the channel, -1 indicate the color channel info at the last axis.
+",3
+"                                'unless ""write_handler"" is later assigned with a meaningful value')
+",3
+"class BaseFrameworkExecutor(BaseExecutor):
+    """"""
+    :class:`BaseFrameworkExecutor` is the base class for the executors using other frameworks internally, including
+        `tensorflow`, `pytorch`, `onnx`, and, `paddlepaddle`.
+",3
+"                     help='socket type for input port')
+    gp2.add_argument('--socket-out', type=SocketType.from_string, choices=list(SocketType),
+",3
+"      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+",3
+"            for k in self.pruned:
+                self.msg.ClearField(k)
+        else:
+            raise TypeError(f'level={self.level} is not supported, must choose from ""chunk"" or ""doc"" ')
+
+",3
+"    def test_helloworld_flow(self):
+        args = set_hw_parser().parse_args([])
+
+",3
+"                chunk_bytes.append(c.buffer)
+",3
+"
+    def close(self):
+",3
+"                                    attrs=['dark'])
+                elif action.choices:
+                    choices_str = '{%s}' % ', '.join([str(c) for c in action.choices])
+                    help += colored(' (choose from: ' + choices_str + '; default: %(default)s)', attrs=['dark'])
+                elif action.option_strings or action.nargs in defaulting_nargs:
+",3
+"    gp1.add_argument('--prefetch-on-recv', type=int, default=1,
+                     help='the number of additional requests to fetch on every receive')
+",3
+"        return [
+            dict(doc_id=doc_id, offset=0, weight=1., blob=tl.astype('float32')),
+            dict(doc_id=doc_id, offset=0, weight=1., blob=tr.astype('float32')),
+",3
+"  'DESCRIPTOR' : _CHUNK,
+  '__module__' : 'jina_pb2'
+  # @@protoc_insertion_point(class_scope:jina.Chunk)
+",3
+"            args = set_gateway_parser().parse_args(['--runtime', runtime])
+            with GatewayPod(args):
+                pass
+",3
+"            t2.start()
+",3
+"            elif args.role == PeaRoleType.TAIL:
+                self.name = '%s-tail' % self.name
+            elif args.role == PeaRoleType.REPLICA:
+",3
+"            for p in self.args.volumes:
+                Path(os.path.abspath(p)).mkdir(parents=True, exist_ok=True)
+",3
+"_sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+NdArray = _reflection.GeneratedProtocolMessageType('NdArray', (_message.Message,), {
+",3
+"        This function should not be used in production due to its low-efficiency. For example,
+        you should not use it in a for-loop. Use :meth:`call` instead.
+        Nonetheless, you can use it for testing one query and check the result.
+
+",3
+"    def Predict(self, request: 'predict_pb2.PredictRequest', data_dict: Dict) -> 'predict_pb2.PredictRequest':
+        """""" Fill in the ``PredictRequest`` with the data dict
+        """"""
+        import tensorflow as tf
+",3
+"                urllib.request.urlretrieve(v['url'], v['filename'], reporthook=lambda *x: t.update(1))
+",3
+"  fields=[
+    _descriptor.FieldDescriptor(
+",3
+"    _long_description = ''
+
+base_dep = [
+    'numpy',
+    'pyzmq>=17.1.0',
+",3
+"  serialized_start=817,
+  serialized_end=1054,
+",3
+"            if b_size is None:
+                if label is None:
+",3
+"# def set_grpc_service_parser(parser=None):
+#     if not parser:
+",3
+"    def deco(f):
+        @functools.wraps(f)
+        def wrapper(*args, **kwargs):
+            rename_kwargs(f.__name__, kwargs, aliases)
+",3
+"    from .. import __version__
+    from .parser import get_main_parser
+
+    from argparse import _StoreAction, _StoreTrueAction
+",3
+"__copyright__ = ""Copyright (c) 2020 Jina AI Limited. All rights reserved.""
+__license__ = ""Apache-2.0""
+
+",3
+"            first.tail_args.host_out = __default_host__
+            second.head_args.host_in = _fill_in_host(bind_args=first.tail_args,
+",3
+"            self.ctrl_addr, self.ctrl_with_ipc = Zmqlet.get_ctrl_address(args)
+",3
+"        return self.model_abspath if os.path.exists(self.model_abspath) else self.model_name
+
+    def get_model(self):
+        raise NotImplementedError
+
+",3
+"        if not f:
+            f = tempfile.NamedTemporaryFile('w', delete=False, dir=os.environ.get('JINA_EXECUTOR_WORKDIR', None)).name
+
+        if self.max_snapshot > 0 and os.path.exists(f):
+",3
+"        super().close()
+        self.write_handler.close()
+
+",3
+"
+class AnnoyIndexer(NumpyIndexer):
+    """"""Annoy powered vector indexer
+
+",3
+"        """"""
+        super().__init__(*args, **kwargs)
+",3
+"                f = Flow()
+                with f:
+",3
+"                    if self.args.optimize_level > FlowOptimizeLevel.IGNORE_GATEWAY and s_pod.is_tail_router and s_pod.tail_args.num_part == 1:
+                        # connect gateway directly to peas only if this is unblock router
+",3
+"                                    **(dict(help='beautify the log')) if show_all else {}))
+",3
+"            with BasePod(args):
+                pass
+",3
+"        raise TimeoutError(
+            'cannot send message to sock %s after timeout=%dms, please check the following:'
+            'is the server still online? is the network broken? are ""port"" correct? ' % (
+                sock, timeout))
+",3
+"        time.sleep(2)
+        super().tearDown()
+
+    def test_customized_pod(self):
+        f_args = set_gateway_parser().parse_args(['--allow-spawn'])
+",3
+"                    elif ncol == 3:
+                        example = InputExample(
+                            guid=i,
+",4
+"                name='cls_score_w', initializer=Normal(loc=0.0, scale=0.01)),
+            bias_attr=ParamAttr(
+                name='cls_score_b', learning_rate=2., regularizer=L2Decay(0.)))
+        bbox_pred = fluid.layers.fc(
+            input=head_feat,
+",4
+"    """"""
+",4
+"            use_gpu (bool): Whether to use gpu.
+            output_dir (str): The path to store output images.
+",4
+"
+		},
+		/*
+			内置函数
+			根据节点的x,y计算在播放器里的坐标
+",4
+"		//全局变量：字幕内容
+		this.track = [];
+		//全局变量：字幕索引
+",4
+"    @runnable
+",4
+"        return dt_boxes
+
+    def order_points_clockwise(self, pts):
+",4
+"                if phase == 'train':
+",4
+"                    boxes.append(tmp_boxes[k])
+            if len(boxes) > 0:
+                boxes = np.array(boxes)
+
+",4
+"
+def get_save_image_name(org_im, org_im_path, output_dir):
+    """"""
+",4
+"            resize_w = im_scale_x * float(im_shape[1])
+",4
+"                    pool_stride=2,
+",4
+"            moving_variance_name=bn_name + '_variance')
+
+    def conv_bn_layer_new(self,
+                          input,
+",4
+"                    return os.path.exists(
+                        os.path.join(self.default_pretrained_model_path,
+                                     var.name))
+
+",4
+"            dt_bbox['bottom'] = image_height * each_data[5] / shrink
+            dt_bbox = clip_bbox(dt_bbox, org_im.shape[0], org_im.shape[1])
+",4
+"        self.in_tokens = in_tokens
+
+        self.lac = hub.Module(name=""lac"")
+",4
+"#
+# Licensed under the Apache License, Version 2.0 (the ""License""
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+",4
+"    ctx_multiheads = scaled_dot_product_attention(q, k, v, attn_bias, d_key,
+                                                  dropout_rate)
+
+",4
+"        if std_senet:
+",4
+"        param_attr='_base_net_1_3_weight',
+        name='_251',
+        bias_attr=False)
+    _252 = fluid.layers.batch_norm(
+",4
+"                exe.run(predictor_startup_prog)
+
+                logger.info('load lstm weights from {}'.format(
+",4
+"                name=bbox_name,
+                param_attr=ParamAttr(
+                    name=bbox_share_name + '_w',
+",4
+"        mask_trans_feat = pre_process_layer(
+            mask_trans_feat, 'n', name='mask_lm_trans')
+",4
+"            input=position_ids,
+            size=[self._max_position_seq_len, self._emb_size],
+",4
+"# opencv输出中文
+def paint_chinese(im, chinese, position, fontsize, color_bgr):
+    # 图像从OpenCV格式转换成PIL格式
+    img_PIL = Image.fromarray(cv2.cvtColor(im, cv2.COLOR_BGR2RGB))
+    font = ImageFont.truetype(
+",4
+"            params_filename = ""__params__"" if not params_filename else params_filename
+        place = fluid.CPUPlace()
+",4
+"
+import os
+import unittest
+
+import cv2
+",4
+"            variances=self.anchor_var,
+            pre_nms_top_n=prop_op.pre_nms_top_n,
+            post_nms_top_n=prop_op.post_nms_top_n,
+            nms_thresh=prop_op.nms_thresh,
+",4
+"            route, tip = self._detection_block(
+                block,
+",4
+"            name=""multiclass_nms"")
+        return pred
+# coding=utf-8
+import base64
+import os
+",4
+"        """"""Prepare the environment once before execution of all tests.\n""""""
+        self.human_parsing = hub.Module(name=""ace2p"")
+
+    @classmethod
+",4
+"            images (list(numpy.ndarray)): images data, shape of each is [H, W, C]
+",4
+"class YOLOv3DarkNet53Vehicles(hub.Module):
+    def _initialize(self):
+        self.default_pretrained_model_path = os.path.join(
+            self.directory, ""yolov3_darknet53_vehicles_model"")
+",4
+"    Args:
+",4
+"            add_help=True)
+        self.arg_input_group = self.parser.add_argument_group(
+            title=""Input options"", description=""Input data. Required"")
+        self.arg_config_group = self.parser.add_argument_group(
+            title=""Config options"",
+",4
+"    """"""
+
+    def __init__(self, length):
+        self.run_time_begin = time.time()
+        self.run_step = 0
+",4
+"                padding=0,
+",4
+"        self._id = self._pid * 100 + SharedMemoryMgr.s_mgr_num
+        SharedMemoryMgr.s_memory_mgrs[self._id] = self
+        self._locker = Lock()
+        self._setup()
+",4
+"			}
+		},
+",4
+"            out, 1024, 1024, 1024, 1, scale, name=self.prefix_name + ""conv6"")
+        module13 = out
+        blocks.append(out)
+        if self.yolo_v3:
+",4
+"            pool_stride=2,
+            pool_padding=0,
+            pool_type='avg')
+",4
+"    def __init__(self,
+                 depth=50,
+                 freeze_at=0,
+",4
+"        for im_path in paths:
+            each = OrderedDict()
+",4
+"    @runnable
+",4
+"        groups=128,
+        param_attr='_base_net_9_0_weight',
+        name='_349',
+        bias_attr=False)
+    _327 = fluid.layers.concat([_324, _325, _326], axis=0)
+",4
+"            description=
+",4
+"    def _l2_norm_scale(self, input, init_scale=1.0, channel_shared=False):
+        from paddle.fluid.layer_helper import LayerHelper
+",4
+"                head_feat = bbox_head.head(roi_feat)
+                if isinstance(head_feat, OrderedDict):
+                    head_feat = list(head_feat.values())[0]
+",4
+"
+class CSVFileParser(object):
+    def __init__(self):
+        pass
+",4
+"            act=None,
+            use_cudnn=use_cudnn,
+            param_attr=ParamAttr(name=name + '_weights'),
+            bias_attr=False)
+",4
+"                    out_key: [
+                        context_prog.global_block().vars[varname]
+",4
+"#copyright (c) 2019 PaddlePaddle Authors. All Rights Reserve.
+#
+#Licensed under the Apache License, Version 2.0 (the ""License"");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+",4
+"                        height=0,
+                        interpolation_method=Image.LANCZOS):
+    img = _check_img(img)
+    width = width if width else np.random.randint(
+",4
+"            config (RunConfig): run config for the task, such as batch_size, epoch, learning_rate setting and so on. Default None.
+            hidden_units(list): the element of `hidden_units` list is the full-connect layer size. It will add the full-connect layers to the program. Default None.
+            metrics_choices(list): metrics used to the task, default [""acc""].
+        """"""
+",4
+"			playbackrateP.className = playbackRatePID;
+",4
+"
+    # concat layer
+    lstm_concat = fluid.layers.concat(input=[lstm_last, rlstm_last], axis=1)
+    # full connect layer
+",4
+"        bert_config_path = os.path.join(self.directory, ""assets"",
+                                        ""bert_config.json"")
+",4
+"            num_groups=1,
+            if_act=True,
+            name=name + '_expand')
+
+        bottleneck_conv = self.conv_bn_layer(
+",4
+"    def _build_model(self, src_ids, position_ids, sentence_ids, input_mask):
+        # padding id in vocabulary must be set to 0
+",4
+"    command_dict = {}
+
+",4
+"					return res;
+				}
+			} else {
+				if (num == '#') {
+					obj = obj.substr(1, obj.length);
+",4
+"                      replace=False):
+",4
+"            is_train (bool): whether in train or test mode
+
+        Returns:
+            outputs (list): Variables of each output layer
+        """"""
+",4
+"    return min_depth
+
+
+def get_depth_parameter(main_program):
+    global_block = main_program.global_block()
+",4
+"        param_attr=fluid.ParamAttr(
+            name=name + '_output_fc.w_0', initializer=param_initializer),
+        bias_attr=name + '_output_fc.b_0')
+    return proj_out
+",4
+"        if use_gpu:
+            gpu_config = AnalysisConfig(self.pretrained_model_path)
+",4
+"    def context(self, trainable=True, pretrained=True):
+        """"""context for transfer learning.
+",4
+"                self.images_std = self.dataset.images_std
+            except:
+                self.images_std = [1, 1, 1]
+        self.images_std = np.array(self.images_std).reshape(3, 1, 1)
+",4
+"            num_filters=num_anchor * self.num_classes,
+            filter_size=1,
+            stride=1,
+            padding=0,
+",4
+"
+# Load mask detector (mobile version) module from PaddleHub
+",4
+"        short = self.shortcut(
+            input,
+            num_filters * 4,
+            stride,
+            if_first=if_first,
+",4
+"				500);
+			};
+			this.addListenerInside('mouseout', defMouseOut, thisTemp.CB['playbackrateP']);
+			var defMouseOver = function(event) {
+",4
+"
+import paddlehub as hub
+",4
+"        use_global_stats=False,
+        name='_297')
+    _304 = fluid.layers.batch_norm(
+        _303,
+",4
+"        affine_bias = fluid.layers.create_parameter(\
+                      shape=[blob_out_shape[1]], dtype = blob_out.dtype, \
+                      attr=ParamAttr(name=prefix + '_affine' + '_b'), \
+",4
+"        if use_gpu:
+            gpu_config = AnalysisConfig(self.default_pretrained_model_path)
+            gpu_config.disable_glog_info()
+",4
+"            param_initializer=param_initializer,
+            name=name + '_layer_' + str(i))
+        enc_input = enc_output
+    enc_output = pre_process_layer(
+        enc_output, preprocess_cmd, prepostprocess_dropout, name=""post_encoder"")
+",4
+"    _419 = fluid.layers.fill_constant(shape=[1], dtype='int32', value=0)
+    _422 = fluid.layers.fill_constant(shape=[1], dtype='int32', value=-1)
+    _423 = fluid.layers.fill_constant(shape=[1], dtype='int32', value=4)
+    _437 = fluid.layers.fill_constant(shape=[1], dtype='int32', value=0)
+",4
+"        sub_task=""squad"",
+    )
+
+    # Fine-tune by PaddleHub's API
+    reading_comprehension_task.finetune_and_eval()
+",4
+"        if float(im_size_min) == 0:
+            raise ZeroDivisionError('min size of image is 0')
+
+",4
+"            dt['label'] = label_names[category_id]
+            dt['confidence'] = float(confidence)
+",4
+"import json
+
+from paddlehub.common.dir import CONF_HOME
+
+
+",4
+"
+    def get_expected_image_width(self):
+        return 224
+
+",4
+"    name = ""config""
+
+",4
+"            input_ids (tensor): the word ids.
+            position_ids (tensor): the position ids.
+            segment_ids (tensor): the segment ids.
+            input_mask (tensor): the padding mask.
+",4
+"        self.MAX_SEQ_LEN = 512
+        self.params_path = os.path.join(self.directory, ""assets"", ""params"")
+        self.vocab_path = os.path.join(self.directory, ""assets"", ""vocab.txt"")
+
+",4
+"                       paths=None,
+                       data=None,
+                       use_gpu=False,
+                       output_dir='detection_result',
+                       visualization=False,
+",4
+"    _383 = fluid.layers.fill_constant(shape=[1], dtype='int32', value=4)
+    _405 = fluid.layers.fill_constant(shape=[1], dtype='int32', value=0)
+    _408 = fluid.layers.fill_constant(shape=[1], dtype='int32', value=-1)
+    _409 = fluid.layers.fill_constant(shape=[1], dtype='int32', value=2)
+",4
+"                if os.path.exists(module_file):
+                    basename = os.path.split(module_path)[-1]
+",4
+"#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+",4
+"
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+
+",4
+"from __future__ import print_function
+",4
+"        return [output.name for output in self.outputs]
+",4
+"        sample_height = sample_bbox[3] - sample_bbox[1]
+        new_bbox[0] = (obj_bbox[0] - sample_bbox[0]) / sample_width
+        new_bbox[1] = (obj_bbox[1] - sample_bbox[1]) / sample_height
+",4
+"        assert type(images), ""images is a list.""
+        for im in images:
+",4
+"    }
+}
+
+",4
+"
+    def test_get_spm_path(self):
+        self.assertEqual(self.module.get_spm_path(), None)
+
+    def test_get_word_dict_path(self):
+",4
+"        for yield_data in reader(images, paths, scale, rotation):
+            all_data.append(yield_data)
+
+        total_num = len(all_data)
+        loop_num = int(np.ceil(total_num / batch_size))
+",4
+"from __future__ import unicode_literals
+
+import os
+import sys
+import json
+",4
+"				adBar: this.getByElement(adBarID, pd),
+				adSkip: this.getByElement(adSkipID, pd),
+				adTime: this.getByElement(adTimeID, pd),
+",4
+"                self._run_step_event(step_run_state)
+
+            global_run_states += period_run_states
+            return global_run_states
+
+",4
+"        anchor_num = len(anchors)
+        for masks in self.anchor_masks:
+            self.mask_anchors.append([])
+            for mask in masks:
+                assert mask < anchor_num, ""anchor mask index overflow""
+",4
+"            dt = {}
+",4
+"        file_name = os.path.join(save_path, save_name)
+        retry_times = 0
+",4
+"        norm = fluid.layers.reduce_prod(score_shape)
+",4
+"        cpu_config.disable_gpu()
+        cpu_config.switch_ir_optim(False)
+        self.cpu_predictor = create_paddle_predictor(cpu_config)
+",4
+"
+def file_num_in_dir(dirname):
+",4
+"            doc_spans = []
+",4
+"    and droput.
+    """"""
+    attn_output = multi_head_attention(
+        pre_process_layer(
+            enc_input,
+",4
+"    def finalize_and_log_out(self, info='', savedir='./'):
+        """"""Not implemented""""""
+        pass
+",4
+"            raise IOError(
+",4
+"        name='_311',
+        bias_attr=False)
+    _285 = fluid.layers.batch_norm(
+        _284,
+",4
+"#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+",4
+"            orig_end_position = orig_ns_to_s_map[ns_end_position]
+
+    if orig_end_position is None:
+        # using in debug
+",4
+"        self.add_module_config_arg()
+        self.add_module_input_arg()
+        args = self.parser.parse_args(argvs)
+        results = self.face_detection(
+            paths=[args.input_path],
+",4
+"                  attn_bias,
+                  n_head,
+",4
+"import os
+",4
+"    def shortcut(self, input, data_residual):
+        return fluid.layers.elementwise_add(input, data_residual)
+
+    def inverted_residual_unit(self,
+",4
+"        self._n_layer = config['num_hidden_layers']
+        self._n_head = config['num_attention_heads']
+        self._voc_size = config['vocab_size']
+        self._max_position_seq_len = config['max_position_embeddings']
+",4
+"        return fluid.layers.batch_norm(
+            input=conv,
+",4
+"
+def version_compare(version1, version2):
+    version1 = version1.split(""."")
+",4
+"__all__ = [""TSN""]
+
+
+class TSN(ModelBase):
+    def __init__(self, name, cfg, mode='train'):
+",4
+"
+    # Data to be predicted
+    test_text = [""这家餐厅很好吃"", ""这部电影真的很差劲""]
+
+    # execute predict and print the result
+",4
+"        except:
+            if self.config.get('debug', False):
+                raise
+",4
+"        if array_length % self._size == 0:
+            return average_count * self._rank, average_count * (self._rank + 1)
+        else:
+            if self._rank < array_length % self._size:
+",4
+"            data (list[dict]): 5 keys, where
+                'left', 'top', 'right', 'bottom' are the coordinate of detection bounding box,
+                'confidence' is the confidence this bbox.
+            path (str): The path of original image.
+    """"""
+",4
+"				break;
+			case 3:
+",4
+"                yolo_v3=False):
+        """"""Distill the Head Features, so as to perform transfer learning.
+
+        :param input_image: image tensor.
+        :type input_image: <class 'paddle.fluid.framework.Variable'>
+",4
+"        d_model,
+        n_head,
+",4
+"                logger.warn('cname2cid already set, it will be overridden')
+            self._cname2cid = getattr(sc, 'cname2cid', None)
+
+        # 3, Build a reader
+",4
+"
+
+",4
+"            global_pooling=True)
+
+        output = fluid.layers.fc(
+",4
+"# See the License for the specific language governing permissions and
+",4
+"                    low=-init_bound, high=init_bound)))
+
+        input_feature = word_embedding
+        for i in range(bigru_num):
+",4
+"    if cache is not None:  # use cache and concat time steps
+        # Since the inplace reshape in __split_heads changes the shape of k and
+        # v, which is the cache input for next time step, reshape the cache
+",4
+"    def _parse(self, config_path):
+        try:
+",4
+"			}
+",4
+"                inputs = {
+                    'image': var_prefix + image.name,
+                    'im_size': var_prefix + im_size.name
+                }
+",4
+"    for element in component:
+",4
+"                    input_dict=None,
+",4
+"            if use_padded_im_info:
+                data[1][:2] = max_shape[1:3]
+            padding_batch.append((padding_im, ) + data[1:])
+        return padding_batch
+",4
+"            with fluid.unique_name.guard():
+                # image
+",4
+"			内置函数
+",4
+"            self.directory, ""pyramidbox_lite_server_face_detection"")
+        self._set_config()
+",4
+"        new_filters += divisor
+    return int(new_filters)
+
+
+def round_repeats(repeats, global_params):
+",4
+"        Args:
+",4
+"            hidden_act,
+            preprocess_cmd=""n"",
+            postprocess_cmd=""da"",
+            param_initializer=None,
+",4
+"					a[i] = 0;
+				}
+				if (a[i].substr( - 1) != '%') {
+					a[i] = parseInt(a[i]);
+",4
+"                ""Error in parsing bert model config file '%s'"" % config_path)
+        else:
+            return config_dict
+
+    def __getitem__(self, key):
+",4
+"
+",4
+"
+import paddle.fluid as fluid
+import paddlehub as hub
+",4
+"            for image_id in range(batch_size):
+                try:
+",4
+"            out = fluid.layers.fc(
+",4
+"        else:
+            key = 'positive'
+        result_i['sentiment_label'] = label
+        result_i['sentiment_key'] = key
+",4
+"    for year in years:
+        trainval, test = _walk_voc_dir(devkit_dir, year, output_dir)
+        trainval_list.extend(trainval)
+",4
+"                name=_name + "".conv2d.output.1"")
+",4
+"				zIndex: '996'
+			});
+			//出错文本框
+",4
+"				var pArr = this.CB['playbackrateP'].childNodes;
+				for (var i = 0; i < pArr.length; i++) {
+",4
+"            bbox_pred_list.append(out_bbox)
+        return bbox_pred_list
+
+    def _anchor_generate(self, body_feats, spatial_scale):
+        """"""
+",4
+"            prepostprocess_dropout=self._prepostprocess_dropout,
+            attention_dropout=self._attention_dropout,
+            relu_dropout=0,
+            hidden_act=self._hidden_act,
+",4
+"from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+
+",4
+"    g = fluid.layers.reshape(g, [0, 0, -1])
+
+    if nonlocal_params[""use_softmax""]:
+        if nonlocal_params[""use_scale""]:
+",4
+"        h_start = np.random.randint(0, height - size + 1)
+",4
+"            Type: dict
+                rpn_cls_loss(Variable): RPN classification loss.
+                rpn_bbox_loss(Variable): RPN bounding box regression loss.
+
+",4
+"            sequence_output (tensor): token-level output for sequence task.
+        """"""
+        bert = BertModel(
+            src_ids=input_ids,
+",4
+"
+        worker_args = None
+        if 'WORKER_CONF' in self._trans_conf[mode]:
+            worker_args = self._trans_conf[mode]['WORKER_CONF']
+            worker_args = {k.lower(): v for k, v in worker_args.items()}
+",4
+"            else:
+                with open(file_name, 'wb') as f:
+                    dl = 0
+                    total_length = int(total_length)
+",4
+"            bias_attr=""next_sent_fc.b_0"")
+
+        next_sent_loss, next_sent_softmax = fluid.layers.softmax_with_cross_entropy(
+",4
+"    suite.addTest(TestHumanSeg('test_batch'))
+    suite.addTest(TestHumanSeg('test_ndarray'))
+    suite.addTest(TestHumanSeg('test_save_inference_model'))
+    runner = unittest.TextTestRunner(verbosity=2)
+    runner.run(suite)
+",4
+"    test_list = []
+",4
+"            stride=2,
+",4
+"                    dropout_prob=dropout_rate,
+                    dropout_implementation=""upscale_in_train"",
+                    is_test=False)
+",4
+"    q, k, v = __compute_qkv(queries, keys, values, n_head, d_key, d_value)
+
+    if cache is not None:  # use cache and concat time steps
+",4
+"    def get_labels(self):
+        """"""
+        Get the labels which was used when pretraining
+        Returns:
+             self.labels(dict)
+",4
+"        bias_attr='_base_net_7_branch2_2_bn_bias',
+        moving_mean_name='_base_net_7_branch2_2_bn_running_mean',
+        moving_variance_name='_base_net_7_branch2_2_bn_running_var',
+        use_global_stats=False,
+",4
+"                score_thresh=score_thresh,
+                label_names=self.label_names,
+                output_dir=output_dir,
+                handle_id=handle_id,
+                visualization=visualization)
+",4
+"                label_id=label_ids)
+        else:
+            record = self.Record_Wo_Label_Id(
+",4
+"
+        vecs_a, = exe.run(
+            program,
+            feed=feeder.feed([[text_a]]),
+",4
+"                name=""cls_out_w"",
+                initializer=fluid.initializer.TruncatedNormal(scale=0.02)),
+            bias_attr=fluid.ParamAttr(
+",4
+"        return q, k, v
+",4
+"
+        if input_data == []:
+            print(""ERROR: The input data is inconsistent with expectations."")
+",4
+"                     name=None):
+        # 1x1 conv
+        conv_1 = self._conv_layer(
+",4
+"        """"""
+",4
+"            d_key,
+            d_value,
+            d_model,
+",4
+"        'lod_level': 0
+    },
+]
+",4
+"    exact_match = 100.0 * exact_match / total
+    f1 = 100.0 * f1 / total
+
+",4
+"				cEscMute.clearRect(0, 0, bWidth, bHeight);
+				cEscMute.fillStyle = bOverColor;
+				cEscMuteFillRect();
+",4
+"            d_key=self._emb_size // self._n_head,
+            d_value=self._emb_size // self._n_head,
+            d_model=self._emb_size,
+            d_inner_hid=self._emb_size * 4,
+",4
+"        pre_process_layer(
+",4
+"        with open(fname, 'wb') as f:
+            f.write(pickle.dumps(info, -1))
+        logger.warn('dump alloc info to file[%s]' % (fname))
+
+    def _reset(self):
+",4
+"        shrink (float): parameter to control the resize scale in preprocess.
+        confs_threshold (float): confidence threshold.
+
+",4
+"        self.arg_config_group.add_argument(
+",4
+"        self.anchors = []
+        self.mask_anchors = []
+
+",4
+"
+@moduleinfo(
+    name=""efficientnetb0_small_imagenet"",
+    type=""CV/image_classification"",
+",4
+"    res = dict()
+    res['path'] = org_im_path
+",4
+"from .base_task import BaseTask
+
+
+class ClassifierTask(BaseTask):
+    def __init__(self,
+",4
+"            shape=[size + 2, size], dtype=emission.dtype, name='crfw')
+        crf_decode = fluid.layers.crf_decoding(
+            input=emission, param_attr=fluid.ParamAttr(name='crfw'))
+",4
+"                pyobj, fluid.framework.Program) or isinstance(
+                    pyobj, fluid.framework.Operator)
+",4
+"        self.LOCK_UN = self.lock.LOCK_UN
+",4
+"    module = hub.Module(name=""bert_uncased_L-12_H-768_A-12"")
+    inputs, outputs, program = module.context(
+        trainable=True, max_seq_len=args.max_seq_len)
+
+    # Download dataset and use ReadingComprehensionReader to read dataset
+",4
+"        return layers.reshape(
+            x=trans_x,
+",4
+"    for k, v in new_dict.items():
+        data_t = fluid.LoDTensor()
+        data_t.set(v[0], place)
+        if 'bbox' in k:
+            lod = length2lod(v[1][0])
+",4
+"            scale.stop_gradient = True
+",4
+"
+",4
+"             stride=1,
+             groups=1,
+             norm_decay=0.,
+             norm_type='affine_channel',
+",4
+"        start_idx = 0
+        iteration = int(math.ceil(len(predicted_data) / batch_size))
+        results = []
+",4
+"FILE = 0
+DIR = 1
+PYTHON_PACKAGE = 0
+HUB_MODULE = 1
+",4
+"def load_label_info(file_path):
+    with open(file_path, 'r') as fr:
+",4
+"				this.addListenerInside('mousedown', mDown, obj['slider']);
+				this.addListenerInside('mouseover', mOver, obj['slider']);
+			} else {
+				this.removeListenerInside('mousedown', mDown, obj['slider']);
+				this.removeListenerInside('mouseover', mOver, obj['slider']);
+",4
+"        org_im (numpy.ndarray): original image.
+        org_im_shape (list): shape pf original image.
+        org_im_path (list): path of riginal image.
+        output_dir (str): output directory to store image.
+        visualization (bool): whether to save image or not.
+",4
+"        """"""
+        imgs_cls = []
+        num_per_cls = {}
+        img_weights = []
+        for i, roidb in enumerate(self._roidb):
+",4
+"                        predicate=_if_exist)
+                else:
+",4
+"        return getattr(self.model, 'variant', '')
+
+    def fix_conv_norm_name(self, name):
+        if name == ""conv1"":
+            bn_name = ""bn_"" + name
+",4
+"    return ImageEnhance.Brightness(img).enhance(delta)
+
+
+def image_brightness_adjust_random(img, low=0, high=1):
+    low, high = _check_bound(low, high)
+",4
+"    """"""data generator
+    :param paths: path to images.
+    :type paths: list, each element is a str
+    :param images: data of images, [N, H, W, C]
+",4
+"        use_data_parallel=False,
+        use_cuda=args.use_gpu,
+        batch_size=args.batch_size,
+        checkpoint_dir=args.checkpoint_dir,
+",4
+"                 outputs,
+                 feed_names=None,
+                 fetch_names=None,
+",4
+"                                           if (nonlocal_params[""no_bias""] == 0) else False, \
+",4
+"            use_task_id=use_task_id,
+            sp_model_path=sp_model_path,
+            word_dict_path=word_dict_path,
+            in_tokens=in_tokens)
+        if sp_model_path and word_dict_path:
+",4
+"
+    check_dir(output_dir)
+
+    assert type(paths) is list, ""type(paths) is not list.""
+",4
+"            use_fp16=False)
+        pooled_output = bert.get_pooled_output()
+        sequence_output = bert.get_sequence_output()
+        return pooled_output, sequence_output
+",4
+"
+
+",4
+"        Returns:
+            rpn_cls_score(Variable): Output of rpn head with shape of [N, num_anchors, H, W].
+            rpn_bbox_pred(Variable): Output of rpn head with shape of [N, num_anchors * 4, H, W].
+        """"""
+        dim_out = input.shape[1]
+",4
+"        im_shape = im.shape
+",4
+"    oneofs=[],
+    serialized_start=647,
+    serialized_end=690,
+)
+
+",4
+"    def test_save_inference_model(self):
+        with fluid.program_guard(self.test_prog):
+            self.style_projection.save_inference_model(
+",4
+"    model = ResNet(layers=101, is_3x3=True)
+",4
+"from __future__ import division
+",4
+"                sample['gt_bbox'] = crop_bbox
+                sample['gt_class'] = crop_class
+                sample['gt_score'] = crop_score
+                return sample
+",4
+"        command = BaseCommand.command_dict[sub_command]
+        return command.execute(argv[1:])
+
+
+",4
+"        :param get_prediction: whether to get prediction,
+",4
+"			};
+			return Tween;
+		},
+		/*
+			接口函数
+",4
+"        rpn head
+
+        Args:
+            fpn_feats(dict): A dictionary represents the output feature map
+                of FPN with their name.
+",4
+"        stride=[1, 1],
+        padding=[0, 0],
+        dilation=[1, 1],
+        groups=1,
+        param_attr='_base_net_10_3_weight',
+",4
+"                        b = os.path.exists(
+",4
+"# You may obtain a copy of the License at
+#
+",4
+"        self.nms = nms
+        self.prefix_name = weight_prefix_name
+
+",4
+"					thisTemp.timeTextHandler();
+",4
+"    else:
+        return records
+# Copyright (c) 2019 PaddlePaddle Authors. All Rights Reserved.
+",4
+"                                        if not nonlocal_params[""no_bias""] else False, \
+                                name = prefix + '_theta')
+    theta_shape = theta.shape
+",4
+"! (function() {
+",4
+"                mask=mask,
+                num_filters=num_filters,
+                filter_size=filter_size,
+                stride=stride,
+",4
+"            label=1,
+            has_default_value=False,
+            default_value=_b("""").decode('utf-8'),
+            message_type=None,
+",4
+"            stride=stride,
+            act='relu',
+            name=name + ""_branch2b"")
+        conv2 = self.conv_bn_layer(
+            input=conv1,
+",4
+"    ""resnet152"": ""resnet_v2_152_imagenet"",
+    ""mobilenet"": ""mobilenet_v2_imagenet"",
+    ""nasnet"": ""nasnet_imagenet"",
+",4
+"                filter_size=filter_size,
+",4
+"                         reduction_ratio):
+        conv0 = self.conv_bn_layer(
+            input=input,
+            num_filters=num_filters,
+            filter_size=1,
+",4
+"            score_thresh=args.score_thresh)
+        return results
+
+",4
+"@moduleinfo(
+    name=""ultra_light_fast_generic_face_detector_1mb_640"",
+    type=""CV/face_detection"",
+",4
+"                _places = os.environ[""CUDA_VISIBLE_DEVICES""]
+                int(_places[0])
+            except:
+",4
+"            'confidence': float(data[4])
+        })
+",4
+"_MODULEVAR.fields_by_name['fetch_desc'].message_type = _FETCHDESC
+_MODULEVAR.fields_by_name['feed_desc'].message_type = _FEEDDESC
+_MODULEDESC_SIGN2VARENTRY.fields_by_name['value'].message_type = _MODULEVAR
+",4
+"                        raise Exception(
+                            ""the %s file: %s has too many columns (should <=3)""
+                            % (phase, input_file))
+                else:
+",4
+"    values = keys if values is None else values
+
+    if not (len(queries.shape) == len(keys.shape) == len(values.shape) == 3):
+        raise ValueError(
+",4
+"    q, k, v = __compute_qkv(queries, keys, values, n_head, d_key, d_value)
+
+    if cache is not None:  # use cache and concat time steps
+        # Since the inplace reshape in __split_heads changes the shape of k and
+        # v, which is the cache input for next time step, reshape the cache
+",4
+"        position_emb_out = fluid.layers.embedding(
+            input=position_ids,
+",4
+"            data (dict): the result of object detection, keys include 'left', 'top', 'right', 'bottom', 'label', 'confidence', the corresponding value is:
+                left (float): The X coordinate of the upper left corner of the bounding box;
+",4
+"# limitations under the License.
+
+from __future__ import absolute_import
+from __future__ import division
+",4
+"			var client = {
+				x: 0,
+",4
+"            ""avg_perr"": avg_perr,
+            ""avg_loss"": avg_loss,
+            ""aps"": aps,
+",4
+"        self.depth_cfg = {
+            34: ([3, 4, 6, 3], self.basicblock),
+            50: ([3, 4, 6, 3], self.bottleneck),
+",4
+"    # our tokenizer does additional normalization like stripping accent
+",4
+"# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an ""AS IS"" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+",4
+"        use_cuda=args.use_gpu,
+        num_epoch=args.num_epoch,
+        batch_size=args.batch_size,
+        checkpoint_dir=args.checkpoint_dir,
+",4
+"    if shrink != 1:
+        image_height, image_width = int(image_height * shrink), int(
+            image_width * shrink)
+        image = cv2.resize(image, (image_width, image_height),
+                           cv2.INTER_NEAREST)
+",4
+"    """"""
+    attn_output = multi_head_attention(
+        pre_process_layer(
+            enc_input,
+            preprocess_cmd,
+",4
+"							v['type'] += arr2[1].replace('video/', '');
+						}
+",4
+"            title=""Input options"", description=""Input data. Required"")
+        self.arg_config_group = self.parser.add_argument_group(
+            title=""Config options"",
+            description=
+",4
+"        if not is_overlap(obj_bbox, sample_bbox):
+            continue
+        sample_width = sample_bbox[2] - sample_bbox[0]
+",4
+"        label_names = []
+        for info in text:
+            label_names.append(info.strip())
+        return label_names
+",4
+"            1. Scale the image width and height.
+            2. Crop the image according to a radom sample.
+            3. Rescale the bounding box.
+",4
+"    def _conv_norm(self,
+                   input,
+                   filter_size,
+",4
+"    save_type: '.pdckpt' or '.pdparams', '.pdckpt' for all persistable variables,
+               '.pdparams' for parameters only
+    """"""
+    if not os.path.isdir(save_dir):
+",4
+"    _301 = fluid.layers.batch_norm(
+",4
+"def get_save_image_name(img, output_dir, image_path):
+    """"""
+    Get save image name from source image path.
+",4
+"#coding:utf-8
+#   Copyright (c) 2019 PaddlePaddle Authors. All Rights Reserved.
+#
+",4
+"
+",4
+"        self.rpn_bbox_pred = fluid.layers.conv2d(
+            input=conv_rpn_fpn,
+            num_filters=num_anchors * 4,
+",4
+"                self.init_if_necessary()
+        else:
+            logger.info(""The best model has been loaded"")
+
+    def _build_env(self):
+",4
+"			});
+			this.css(adLinkID, {
+				backgroundColor: '#ea5503',
+",4
+"			for (var i = 0; i < ele.length; i++) {
+				var nlen = ele[i][1];
+",4
+"            org_img = Image.open(org_img_path)
+        else:
+            org_img = images[index - unhandled_paths_num]
+",4
+"        attn_bias,
+        d_key,
+        d_value,
+        d_model,
+",4
+"                              d_hid,
+                              dropout_rate,
+                              hidden_act,
+                              param_initializer=None,
+                              name='ffn'):
+",4
+"            self.ngram_dict[key] = np.log(wordfreq / self.total_count)
+",4
+"			if (this.adTimeTotal != parseInt(time)) {
+				this.adTimeTotal = parseInt(time);
+				this.showAdTime();
+",4
+"
+    def shortcut(self, input, ch_out, stride, name, if_first=False):
+        ch_in = input.shape[1]
+        if ch_in != ch_out or stride != 1:
+",4
+"                }
+                # trainable
+                for param in context_prog.global_block().iter_parameters():
+                    param.trainable = trainable
+
+",4
+"        self._producer.daemon = True
+
+        self._consumers = []
+        for i in range(consumer_num):
+            p = Worker(
+",4
+"    # Use ""pooled_output"" for classification tasks on an entire sentence.
+    # Use ""sequence_output"" for token-level output.
+    token_feature = outputs[""sequence_output""]
+",4
+"
+import paddle.fluid as fluid
+
+",4
+"            dropout_prob=dropout_rate,
+            dropout_implementation=""upscale_in_train"",
+",4
+"    ds = BQ()
+    print(""first 10 dev"")
+",4
+"    def add_module_config_arg(self):
+        """"""
+        Add the command config options
+",4
+"            conv_name = name + '.0'
+",4
+"                    input, ch_out, 1, stride, name=name)
+        else:
+            return input
+",4
+"						eleCoor = thisTemp.calculationCoor(obj['element']);
+						css['left'] = eleCoor['x'] + 'px';
+",4
+"        module_attr.type = module_desc_pb2.LIST
+        for index, obj in enumerate(pyobj):
+            from_pyobj_to_module_attr(obj, module_attr.list.data[str(index)],
+",4
+"        end_logits = self.outputs[1]
+
+        start_loss = fluid.layers.softmax_with_cross_entropy(
+            logits=start_logits, label=start_positions)
+",4
+"				height: '100%',
+				fontFamily: this.fontFamily
+			});
+			if (this.html5Video) { //如果支持HTML5-VIDEO则默认使用HTML5-VIDEO播放器
+				//禁止播放器容器上鼠标选择文本
+",4
+"    encoder_layer.
+    """"""
+    for i in range(n_layer):
+",4
+"        param_attr='_base_net_7_shortcut_bn_weight',
+        bias_attr='_base_net_7_shortcut_bn_bias',
+        moving_mean_name='_base_net_7_shortcut_bn_running_mean',
+        moving_variance_name='_base_net_7_shortcut_bn_running_var',
+",4
+"        cpu_config_enc.disable_gpu()
+",4
+"    summary=
+    ""ResNet50 is a image classfication model trained with ImageNet-2012 dataset."",
+",4
+"                extractor_model = models.get_model(
+                    ""TSN"", extractor_infer_config, mode='infer')
+                extractor_model.build_input(use_dataloader=False)
+                extractor_model.build_model()
+",4
+"                label_names,
+                output_dir,
+                handle_id,
+                visualization=True):
+    """"""
+",4
+"            raise IOError(
+",4
+"class TestFaceLocate(unittest.TestCase):
+    @classmethod
+    def setUpClass(self):
+        """"""Prepare the environment once before execution of all tests.\n""""""
+        self.face_locate = hub.Module(name=""face_landmark_localization"")
+",4
+"        # `act` param in fluid.layers.batch_norm above.
+        if act == 'leaky':
+            out = fluid.layers.leaky_relu(x=out, alpha=0.1)
+",4
+"#     http://www.apache.org/licenses/LICENSE-2.0
+",4
+"        self._voc_size = config['vocab_size']
+        self._max_position_seq_len = config['max_position_embeddings']
+        self._sent_types = config['type_vocab_size']
+        self._hidden_act = config['hidden_act']
+        self._prepostprocess_dropout = config['hidden_dropout_prob']
+",4
+"                       batch_size=1,
+                       use_gpu=False,
+",4
+"        results = predict_method(**predict_args)
+        results = utils.handle_mask_results(results, data_len)
+    except Exception as err:
+        curr = time.strftime(""%Y-%m-%d %H:%M:%S"", time.localtime(time.time()))
+        print(curr, "" - "", err)
+",4
+"                         d_model,
+                         n_head=1,
+                         dropout_rate=0.,
+",4
+"				this.css(escMuteID, 'display', 'none');
+			} else {
+",4
+"                    ""non-local is not supported for resnet18 or resnet34""
+
+        self.depth = depth
+        self.freeze_at = freeze_at
+",4
+"                 variant='b',
+                 feature_maps=[5],
+                 weight_prefix_name=''):
+        super(ResNetC5, self).__init__(depth, freeze_at, norm_type, freeze_norm,
+",4
+"        # Since the inplace reshape in __split_heads changes the shape of k and
+",4
+"    def test_get_word_dict_path(self):
+        self.assertEqual(self.module.get_word_dict_path(), None)
+
+    def test_get_vocab_path(self):
+",4
+"
+import cv2
+import numpy as np
+",4
+"                   dcn_v2=False):
+        if self.variant == 'a':
+",4
+"            each['org_im_width'], each['org_im_height'] = each['org_im'].size
+            component.append(each)
+
+",4
+"    def setUp(self):
+        self.module = hub.Module(name='chinese-roberta-wwm-ext-large')
+",4
+"            label_file=None,
+            label_list=[str(i) for i in range(119)],
+        )
+
+",4
+"        else:
+            blocks = input[-1:-out_layer_num - 1:-1]
+        route = None
+        for i, block in enumerate(blocks):
+",4
+"                 norm_type='sync_bn',
+                 freeze_norm=False,
+",4
+"            attn_bias=n_head_self_attn_mask,
+            n_layer=self._n_layer,
+            n_head=self._n_head,
+",4
+"
+",4
+"		*/
+		embed: function(c) {
+			//c:Object：是调用接口传递的属性对象
+",4
+"            prepostprocess_dropout=self._prepostprocess_dropout,
+            attention_dropout=self._attention_dropout,
+            relu_dropout=0,
+",4
+"                        label_id = data[i].label
+                    data[i].label = label_id
+",4
+"
+    def setUp(self):
+        ""Call setUp() to prepare environment\n""
+        self.test_prog = fluid.Program()
+
+",4
+"				w: w,
+				v: v
+			};
+		},
+
+",4
+"                shape=var_info['shape'],
+                dtype=var_info['dtype'],
+                name=var_info['name'])
+",4
+"# distributed under the License is distributed on an ""AS IS"" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+",4
+"            return [pred_result]
+",4
+"
+            config = hub.RunConfig(
+",4
+"                paths=[
+                    os.path.join(image_dir, 'cat.jpg'),
+                    os.path.join(image_dir, 'dog.jpg'),
+                    os.path.join(image_dir, 'giraffe.jpg')
+",4
+"# coding=utf-8
+from __future__ import absolute_import
+",4
+"                # trainable
+                for param in context_prog.global_block().iter_parameters():
+                    param.trainable = trainable
+        return inputs, outputs, context_prog
+",4
+"        filter_size=[3, 3],
+",4
+"                    ""task_ids""
+                ]
+            else:
+",4
+"        images (list(numpy.ndarray)): images data, shape of each is [H, W, C]
+        paths (list[str]): paths to images.
+",4
+"
+import ast
+",4
+"    },
+    {
+        'name': 'gt_box',
+        'shape': [4],
+",4
+"
+        if layers == 18:
+            depth = [2, 2, 2, 2]
+        elif layers == 34 or layers == 50:
+",4
+"# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+",4
+"            os.remove(output_file)
+    return gen_result(""0"", """", str(results_pack))
+
+
+",4
+"							adList.push(obj);
+",4
+"import pyclipper
+
+
+",4
+"        self.arg_input_group = self.parser.add_argument_group(
+",4
+"        elif (groups * group_width) == 256:
+",4
+"			tHours = '',
+",4
+"
+    def classification(self,
+                       images=None,
+                       paths=None,
+",4
+"                   (left, top)],
+                  width=2,
+                  fill='red')
+
+        # draw label
+",4
+"_MODULEDESC_SIGN2VARENTRY._options = _descriptor._ParseOptions(
+    descriptor_pb2.MessageOptions(), _b('8\001'))
+# @@protoc_insertion_point(module_scope)
+#coding:utf-8
+",4
+"    After the function call, we may call peek_ap_at_n to actually calculate
+",4
+"class TestPyramidBoxLiteMobileMask(unittest.TestCase):
+    @classmethod
+    def setUpClass(self):
+        """"""Prepare the environment once before execution of all tests.\n""""""
+",4
+"                    ""Attempt to use GPU for prediction, but environment variable CUDA_VISIBLE_DEVICES was not set correctly.""
+                )
+",4
+"        x = fluid.layers.split(x, num_or_sections=self.k, dim=1)
+        y = fluid.layers.split(y, num_or_sections=self.k, dim=1)
+        w = fluid.layers.split(w, num_or_sections=self.k, dim=1)
+
+",4
+"    _333 = fluid.layers.fill_constant(shape=[1], dtype='int32', value=0)
+    _336 = fluid.layers.fill_constant(shape=[1], dtype='int32', value=-1)
+    _337 = fluid.layers.fill_constant(shape=[1], dtype='int32', value=4)
+",4
+"            act=None,
+            is_test=is_test,
+            param_attr=bn_param_attr,
+            bias_attr=bn_bias_attr,
+",4
+"        groups = getattr(self, 'groups', 1)
+",4
+"        # The value 0 in shape attr means copying the corresponding dimension
+",4
+"    return {""result"": results}
+
+
+",4
+"            for pic_path in pics_path_list:
+                result = self.face_detector.face_detection(
+                    paths=[pic_path],
+                    use_gpu=True,
+",4
+"from __future__ import print_function
+
+import os
+import unittest
+
+",4
+"                wh_ratio = w / h
+                max_wh_ratio = max(max_wh_ratio, wh_ratio)
+            for ino in range(beg_img_no, end_img_no):
+                norm_img = self.resize_norm_img(image_list[ino], max_wh_ratio)
+                norm_img = norm_img[np.newaxis, :]
+",4
+"        if self.freeze_norm:
+",4
+"        return next_sent_acc, mean_mask_lm_loss, loss
+# coding:utf-8
+# Copyright (c) 2019  PaddlePaddle Authors. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the ""License""
+",4
+"                pretrained=True, trainable=True, get_prediction=get_prediction)
+
+            image = inputs[""image""]
+",4
+"        If target_size is list, selected a scale randomly as the specified
+        target size.
+
+        Args:
+            target_size (int|list): the target size of image's short side,
+",4
+"				refer: this.CB['timeBoBg'],
+				grossValue: 'time',
+				pd: false,
+				startFun: function(time) {
+					thisTemp.isTimeButtonMove = false;
+",4
+"
+        # extract the first token feature in each sentence
+        next_sent_feat = self.get_pooled_output()
+        reshaped_emb_out = fluid.layers.reshape(
+            x=self._enc_out, shape=[-1, self._emb_size])
+",4
+"            stride=stride,
+            act='relu',
+            name=name + ""_branch2b"")
+",4
+"            zebra = cv2.imread(os.path.join(image_dir,
+",4
+"                    initializer=fluid.initializer.Constant(1.)),
+",4
+"    '''
+
+",4
+"        for i in range(5):
+            out = self.depthwise_separable(
+                out,
+                512,
+                512,
+",4
+"                self._multi_machine = False
+
+    @property
+    def multi_machine(self):
+",4
+"    recall = 1.0 * num_same / len(ground_truth_tokens)
+    f1 = (2 * precision * recall) / (precision + recall)
+    return f1
+",4
+"        if num_max_boxes is not None:
+",4
+"            '--use_gpu',
+",4
+"        super(BoxCoder, self).__init__()
+",4
+"			h = this.PD.offsetHeight;
+			var ew = ele.offsetWidth,
+			eh = ele.offsetHeight;
+			if (!this.isUndefined(this.getDataset(ele, 'x'))) {
+				x = this.getDataset(ele, 'x');
+",4
+"        if self.network:
+            # add pre-defined net
+",4
+"        self.default_pretrained_model_path = os.path.join(
+            self.directory, ""faster_rcnn_resnet50_fpn_model"")
+
+",4
+"
+    def scaled_dot_product_attention(q, k, v, attn_bias, d_key, dropout_rate):
+        """"""
+        Scaled Dot-Product Attention
+        """"""
+",4
+"            Please use reasonable model and check input data."")
+",4
+"
+import ast
+import copy
+import time
+",4
+"            if not isinstance(var, fluid.framework.Parameter):
+                return False
+",4
+"                round(time.time(), 6) * 1e6)
+            each['org_im_width'], each['org_im_height'] = each['org_im'].size
+            component.append(each)
+
+",4
+"                    self.con_index += 1
+                    return 'retry'
+
+        elif self.load_balance == 'random':
+",4
+"        result_i = {'processed': []}
+        result_i['origin'] = data_dict[text_a_key][index]
+        for word in text_a['word']:
+",4
+"
+",4
+"        self.face_detector = None
+
+    def setUp(self):
+        ""Call setUp() to prepare environment\n""
+",4
+"        """"""
+",4
+"        """"""Get the first feature of each sequence for classification""""""
+        next_sent_feat = fluid.layers.slice(
+",4
+"        w = fluid.layers.reshape(target_weight, (-1, self.k))
+",4
+"		/*
+		 下面列出只有flashplayer里支持的
+		 */
+",4
+"                   padding,
+                   act='leaky',
+                   name=None):
+        conv = fluid.layers.conv2d(
+",4
+"    def __init__(self, config_path):
+        self._config_dict = self._parse(config_path)
+
+    def _parse(self, config_path):
+",4
+"                is_test=(not is_train),
+                name=self.prefix_name + ""yolo_block.{}"".format(i))
+
+",4
+"                    end_position = None
+",4
+"                self.base_feed_list[1], self.labels[0].name,
+",4
+"        momentum=0.9900000095367432,
+        epsilon=9.999999747378752e-06,
+        data_layout='NCHW',
+        is_test=True,
+        param_attr='_base_net_7_branch0_2_bn_weight',
+",4
+"    theta_shape_op = fluid.layers.shape(theta)
+",4
+"
+
+",4
+"            self._build_env()
+        return self.env.main_program
+
+    @property
+",4
+"                line = file.readline()
+                if not line:
+                    break
+                line = line.strip()
+                items = line.split("" "")
+",4
+"from paddlehub.dataset.base_nlp_dataset import BaseNLPDataset
+
+_DATA_URL = ""https://bj.bcebos.com/paddlehub-dataset/cmrc2018.tar.gz""
+SPIECE_UNDERLINE = '▁'
+
+",4
+"    def get_pretrained_images_std(self):
+        im_std = np.array([0.229, 0.224, 0.225]).reshape(1, 3)
+",4
+"                config_dict = json.load(json_file)
+        except Exception:
+            raise IOError(
+",4
+"def load_vocab(file_path):
+    """"""
+    load the given vocabulary
+    """"""
+    vocab = {}
+",4
+"        bias_attr=False)
+",4
+"            ]
+            result = self.pose.keypoint_detection(
+",4
+"if __name__ == '__main__':
+    # Load Paddlehub ERNIE 2.0 pretrained model
+    module = hub.Module(name=""ernie_v2_eng_base"")
+    inputs, outputs, program = module.context(
+",4
+"            with open(tmp_file, 'r') as f:
+                for line in f:
+                    data = line.strip().split(""\t"")
+",4
+"        epsilon=9.999999747378752e-06,
+        data_layout='NCHW',
+        is_test=True,
+        param_attr='_base_net_2_1_weight',
+",4
+"                    start_index=0,
+                    end_index=0,
+",4
+"        max_shape = max_shape_org.astype('int32')
+",4
+"        """"""
+        if use_gpu:
+            try:
+                _places = os.environ[""CUDA_VISIBLE_DEVICES""]
+",4
+"            inputs (dict): key is 'image', corresponding vaule is image tensor.
+            outputs (dict): key is :
+                'classification', corresponding value is the result of classification.
+",4
+"        return self._pos >= self.size()
+
+    def epoch_id(self):
+        return self._epoch
+# Copyright (c) 2019 PaddlePaddle Authors. All Rights Reserved.
+",4
+"			tHours = (h > 0) ? ((h < 10) ? '0' + h + ':': h + ':') : '';
+			if (ishours) {
+",4
+"        q = layers.fc(
+            input=queries,
+            size=d_key * n_head,
+",4
+"					pL = 0;
+				}
+",4
+"				this.animateElementArray.splice(index, 1);
+			}
+		},
+",4
+"                except:
+",4
+"
+    image.save(save_name)
+",4
+"from paddlehub.module.module import moduleinfo, runnable, serving
+
+from face_landmark_localization.processor import postprocess, base64_to_cv2
+",4
+"            ""supported layers are {} but input layer is {}"".format(supported_layers, layers)
+",4
+"        cpu_config.disable_gpu()
+        self.cpu_predictor = create_paddle_predictor(cpu_config)
+
+",4
+"    orig_shape = x.shape
+    if len(x.shape) > 1:
+        tmp = np.max(x, axis=1)
+",4
+"        n_head,
+        attention_dropout,
+        param_initializer=param_initializer,
+        name=name + '_multi_head_att')
+    attn_output = post_process_layer(
+",4
+"        self.max_level = max_level
+",4
+"        return layers.transpose(x=reshaped, perm=[0, 2, 1, 3])
+
+",4
+"        self.nms_top_k = nms_top_k
+        self.keep_top_k = keep_top_k
+",4
+"        output_tokens = whitespace_tokenize("" "".join(split_tokens))
+        return output_tokens
+
+    def _run_strip_accents(self, text):
+",4
+"        Transpose and then reshape the last two dimensions of inpunt tensor x
+        so that it becomes one dimension, which is reverse to __split_heads.
+        """"""
+        if len(x.shape) == 3: return x
+",4
+"# Licensed under the Apache License, Version 2.0 (the ""License"");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+",4
+"    suite.addTest(TestResNet50vdDish('test_batch'))
+",4
+"        if data_num + queues_dict[module_name].qsize(
+",4
+"    return bbox
+
+
+def postprocess(data_out, org_im, org_im_path, image_height, image_width,
+",4
+"        else:
+            resize_h = (resize_h // 32 - 1) * 32
+",4
+"        if isinstance(feature_maps, Integral):
+            feature_maps = [feature_maps]
+
+",4
+"        return key == ""True""
+",4
+"                batched_ds.reset()
+                if maxit <= 0:
+                    return
+
+        _reader._fname = None
+",4
+"import os
+import sys
+import time
+import hashlib
+",4
+"from paddlehub.commands.base_command import BaseCommand, ENTRY
+from paddlehub.autofinetune.autoft import PSHE2
+from paddlehub.autofinetune.autoft import HAZero
+from paddlehub.autofinetune.evaluator import FullTrailEvaluator
+from paddlehub.autofinetune.evaluator import PopulationBasedEvaluator
+",4
+"        scale = fluid.layers.elementwise_mul(x=input, y=conv2, axis=0)
+        return scale
+
+",4
+"    def createGame(self):
+        DoubleKlondike.createGame(self, rows=12)
+",5
+"        return from_stack is self.game.s.waste
+",5
+"            if file:
+                image = Image.open(file).convert('RGBA')
+            ImageTk.PhotoImage.__init__(self, image)
+",5
+"#
+# ---------------------------------------------------------------------------##
+
+
+#
+",5
+"        alt = '(image)'
+        ismap = ''
+        src = ''
+        width = 0
+        height = 0
+",5
+"                index += 1
+        else:
+",5
+"
+import os
+import sys
+import time
+
+",5
+"# ************************************************************************
+
+class SelectCardsetData(SelectDialogTreeData):
+",5
+"        self.formatter.end_paragraph(1)
+        self.formatter.pop_margin()
+
+    # --- List Elements
+",5
+"Compression=lzma
+SolidCompression=yes
+SourceDir=dist
+OutputDir=.
+",5
+"
+    def initKw(self, kw):
+        kw = KwStruct(kw,
+",5
+"        f = game.s.foundations[0]
+        game.updateStackMove(game.s.talon, 2 | 16)            # for undo
+        if not game.demo:
+",5
+"                face_down -= 1
+
+        if isinstance(self.s.talon, InitialDealTalonStack):
+",5
+"        s.talon = WasteTalonStack(x, y, self, max_rounds=3)
+        l.createText(s.talon, ""n"")
+",5
+"            return self.mainWindow
+
+    def main(args=None):
+        logging.basicConfig(level=logging.INFO)
+        KivyApp(args).run()
+",5
+"        # dx, dy = 2, -2
+        # dx, dy = 3, -3
+        cs = self.app.cardset
+        if cs.version >= 6:
+",5
+"        #
+        menu, index, submenu = mp2
+        ms = 0
+        for i in range(9):
+",5
+"    ""aBbacdaedagdaida"" +
+    ""ndardawdaydaAdaC"" +
+    ""daleateabfadfaff"" +
+",5
+"            (""nw"", 8, 8),
+",5
+"        self.s.talon.dealRow(rows=self.s.foundations, frames=0)
+        Carthage.startGame(self)
+
+",5
+"        #
+        self.dialog = dialog
+        self.app = app
+",5
+"# Copyright (C) 2005-2009 Skomoroh
+",5
+"        s.talon = Dumfries_TalonStack(l.s.talon.x, l.s.talon.y, self)
+",5
+"5D 2S JC 5C JH 6D AS
+2D KD TH TC TD 8D
+7H JS KH TS KC 7C
+",5
+"            if 'button' in touch.profile:
+                button = touch.button
+",5
+"
+        self.__dict__.update(kw)
+        if self.game.preview > 1:
+            if ""XOFFSET"" in kw:
+                self.XOFFSET //= self.game.preview
+",5
+"                      GI.GT_GOLF | GI.GT_OPEN | GI.GT_ORIGINAL,
+                      1, 0, GI.SL_MOSTLY_SKILL))
+registerGame(GameInfo(750, Flake2Decks, ""Flake (2 decks)"",
+",5
+"            if button == 1:
+                self.app.audio.playSample(""drop"", priority=1000)
+        if button == 1:
+",5
+"def unbind_destroy(widget):
+    # logging.info('tkutil: unbind  %s' % (widget))
+    widget.bindings = []
+    pass
+",5
+"
+# ************************************************************************
+# * Amazons
+",5
+"    ""ihujaukaumawaawc"" +
+    ""awehwfawghwhawia"" +
+    ""wkawmaycayeaygay"" +
+",5
+"                if cn in fs:
+                    fs[cn] += 1
+",5
+"            l.createRoundText(s.talon, 'se')
+        else:
+            # Talon is invisible
+            x, y = self.getInvisibleCoords()
+",5
+"#    ""ariarlatfhtgatha"" +
+",5
+"
+# ************************************************************************
+# * Accordion (fixed)
+",5
+"            return 0
+        c = self.cards[-1]
+        if c.face_up and c.rank == KING and not self.basicIsBlocked():
+            self.game.playSample(""autodrop"", priority=20)
+",5
+"        self.relief = 'solid'
+        self.justify = 'left'
+        self.fg = ""#000000""
+",5
+"            return None
+
+        if TOOLKIT == 'kivy':
+            w = img.texture.size[0]
+",5
+"    def startGame(self):
+        self.startDealSample()
+        self.s.talon.dealRow()
+",5
+"from pysollib.util import ACE, ANY_RANK, KING, NO_RANK, QUEEN, RANKS
+
+
+class BeleagueredCastleType_Hint(CautiousDefaultHint):
+",5
+"
+class PysolMenubar(PysolMenubarTk):
+    def __init__(self, app, top, progress=None):
+        self.app = app
+        self.top = top
+",5
+"        StackWrapper, \
+        WasteStack, \
+        WasteTalonStack
+
+",5
+"                                          rows=rows, shuffle=True)
+
+
+",5
+"        # TEST
+",5
+"
+",5
+"            if url.startswith(p):
+                if not openURL(url):
+",5
+"        if hasattr(self, 'play_timer') and self.play_timer:
+            after_cancel(self.play_timer)
+            self.play_timer = None
+            self.updatePlayTime(do_after=0)
+
+",5
+"        if self.preview > 1:
+            return
+        f = self.s.foundations[0]
+",5
+"        cnf = {'master': top_frame,
+               'highlightthickness': 1,
+               'highlightbackground': 'black',
+               }
+",5
+"registerGame(GameInfo(589, LastChance, ""Last Chance"",
+                      GI.GT_NUMERICA, 1, 0, GI.SL_BALANCED))
+registerGame(GameInfo(599, Assembly, ""Assembly"",
+                      GI.GT_NUMERICA, 1, 0, GI.SL_BALANCED))
+",5
+"    Foundation_Class = SS_FoundationStack
+    RowStack_Class = AC_RowStack
+
+",5
+"        for i in range(2):
+            s.reserves.append(ReserveStack(x, y, self))
+            x += l.XS
+        x += 2*l.XS
+",5
+"
+    def fillStack(self, stack):
+",5
+"#
+# Copyright (C) 1998-2003 Markus Franz Xaver Johannes Oberhumer
+",5
+"    # Game layout
+    #
+",5
+"        logging.info(""LApp: on_start"")
+",5
+"    ""okcokeokgokiokko"" +
+    ""kmCkovlavlchlevl"" +
+    ""ghlivlkhlmvlooma"" +
+",5
+"        return self.size[0]
+
+    def winfo_screenheight(self):
+        logging.info(""LTkBase: winfo_screenheight %s"" % str(self.size[1]))
+        return self.size[1]
+",5
+"# ---------------------------------------------------------------------------
+
+from pysollib.game import Game
+from pysollib.gamedb import GI, GameInfo, registerGame
+",5
+"
+    # redeal step 1) - collect all cards, move them to the Talon
+",5
+"from pysollib.kivy.LApp import LTopLevel0
+
+",5
+"        self._widgets = []
+",5
+"        (n_(""Mughal Ganjifa type""),
+            lambda gi, gt=GT_MUGHAL_GANJIFA: gi.si.game_type == gt),
+        (n_(""Navagraha Ganjifa type""),
+            lambda gi, gt=GT_NAVAGRAHA_GANJIFA: gi.si.game_type == gt),
+",5
+"def isSameSuitSequence(cards, mod=8192, dir=-1):
+",5
+"
+
+r(157, WheelOfFortune, ""Wheel of Fortune"", GI.GT_TAROCK, 1, 0, GI.SL_BALANCED)
+r(158, ImperialTrumps, ""Imperial Trumps"", GI.GT_TAROCK, 1, -1, GI.SL_BALANCED)
+",5
+"  0, GI.SL_MOSTLY_SKILL)
+r(12347, Gaji, ""Gaji"", GI.GT_HANAFUDA | GI.GT_OPEN, 1, 0, GI.SL_MOSTLY_SKILL)
+",5
+"            bonus += self.BONUS_NORMAL_MOVE + (1 + pile[0].rank)
+",5
+"class HelpStatusbar(MfxStatusbar):
+    def __init__(self, top):
+        MfxStatusbar.__init__(self, top, row=4, column=0, columnspan=3)
+        # l = self._createLabel('info', expand=True)
+",5
+"from pysollib.settings import USE_FREECELL_SOLVER
+from pysollib.ui.tktile.tkconst import COMPOUNDS, CURSOR_WATCH, EVENT_HANDLED
+from pysollib.ui.tktile.tkconst import EVENT_PROPAGATE
+from pysollib.ui.tktile.tkconst import TOOLBAR_BUTTONS
+from pysollib.ui.tktile.tkutil import after_idle, bind
+",5
+"    'scripts': ['pysol.py'],
+    'packages': ['pysollib',
+                 'pysollib.macosx',
+",5
+"#    ""onapbwphapniqbcq"" +
+#    ""hiqnaraarcvrharm"" +
+#    ""arohsacshhsoatab"" +
+#    ""tdbtlatohuabufbu"" +
+",5
+"                        break
+                    if s.cards:
+",5
+"
+        print('LCardImage: touch_move on %s' % str(touch.pos))
+",5
+"        self.setSize(l.XM + l.XS * self.WIDTH, l.YM * 3 + l.YS * self.HEIGHT)
+",5
+"        if kw['image']:
+",5
+"        for i in range(6):
+            s.reserves.append(ReserveStack(x, y, self))
+",5
+"
+def LColorToKivy(outline):
+    if (outline[0] == '#'):
+",5
+"
+        x += 2*l.XS
+        for i in range(rows):
+",5
+"
+",5
+"        self.reset()
+
+    # main constructor
+    def create(self, app):
+",5
+"        # print dirs
+",5
+"            label[""text""] = kw[name]
+",5
+"
+
+# ************************************************************************
+",5
+"            url, xview, yview = self.history.list[self.history.index-1]
+            self.display(url, add=0, relpath=0, xview=xview, yview=yview)
+",5
+"
+    def mDone(self, button):
+        self.button = button
+        raise SystemExit
+
+",5
+"    def cget(self, f):
+        print('MfxCanvas: cget %s -> %s, %s' % (f, self.pos, self.size))
+        cpos, csize = self.KivyToCoreP(self.pos, self.size, self.scale)
+",5
+"    def _stopSamples(self):
+        print(""Sound play stop"")
+        self.queue = []
+        if self.sound:
+",5
+"            else:  # str
+                index = i
+",5
+"registerGame(GameInfo(153, PasDeDeux, ""Pas de Deux"",
+",5
+"
+class AbstractHint(HintInterface):
+    def __init__(self, game, level):
+",5
+"        else:
+            button.set_sensitive(state)
+
+",5
+"            return False
+        return True
+
+    def test_main(self):
+
+",5
+"        # if not c1.face_up or not c2.face_up:
+",5
+"
+    def send_line_break(self):
+        self.write(""\n"")
+
+",5
+"        assert n >= 0 and tx >= 0 and ty >= 0
+",5
+"
+    def get(self, index):
+        if 0 <= index < len(self._objects):
+",5
+"# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+",5
+"            w1 + w2,
+            strings=(_(""&OK""),
+                     (_(""&Statistics...""), 101),
+",5
+"
+    def connectApp(self, app):
+        self.app = app
+
+    def initToolkit(self, app, fg=None, bg=None, font=None, theme=None):
+",5
+"                self.playSample(""deal04"", priority=100, loop=loop)
+            elif a == 5:
+                self.playSample(""deal08"", priority=100, loop=loop)
+",5
+"FullLog_StatsDialog = Game_StatsDialog
+SessionLog_StatsDialog = Game_StatsDialog
+Top_StatsDialog = Game_StatsDialog
+",5
+"                pass
+        self.top = None
+        self.parent = None
+",5
+"
+class Clock(Game):
+
+    def createGame(self):
+        # create layout
+",5
+"
+
+",5
+"    def show(self, side=1, resize=1):
+        if self.side == side:
+            return 0
+        if resize:
+            self.top.wm_geometry("""")    # cancel user-specified geometry
+",5
+"        gi = self.getGameInfo(id)
+        #
+",5
+"            percent_coords += [x, y]
+            x += dx
+        if self.played_graph_var.get():
+",5
+"        x, y = l.XM, h-l.YS
+        s.talon = WasteTalonStack(x, y, self, max_rounds=1)
+        l.createText(s.talon, 'n')
+        x += l.XS
+        s.waste = WasteStack(x, y, self)
+",5
+"                stack = ReserveStack(x, y, self)
+                stack.CARD_YOFFSET = 0
+                s.rows.append(stack)
+",5
+"             ltk2gtk('Quit PySol'),
+             self.mQuit),
+
+            # menus
+",5
+"        self.mainloop(focus, kw.timeout)
+
+",5
+"# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+",5
+"        self.assertEqual(
+",5
+"
+    def winfo_width(self):
+        return self.get_size()[0]
+",5
+"    Solver_Class = None
+",5
+"            # dangerous for as we can create loops...
+            if len(t.cards) == 0:
+                return True
+",5
+"# * Poker Shuffle
+# ************************************************************************
+
+class PokerShuffle_RowStack(ReserveStack):
+    def moveMove(self, ncards, to_stack, frames=-1, shadow=-1):
+",5
+"    # Game layout
+    #
+
+    def createGame(self, **layout):
+        Matsya.createGame(self, max_rounds=-1)
+",5
+"#
+# Copyright (C) 1998-2003 Markus Franz Xaver Johannes Oberhumer
+# Copyright (C) 2003 Mt. Hood Playing Card Co.
+# Copyright (C) 2005-2009 Skomoroh
+",5
+"
+    def leave_event(self, widget, event):
+",5
+"            self.addtag(group)
+
+    def __del__(self):
+",5
+"            (4.5, 0.5),
+            (5,   1.5),
+            (4.5, 2.5),
+            (3.5, 2.85),
+",5
+"        self.preview_key = -1
+        self.all_keys = []
+",5
+"        old_state = game.enterState(game.S_FILL)
+        f = game.s.foundations[0]
+        game.updateStackMove(game.s.talon, 2 | 16)            # for undo
+",5
+"
+",5
+"        self.mahjongg_show_removed = False
+        self.mahjongg_create_solvable = 2  # 0 - none, 1 - easy, 2 - hard
+        if TOOLKIT == 'kivy':
+",5
+"        return closest
+
+    def shallHighlightMatch(self, stack1, card1, stack2, card2):
+",5
+"        image = self.app.images.getBack(update=True)
+        for card in self.game.cards:
+            card.updateCardBackground(image=image)
+",5
+"        if not moves.index == 0:
+            moves.history[len(moves.history) - 1]
+",5
+"            lambda c: (c.rank in (ACE, 1),  (c.rank, c.suit)))
+",5
+"        for stack in self.game.allstacks:
+            for i in range(len(stack.cards)):
+                if stack.cards[i] == self.card:
+",5
+"        l.createText(s.waste, 's')
+        x += 2*l.XS
+        for i in range(8):
+",5
+"            if button == 'left':
+                self.send_event_pressed_n(event, '<1>')
+",5
+"        x, y = self.width-l.XS, self.height-l.YS
+        s.talon = WasteTalonStack(x, y, self, max_rounds=3)
+",5
+"        903,   # Ace Up
+        5034,  # Mahjongg Flying Dragon
+        5401,  # Mahjongg Taipei
+        12345,  # Oonsoo
+",5
+"    ""oigosgoygokhoqho"" +
+",5
+"    Talon_Class = InitialDealTalonStack
+    RowStack_Class = StackWrapper(
+",5
+"class Steps(DoubleKlondike):
+    RowStack_Class = AC_RowStack
+",5
+"
+class Tournament(Game):
+
+    ROW_YOFFSET = True
+
+",5
+"
+",5
+"    def mDrop1(self, *args):
+        if self._cancelDrag():
+            return
+        # self.game.autoPlay(autofaceup=1, autodrop=1)
+        self.game.autoDrop(autofaceup=1)
+",5
+"            return 0
+        col = self.app.opt.colors['piles']
+",5
+"
+
+",5
+"            setTransient(self.top, None, relx=0.5, rely=0.5)
+        else:
+",5
+"from pysollib.util import IMAGE_EXTENSIONS
+from pysollib.winsystems import TkSettings
+
+",5
+"        # % (self.corePos, self.coreSize))
+",5
+"            x = l.XM
+            for j in range(8):
+                s.tableaux.append(
+",5
+"            if self.s.waste.cards:
+                old_state = self.enterState(self.S_FILL)
+                self.s.waste.moveMove(1, stack)
+                self.leaveState(old_state)
+",5
+"    def destroy(self):
+        self.text = self.text_w.get(""1.0"", ""end"")
+        self._calc_MfxDialog().destroy(self)
+",5
+"                    game = None
+        validate(
+            game is not None,
+            _('Cannot load this game from version %s\n' +
+",5
+"            return EVENT_HANDLED
+",5
+"        'deal_face_down': 2,
+        'deal_face_up': 1,
+        },
+",5
+"        l.createText(s.waste, ""n"")
+
+",5
+"        dx, dy = 8, 0  # margins
+        self.canvas.config(scrollregion=(-dx, -dy, bbox[2]+dx, bbox[3]+dy))
+        self.canvas.config(yscrollincrement=self.style.disty)
+
+",5
+"class MfxMessageDialog(MfxDialog):
+",5
+"# * exceptions
+# ************************************************************************
+
+
+",5
+"            self.name = ""<>""
+",5
+"        if self.hints:
+            return
+",5
+"# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+",5
+"                    if n >= 0 and reserves[n].cards:
+                        from_stack = reserves[n]
+                        break
+",5
+"
+    # subclass
+    def computeHints(self):
+",5
+"
+    def startGame(self):
+        self.startDealSample()
+        i = 0
+",5
+"class AcesUp_RowStack(BasicRowStack):
+    def acceptsCards(self, from_stack, cards):
+        if not BasicRowStack.acceptsCards(self, from_stack, cards):
+            return False
+        return len(self.cards) == 0
+",5
+"    def __init__(self, top, title=None, **kw):
+        self.main = top
+",5
+"
+    #
+    # game overrides
+    #
+
+",5
+"    ""mhhohhqhhshhChhE"" +
+    ""hhkihuihcjhijhwj"" +
+    ""hCjhfmhhmhjmhvmh"" +
+    ""xmhzmogaoiaowaoy"" +
+",5
+"registerGame(GameInfo(425, NewYork, ""New York"",
+                      GI.GT_FAN_TYPE, 2, 0, GI.SL_MOSTLY_SKILL))
+registerGame(GameInfo(468, Spike, ""Spike"",
+                      GI.GT_KLONDIKE, 1, 0, GI.SL_BALANCED))
+registerGame(GameInfo(519, Gotham, ""Gotham"",
+",5
+"        for i in range(2):
+            y = l.YM+l.YS
+            for j in range(4):
+                s.foundations.append(SS_FoundationStack(x, y, self, suit=j))
+                y += l.YS
+",5
+"# ************************************************************************
+
+",5
+"    def getBottomImage(self):
+        return self.game.app.images.getTalonBottom()
+",5
+"        SS_FoundationStack, \
+        SS_RowStack, \
+        Stack, \
+        StackWrapper, \
+        UD_RK_RowStack, \
+",5
+"# ************************************************************************
+",5
+"r(5264, ""Stairs 2"", layout=""0aaadacaaedagaai"" +
+    ""dakacadccacedcga"" +
+    ""cidckbeadecbeede"" +
+    ""gbeidekbgacgcbge"" +
+    ""cggbgicgkciacicc"" +
+",5
+"
+# ************************************************************************
+# * Golf
+# ************************************************************************
+",5
+"
+    # --- Really Old Unofficial Deprecated Stuff
+
+    def do_plaintext(self, attrs):
+        self.start_pre(attrs)
+",5
+"    ""tmaCmaEmbaoacoae"" +
+",5
+"        s.talon = Golf_Talon(x, y, self, max_rounds=1)
+        l.createText(s.talon, ""n"")
+        x = x + l.XS
+        s.waste = self.Waste_Class(x, y, self)
+        s.waste.CARD_XOFFSET = l.XOFFSET
+",5
+"                if DEBUG >= 5:
+                    print(s)
+",5
+"
+class ToolbarButton(AbstractToolbarButton, ttk.Button):
+    def __init__(self, parent, toolbar, toolbar_name, position, **kwargs):
+        kwargs['style'] = 'Toolbutton'
+",5
+"
+class Matrix10(Matrix3):
+    pass
+",5
+"    for n in gameclass.ROWS:
+        ncards += n
+",5
+"        for node in l2:
+            if not node.selected:
+                node.selected = 1
+                node.updateSymbol()
+                node.updateText()
+",5
+"# PySol imports
+from pysollib.mfxutil import Struct
+from pysollib.pysoltk import MfxCanvasText
+",5
+"label = gtk.Label(""Label"")
+notebook.append_page(label)
+label = gtk.Label(""Label"")
+",5
+"        for i in range(2):
+            s.foundations.append(AC_FoundationStack(x, y, self, suit=ANY_SUIT,
+",5
+"
+# =============================================================================
+",5
+"
+
+r(12345, Oonsoo, ""Oonsoo"", GI.GT_HANAFUDA, 1, 0, GI.SL_MOSTLY_SKILL)
+",5
+"                                   lambda gi: gi.si.decks == 4),
+                )),
+                SelectGameNode(None, _(""by Number of Redeals""), (
+",5
+"            s.reserves.append(ReserveStack(r.x, r.y, self, ))
+
+        # Create row stacks
+",5
+"            tab = self._tabs[0]
+        self.tree.column('#0', width=tab)
+",5
+"
+
+class DiamondMine_RowStack(RK_RowStack):
+    def acceptsCards(self, from_stack, cards):
+        if not RK_RowStack.acceptsCards(self, from_stack, cards):
+",5
+"        )
+        for k, v in self.dn.__dict__.items():
+            #             if os.name == ""nt"":
+            #                 v = os.path.normcase(v)
+            v = os.path.normpath(v)
+",5
+"                      GI.GT_SPIDER, 1, 0, GI.SL_MOSTLY_SKILL))
+registerGame(GameInfo(384, BigSpider, ""Big Spider"",
+                      GI.GT_SPIDER, 3, 0, GI.SL_MOSTLY_SKILL))
+",5
+"    ""bmacmcdmeemgdmic"" +
+",5
+"        self.connectGame(self.app.game)
+        self.mainloop(focus, kw.timeout, transient=False)
+",5
+"        self.frame.bind(""<3>"", self.rightclickHandler)
+        #
+",5
+"        x = x + 3*l.XS//2
+        for i in range(4):
+",5
+"    def createGame(self):
+",5
+"# ************************************************************************
+# Kivy implementation helpers.
+
+",5
+"
+
+# ************************************************************************
+",5
+"                      GI.SL_MOSTLY_SKILL))
+registerGame(GameInfo(104, Cruel, ""Cruel"",
+                      GI.GT_BAKERS_DOZEN | GI.GT_OPEN, 1, -1, GI.SL_BALANCED))
+registerGame(GameInfo(291, RoyalFamily, ""Royal Family"",
+",5
+"
+
+class Journey_Hint(DefaultHint):
+    # FIXME: demo is not too clever in this game
+",5
+"            self.updateHistoryXYView()
+            self.history.index = self.history.index - 1
+            url, xview, yview = self.history.list[self.history.index - 1]
+",5
+"        ReserveStack, \
+",5
+"        kw = KwStruct(kw, bitmap=""error"")
+        text = str(kw.get(""text"", """"))
+        if text and text[-1] != ""\n"":
+            text = text + ""\n""
+        text = text + ""\n""
+",5
+"            stack.CARD_YOFFSET = 0
+            x += l.XS
+        x, y = l.XM, l.YM+l.YS
+        s.talon = SeniorWrangler_Talon(x, y, self, max_rounds=9)
+        l.createRoundText(s.talon, 'nn')
+",5
+"        parser = tkHTMLParser(fmt)
+        parser.feed(data)
+        parser.close()
+
+",5
+"        if isinstance(last_visible, ToolbarSeparator):
+            last_visible.hide()
+",5
+"    def __init__(self, **kw):
+",5
+"            x = l.XM
+            for j in range(5):
+",5
+"        font = self.app.getFont(""canvas_default"")
+",5
+"            columnbreak = i > 0 and (i % d) == 0
+            i += 1
+",5
+"
+",5
+"            assert ncards == 1 and len(from_stack.cards) >= ncards
+            return h
+        else:
+            # a move move
+            assert to_stack
+",5
+"
+    def Mod(self, i):
+        return 14 + 8 * (i == 4)
+
+    def Base_Rank(self, i, j):
+",5
+"            ('won',         won),
+",5
+"        for i in range(7):
+            s.rows.append(self.RowStack_Class(x, y, self,
+                                              max_move=1, max_accept=1,
+",5
+"             None, self.mOptSoundDialog),
+",5
+"        for i in range(9):
+            s.rows.append(ThreePeaks_RowStack(x, y, self))
+            x = x + l.XS
+        x, y = l.XM, y + l.YS * .5
+",5
+"            won_coords += [x, y]
+            if played > 0:
+",5
+"                            variable=self.played_graph_var)
+        b.pack(fill='x', expand=True, padx=3, pady=1)
+        self.won_graph_var = tkinter.BooleanVar()
+",5
+"
+    def createGame(self):
+        Numerica.createGame(self, rows=6)
+",5
+"
+            '''
+            self.errorDialog(_(""Unable to service request:\n"") + url)
+            '''
+            return
+",5
+"        if gi is None:
+",5
+"# -*- mode: python; coding: utf-8; -*-
+# ---------------------------------------------------------------------------##
+",5
+"
+    usage = '''usage:
+%s TYPE FILE ...
+  where TYPE are:
+",5
+"    def altKeyEvent(self, event):
+",5
+"            tilemap[(level, tx, ty+1)] = stack
+",5
+"        gt = CSI.TYPE_NAME[gi.category]
+        if gt in games_by_cat:
+            games_by_cat[gt] += 1
+        else:
+",5
+"        # define stack-groups
+        self.sg.talonstacks = [s.talon] + [s.waste]
+        self.sg.openstacks = s.foundations + s.rows
+        self.sg.dropstacks = [s.braid] + s.rows + [s.waste]
+
+",5
+"#    ""knoknakpalaClhCl"" +
+#    ""jCllalshmehmgvmg"" +
+#    ""hmivmihmkvmkhmmv"" +
+#    ""mmhmoanaandanfon"" +
+",5
+"# ************************************************************************
+# * Deep
+# ************************************************************************
+
+class Deep(DerKatzenschwanz):
+",5
+"        b.pack(fill='x', expand=True, padx=3, pady=1)
+
+        # self.createGraph()
+        bind(canvas, '<Map>', self.createGraph)
+
+",5
+"    ""hhxlayioymazevzn"" +
+    ""aAiaBchBdaBgaBoh"" +
+    ""CbhChaCioDaoDivE"" +
+    ""h"")
+r(5255, ""Rings"", layout=""0aahabfhbhabjacd"" +
+",5
+"        return (None, 0)
+
+",5
+"
+",5
+"                       (2, 0),
+                       (4, 2),
+                       (2, 4)):
+            x, y = x0+xx*l.XS, y0+yy*l.YS
+            stack = SS_RowStack(x, y, self, dir=1, mod=13, max_move=1)
+",5
+"
+    def getLogHeader(self):
+        return _(""Game""), _(""Game number""), _(""Started at""), _(""Status"")
+
+",5
+"        label.set_text(str(won+lost))
+",5
+"            name = ""l%02d"" % (rank + 1)
+            self._letter_positive.append(
+",5
+"        selection = self.treeview.get_selection()
+        model, path = selection.get_selected_rows()
+        if path:
+",5
+"# * Waterfall
+# ************************************************************************
+
+class Waterfall_Foundation(AbstractFoundationStack):
+    def acceptsCards(self, from_stack, cards):
+",5
+"            text_label.config(text=t)
+#!/usr/bin/env python
+",5
+"                self.freeGame()
+                #
+                if self.nextgame.id <= 0:
+",5
+"    ""hBphDpoccoecoAco"" +
+",5
+"class StackWrapper:
+    def __init__(self, stack_class, **cap):
+",5
+"
+def color_gtk2tk(col):
+    r = int(round(col[0] * 255.0))
+",5
+"
+    def _restoreGameHook(self, game):
+",5
+"    def createGame(self, rows=7, playcards=18):
+        l, s = Layout(self), self.s
+        self.Layout_Method(l, rows=rows, waste=0, playcards=playcards)
+        self.setSize(l.size[0], l.size[1])
+",5
+"            elif dir == 11:
+                t = t + _("" Descending"")
+",5
+"    def acceptsCards(self, from_stack, cards):
+        if not self.basicAcceptsCards(from_stack, cards):
+            return 0
+",5
+"    ""bkeakgbkibkkbkmo"" +
+    ""lboldoljollbmabm"" +
+    ""cvmcbmeamgbmibmk"" +
+    ""vmkbmmonbondonjo"" +
+",5
+"# ************************************************************************
+
+",5
+"        self.sg.talonstacks = [s.talon]
+        self.sg.dropstacks = s.rows
+",5
+"# ************************************************************************
+# * Troika
+# ************************************************************************
+
+",5
+"
+    def updatePreview(self, key):
+        if key == self.preview_key:
+            return
+",5
+"            s.foundations.append(stack)
+",5
+"        PokerShuffle_RowStack, max_accept=1, max_cards=2)
+
+",5
+"        kwdefault(layout, rows=14, reserves=4, texts=0)
+",5
+"                           if self.toolbar_vars[b]]
+        config['general']['visible_buttons'] = visible_buttons
+        if 'none' in config['general']['solver_presets']:
+            config['general']['solver_presets'].remove('none')
+
+",5
+"        # print dx, dy, d_x, d_y, cs.version
+
+        font = self.app.getFont(""canvas_default"")
+",5
+"        self.items = {}
+",5
+"        if self.game.s.talon.cards:
+",5
+"        self.setSize(5*l.XS+l.XM, 3*l.YS+l.YM+l.YM)
+",5
+"        # move Kings to bottom of the Talon (i.e. last cards to be dealt)
+        return self._shuffleHookMoveToBottom(
+",5
+"# ************************************************************************
+# * Footling
+",5
+"# GNU General Public License for more details.
+",5
+"        self.tree.destroy()
+        self.preview.unbind_all()
+",5
+"    # These obsolete gameids have been used in previous versions of
+    # PySol and are no longer supported because of internal changes
+    # (mainly rule changes). The game has been assigned a new id.
+    PROTECTED_GAMES = {
+",5
+"registerGame(GameInfo(373, Gloria, ""Gloria"",
+                      GI.GT_2DECK_TYPE | GI.GT_OPEN | GI.GT_ORIGINAL,
+                      2, 0, GI.SL_MOSTLY_SKILL))
+registerGame(GameInfo(374, Realm, ""Realm"",
+                      GI.GT_1DECK_TYPE | GI.GT_OPEN | GI.GT_ORIGINAL,
+",5
+"
+    shallHighlightMatch = Game._shallHighlightMatch_SS
+
+",5
+"                ncards = m.group('ncards')
+                if ncards == 'a card':
+                    ncards = 1
+",5
+"        sequence = row.isSuitSequence
+        return (sequence([card1, card2]) or sequence([card2, card1]))
+
+
+# ************************************************************************
+",5
+"def registerGame(gameinfo):
+    GAME_DB.register(gameinfo)
+",5
+"
+    def isGameWon(self):
+        for s in self.s.rows:
+            if len(s.cards) == 0:
+                continue
+",5
+"
+    def createGame(self):
+",5
+"        self.s.talon.dealRow()
+",5
+"    def init(self, parent,  message="""", modal=True):
+        if modal:
+            setTransient(self, parent)
+        box = gtk.VBox(spacing=10)
+",5
+"            self.game.autoPlay()
+",5
+"            return
+        kw = dict([(args[i], args[i+1]) for i in range(0, len(args), 2)])
+        if not kw:
+            kw = {'info': '', 'help': ''}
+        if 'info' in kw and self.app.opt.statusbar and self.app.opt.num_cards:
+",5
+"        bd = TkSettings.toolbar_button_borderwidth
+",5
+"    def _shuffleHook(self, cards):
+        # move Aces to bottom of the Talon (i.e. last cards to be dealt)
+        return self._shuffleHookMoveToBottom(
+            cards, lambda c: (c.rank == 0, c.suit))
+
+",5
+"
+gdk = gtk.gdk
+# ************************************************************************
+# *
+",5
+"        for r in l.s.foundations:
+",5
+"    # check games
+",5
+"        s.talon = DealRowTalonStack(x, y, self)
+        l.createText(s.talon, 's')
+
+        l.defaultStackGroups()
+",5
+"
+rules_files = [
+    # ('hanoipuzzle.html', ),
+",5
+"        # strings, default = (""&OK"", ""&Load"", ""&Cancel""), 0
+        strings, default = (None, _(""&Load""), _(""&Cancel""),), 1
+        strings, default = (None, _(""&Load""), _(""&Cancel""), _(""&Info...""),), 1
+",5
+"        self.stats.gameid_balance = 0
+
+    def __saveObject(self, obj, fn):
+",5
+"        self.__back.addtag(self.item)
+        self.__face.hide()
+
+",5
+"# * Application
+# * This is the glue between the toplevel window and a Game.
+",5
+"class Cone_Talon(DealRowTalonStack):
+    def canDealCards(self):
+        if not DealRowTalonStack.canDealCards(self):
+            return False
+",5
+"        p.dump(self.sequence)
+        p.dump(self.peaks)
+
+
+",5
+"        x = l.XM
+        s.talon = WasteTalonStack(x, y, self, max_rounds=3)
+        l.createText(s.talon, ""n"")
+",5
+"            self.updateSelection(key=node.key)
+",5
+"    DEAL = (3, 1)
+
+
+",5
+"                    from_stack.moveMove(1, stack)
+            self.leaveState(old_state)
+
+",5
+"                    tv, rg1,
+                    _('game won'),
+",5
+"            return 0
+        old_state = self.game.enterState(self.game.S_DEAL)
+        if reverse:
+            stacks = list(stacks)
+            stacks.reverse()
+",5
+"        # create layout
+",5
+"                r = (r+1) % f.cap.mod
+",5
+"            for m in music_list:
+                if not self.music:
+                    break
+                vol = self.app.opt.sound_music_volume/128.0
+",5
+"                      strings=(_(""&OK""), _(""&Cancel"")), default=0,
+                      padx=10, pady=10,
+                      )
+        return MfxDialog.initKw(self, kw)
+#!/usr/bin/env python
+",5
+"    def startGame(self):
+        self.startDealSample()
+        self.s.talon.dealRow(rows=self.s.foundations)
+",5
+"        self.createBitmaps(top_frame, kw)
+        #
+",5
+"        if stack is self.hide_stack:
+            return
+        self.item.config(state=""hidden"")
+        self.hide_stack = stack
+",5
+"from six.moves import tkinter
+",5
+"    from pysollib.pysolgtk.colorsdialog import *  # noqa: F401,F403
+    from pysollib.pysolgtk.fontsdialog import *  # noqa: F401,F403
+    from pysollib.pysolgtk.findcarddialog import *  # noqa: F401,F403
+    from pysollib.pysolgtk.solverdialog import *  # noqa: F401,F403
+    from pysollib.pysolgtk.gameinfodialog import *  # noqa: F401,F403
+",5
+"        td = self.text_height//2
+
+        # vertical scale
+        x = x0+graph_dx
+",5
+"
+    def tag_config(self, tag, **kw):
+",5
+"            (width - 2 * ow) + (ou0, ou1, ou2, ou3, ) * ow
+        f = (l1, ) * ow + (l2, ) * (height - 2 * ow) + (l1, ) * ow
+        assert len(f) == height
+        f = sum(f, ())
+        assert len(f) == height * width * 4
+",5
+"        self.game.create(self)
+",5
+"
+",5
+"        filter = gtk.FileFilter()
+        filter.set_name('PySol files')
+        filter.add_pattern('*.pso')
+",5
+"        rg = tv.add_node(
+            LTreeNode(text=_('Card view')))
+",5
+"#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+",5
+"# ************************************************************************
+# * Cone
+# ************************************************************************
+
+",5
+"            gg.append(SelectGameNode(None, name, select_func))
+        if 1 and gg:
+",5
+"                x, y,
+                image=self.tree.data.img[self.expanded], anchor=""nw"")
+            self.tree.nodes[self.symbol_id] = self
+",5
+"            dic[n+'_scale_value_changed'] = callback
+",5
+"    def _restoreGameHook(self, game):
+        self.base_card = self.cards[game.loadinfo.base_card_id]
+        for s in self.s.foundations:
+            s.cap.base_rank = self.base_card.rank
+
+",5
+"        if game.s.foundations:
+            w2 += _('\nCards in Foundations: ') + str(n)
+        #
+",5
+"        self.preview = 0
+
+
+class Mock_S_Game:
+",5
+"                                              fill=fg)
+            self.tree.nodes[self.text_id] = self
+        #
+",5
+"
+",5
+"                       '%d\nTiles\nRemoved\n\n',
+",5
+"            try:
+                root.tk.evalfile(f)
+",5
+"            return ((), (), self.sg.dropstacks)
+        else:
+            # rightclickHandler
+            return ((), self.sg.dropstacks, self.sg.dropstacks)
+",5
+"                extent=elost)
+",5
+"        self.entry.set_text(str(value))
+",5
+"    GC_HEXADECK = CSI.TYPE_HEXADECK
+    GC_MUGHAL_GANJIFA = CSI.TYPE_MUGHAL_GANJIFA
+",5
+"        Klondike.createGame(self, rows=8)
+
+    def startGame(self):
+        self._startDealNumRows(7)
+",5
+"            pass
+            # self.reshow_with_initial_size()
+            # self.resize(1, 1)
+        else:
+",5
+"                (card1.rank + 3 == card2.rank or card2.rank + 3 == card1.rank))
+
+    def getHighlightPilesStacks(self):
+        return ()
+
+",5
+"# ---------------------------------------------------------------------------
+",5
+"            # could we move the remaining pile ?
+            for x in self.game.s.rows:
+                # note: we allow x == r here, because the pile
+",5
+"            x = x + l.XS
+        x = l.XM + 8 * l.XS + l.XS // 2
+        y = self.height - l.YS
+",5
+"            self.subsampled_images = simages
+            self.updateCardset(id, update=update)
+            r = 1
+",5
+"        pass
+
+
+",5
+"                        continue
+",5
+"            5: 'SL_SKILL',
+            }
+",5
+"        l.defaultStackGroups()
+",5
+"                     (card1.rank - 1 == card2.rank)))
+
+
+# ************************************************************************
+",5
+"    def startGame(self):
+        self._startDealNumRows(5)
+        self.s.talon.dealRow()
+",5
+"    #
+
+    def createGame(self):
+        # create layout
+        l, s = Layout(self), self.s
+",5
+"# * Cruel
+# ************************************************************************
+",5
+"# ************************************************************************
+
+EVENT_HANDLED = ""break""
+EVENT_PROPAGATE = None
+
+",5
+"        return _('Foundation.')
+
+    def varyAcceptsCards(self, from_stack, cards):
+        # if base rank of foundations is vary
+",5
+"    def acceptsCards(self, from_stack, cards):
+        if not BasicRowStack.acceptsCards(self, from_stack, cards):
+",5
+"            x += tab
+        self.pstats_perc(x, y, t7)
+
+    def pstats_perc(self, x, y, t):
+",5
+"
+    def mOptToolbarSize(self, *event):
+        # if self._cancelDrag(break_pause=False): return
+        self.setToolbarSize(self.tkopt.toolbar_size.get())
+",5
+"            }
+",5
+"        return len(self.game.s.talon.cards) == 0 and len(self.cards) == 1
+
+
+",5
+"        return ""disabled""
+
+",5
+"        self.s.talon.dealCards()          # deal first card to WasteStack
+
+    def isGameWon(self):
+",5
+"        BaseSelectDialogTreeLeaf, \
+        BaseSelectDialogTreeNode
+
+",5
+"        label = self.widgets_tree.get_widget(name+'_percent_won_label')
+        label.set_text(str(int(round(pwon*100)))+'%')
+        label = self.widgets_tree.get_widget(name+'_percent_lost_label')
+        label.set_text(str(int(round(plost*100)))+'%')
+        label = self.widgets_tree.get_widget(name+'_num_total_label')
+",5
+"
+    def _getPwon(self, won, lost):
+        pwon, plost = 0.0, 0.0
+        if won + lost > 0:
+",5
+"        if (self.flags & 3) in (1, 3):
+            game.setState(self.state)
+
+",5
+"                    self.app.stats.resetStats(player, 0)
+                    self.game.updateStatus(stats=self.app.stats.getStats(
+                        self.app.opt.player, self.game.id))
+            elif mode == 302:
+",5
+"    def _getMiddleStack(self, from_stack):
+",5
+"        l.defaultAll()
+",5
+"                print('''r(%d, ""%s"", ncards=%d, layout=""%s"")
+''' % (gameid, gamename, ncards, s))
+
+            else:
+",5
+"    def __init__(self):
+        self.xmargin = self.ymargin = 50
+
+
+",5
+"            if not ((c1.suit + c2.suit) % 2 and c1.rank + dir == c2.rank):
+                return 0
+            c1 = c2
+",5
+"    Foundation_Class = StackWrapper(SS_FoundationStack, mod=13, max_move=0)
+    Talon_Class = NewYork_Talon
+    RowStack_Class = StackWrapper(
+",5
+"# -*- mode: python; coding: utf-8; -*-
+# ---------------------------------------------------------------------------
+#
+# Copyright (C) 1998-2003 Markus Franz Xaver Johannes Oberhumer
+# Copyright (C) 2003 Mt. Hood Playing Card Co.
+",5
+"
+class NewYork_Talon(OpenTalonStack):
+    rightclickHandler = OpenStack.rightclickHandler
+",5
+"            self.configure(bg=tile.color)
+",5
+"    def start_b(self, attrs):
+        self.formatter.push_font((AS_IS, AS_IS, 1, AS_IS))
+",5
+"            'org.kivy.android.PythonActivity')
+        self.Compat = jnius.autoclass(
+            'android.support.v4.content.ContextCompat')
+",5
+"        assert self.app is game.app
+        tkopt = self.tkopt
+",5
+"# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+",5
+"        ttk.Label(frame, text=_('Average')
+",5
+"
+    def make_game_command(self, key, command):
+        def game_command():
+            command(key)
+",5
+"        self.mainloop(focus, kw.timeout)
+
+",5
+"        game, num_cards = self.game, len(self.cards)
+        for r in game.s.rows:
+            while r.cards:
+",5
+"    Foundation_Class = StackWrapper(RK_FoundationStack, max_cards=52)
+
+    def createGame(self, rows=8):
+        l, s = Layout(self), self.s
+        self.setSize(l.XM+rows*l.XS, l.YM+2*l.YS+10*l.YOFFSET)
+",5
+"
+",5
+"                x = x - l.XS
+            y = y + l.YS
+
+        # Create byte stacks
+",5
+"        self.update_idletasks()
+        self.sleep_var = 1
+        # self.sleep_var.set(0)
+        # self.after_idle(self.sleep_var.set, 0)
+
+",5
+"    return PIL_Image(image=out)
+",5
+"    #
+
+    def createGame(self):
+",5
+"    def pheader(self, s):
+        self.p(s)
+
+    def pstats(self, *args, **kwargs):
+        s = ""%-30s %7s %7s %7s %7s %7s %7s\n"" % args
+",5
+"# ---------------------------------------------------------------------------#
+",5
+"        self.hints.list = None
+
+    # Finish the current move.
+    def finishMove(self):
+        current, moves, stats = self.moves.current, self.moves, self.stats
+",5
+"        self.canvas.hideAllItems()
+        # select some random cards
+        cards = self.cards[:]
+",5
+"
+        progress = self.options['progress']
+",5
+"        if cards[-1].rank == ACE:
+",5
+"
+# ************************************************************************
+# * A canvas widget with scrollbars and some useful bindings.
+",5
+"        self.canvas.setTopImage(self.demo_logo)
+
+    def getStuck(self):
+        h = self.Stuck_Class.getHints(None)
+        if h:
+",5
+"
+",5
+"        ReserveStack, \
+        SS_FoundationStack, \
+",5
+"        self.setSize(l.XM+max_rows*l.XS, l.YM+4*l.YS+12*l.YOFFSET)
+
+        s.addattr(reserves2=[])         # register extra stack variables
+
+        x, y = l.XM+(max_rows-reserves)*l.XS//2+l.XS//2, l.YM
+",5
+"# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# ---------------------------------------------------------------------------##
+",5
+"        self.suit = suit
+        self.color = suit // 2
+        self.rank = rank
+        self.game = game
+        self.x = x
+",5
+"
+",5
+"        ranks = len(self.game.gameinfo.ranks)
+        assert rows % 2 == 0
+",5
+"            else:
+                games[c] = [gi]
+",5
+"        #
+",5
+"    def handle_endtag(self, tag):
+        try:
+",5
+"        # print dirs
+",5
+"
+from pysollib.mfxutil import KwStruct
+from pysollib.mygettext import _
+from pysollib.tk.basetkmfxdialog import BaseTkMfxDialog
+",5
+"    def fillStack(self):
+        if not self.cards:
+",5
+"from pysollib.stack import \
+        BasicRowStack, \
+        InitialDealTalonStack, \
+        InvisibleStack, \
+        Stack, \
+",5
+"
+class Intelligence(Fan):
+",5
+"        d_x = -shrink_dx/2+move_dx+ascent_dx
+",5
+"    def canDropCards(self, stacks):
+        return (None, 0)
+
+    def moveMove(self, ncards, to_stack, frames=-1, shadow=-1):
+",5
+"        old_index = cs.backindex
+        cs.updateCardback(backindex=index)
+        if cs.backindex == old_index:
+            return
+        self.app.updateCardset(self.game.id)
+",5
+"        c1 = c2
+",5
+"    ""aliomahmbvmbomcC"" +
+    ""mdomeomgCmhomihm"" +
+    ""jvmjomkancvndwnf"" +
+    ""vnhaniooahobvobo"" +
+",5
+"r(5404, ""Rat"", layout=""0aaabacoadbaeaag"" +
+",5
+"
+    #
+    # top-image support
+    #
+",5
+"
+",5
+"        for stacks, rect in self.regions.info:
+            if cx >= rect[0] and cx < rect[2] \
+                    and cy >= rect[1] and cy < rect[3]:
+                return self._getClosestStack(cx, cy, stacks, dragstack)
+        return self._getClosestStack(cx, cy, self.regions.remaining, dragstack)
+",5
+"#  You should have received a copy of the GNU General Public License
+#  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# ---------------------------------------------------------------------------##
+",5
+"        FortyThieves.createGame(self, max_rounds=2, rows=8, XOFFSET=0)
+
+
+",5
+"from pysollib.kivy.solverdialog import connect_game_solver_dialog
+from pysollib.kivy.tkconst import CURSOR_WATCH, EVENT_HANDLED, EVENT_PROPAGATE
+from pysollib.kivy.tkconst import TOOLBAR_BUTTONS
+from pysollib.kivy.tkutil import after_idle
+from pysollib.kivy.tkutil import bind
+",5
+"
+
+",5
+"            bind(w, '<5>', self.mouse_wheel_down)
+        # don't work on Linux
+",5
+"        if not games:
+            return
+        iter = store.append(root_iter)
+        store.set(iter, 0, root_label, 1, -1)
+",5
+"            for rank in ranks:
+                x, y = dx*j+2, dy*i+2
+                self.createCardLabel(suit=suit, rank=rank, x0=x, y0=y)
+                j += 1
+            i += 1
+",5
+"        paned_window.pack(expand=True, fill='both')
+        left_frame = tkinter.Frame(paned_window)
+",5
+"            x = x + l.XS
+",5
+"        s.talon = Matrimony_Talon(l.XM, l.YM, self, max_rounds=17)
+        l.createText(s.talon, 'se')
+",5
+"        if not self.cards:
+",5
+"        # print('writer: new_font %s' % str(font))
+        # end the current font
+        if self.font:
+",5
+"            if s.cards:
+                rank, suit = s.cards[0].rank, s.cards[0].suit
+                same_rank[rank] = same_rank[rank] + 1
+",5
+"# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+",5
+"                        lambda gi: gi.si.ncards not in (32, 48, 52,
+                                                        64, 78, 104, 144)),
+                )),
+                SelectGameNode(None, _(""by Number of Decks""), (
+                    SelectGameNode(None, _(""1 deck games""),
+",5
+"            self._addGamesMenuItem(menu, gi, short_name=short_name)
+
+    def _addAllGamesMenu(self, games, menu):
+        menu = self._createSubMenu(menu, label=ltk2gtk('&All games by name'))
+",5
+"#    ""jaCbhCcaCdaClhCm"" +
+#    ""aCnaEcaEfhEgaEho"" +
+",5
+"            if len(s.cards) != 13 or not isSameSuitSequence(s.cards):
+                return False
+        return True
+
+    def getHighlightPilesStacks(self):
+",5
+"        SS_RowStack, \
+        StackWrapper, \
+",5
+"                self.Foundation_Class(
+                    r.x, r.y, self, suit=ANY_SUIT, max_move=0))
+        for r in l.s.rows:
+            s.rows.append(self.RowStack_Class(r.x, r.y, self))
+        # default
+",5
+"from torch_geometric.utils.repeat import repeat
+
+",6
+"        By default, this function will delegate its call to scatter functions
+",6
+"    assert adj[0].nonzero().t().tolist() == edge_index.tolist()
+import torch
+from torch_geometric.utils import to_dense_batch
+
+
+",6
+"
+        g = rdf.Graph()
+",6
+"scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=20, gamma=0.5)
+
+
+def train():
+    model.train()
+",6
+"    r""""""Converts the graph given by :attr:`edge_index` to an undirected graph,
+    so that :math:`(j,i) \in \mathcal{E}` for every edge :math:`(i,j) \in
+    \mathcal{E}`.
+
+    Args:
+",6
+"        from the batch object.
+",6
+"    pos = data.pos.to(torch.float)
+    face = data.face.t()
+    num_vertices = torch.full((num_faces, 1), face.size(1), dtype=torch.long)
+",6
+"
+                if self.name == 'AIDS700nef':
+                    x = torch.zeros(data.num_nodes, dtype=torch.long)
+                    for node, info in G.nodes(data=True):
+                        x[int(node)] = self.types.index(info['type'])
+",6
+"        for nod, lab in zip(train_labels_df[nodes_header].values,
+                            train_labels_df[label_header].values):
+",6
+"    model.eval()
+    logits, accs = model(), []
+    for _, mask in data('train_mask', 'val_mask', 'test_mask'):
+        pred = logits[mask].max(1)[1]
+        acc = pred.eq(data.y[mask]).sum().item() / mask.sum().item()
+",6
+"        x0 = torch.cat([x, pos], dim=-1)
+",6
+"        pred (Tensor): The predictions.
+",6
+"from torch_geometric.nn.conv import MessagePassing
+from torch_geometric.utils import add_remaining_self_loops
+",6
+"        row, col = edge_index  # j->i
+
+",6
+"    Nodes represent documents and edges represent citation links.
+",6
+"    :rtype: :class:`torch_geometric.data.Data`
+    """"""
+    def __init__(self, self_loop_weight=1, normalization_in='sym',
+                 normalization_out='col',
+",6
+"
+        self.conv1 = DynamicEdgeConv(MLP([2 * 6, 64, 64]), k, aggr)
+",6
+"            batch_size=args.batch_size,
+",6
+"device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+model = GAT(dataset.num_features, 128, dataset.num_classes, num_layers=3,
+            heads=4)
+model = model.to(device)
+
+",6
+"        data.x = F.elu(self.conv2(data.x, data.edge_index, data.edge_attr))
+        weight = normalized_cut_2d(data.edge_index, data.pos)
+        cluster = graclus(data.edge_index, weight, data.x.size(0))
+        x, batch = max_pool_x(cluster, data.x, data.batch)
+
+",6
+"import random
+import os
+import os.path as osp
+",6
+"    def __init__(self):
+        super(Net, self).__init__()
+",6
+"
+        # Get hit features.
+        cells_path = osp.join(self.raw_dir, f'event{idx}-cells.csv')
+        cell = pandas.read_csv(cells_path, usecols=['hit_id', 'value'])
+        hit_id = torch.from_numpy(cell['hit_id'].values).to(torch.long).sub_(1)
+",6
+"        loss, acc = train(epoch)
+        print(f'Epoch {epoch:02d}, Loss: {loss:.4f}, Approx. Train: {acc:.4f}')
+
+",6
+"        return osp.join(self.root, self.name, name)
+
+",6
+"    def raw_file_names(self):
+        return ['en_zh', 'en_fr', 'en_ja', 'zh_en', 'fr_en', 'ja_en']
+",6
+"    .. math::
+
+        \mathbf{x}_v^{(1)} \, \Vert \, \ldots \, \Vert \, \mathbf{x}_v^{(T)}
+",6
+"
+",6
+"    print(log.format(epoch, train_acc, best_val_acc, test_acc))
+
+    writer.add_scalar('Loss/train', train_loss, epoch)
+    writer.add_scalar('Accuracy/train', train_acc, epoch)
+    writer.add_scalar('Accuracy/val', val_acc, epoch)
+",6
+"    edge_index = torch.stack([torch.tensor(row), torch.tensor(col)], dim=0)
+",6
+"
+    loss = total_loss / len(train_loader)
+",6
+"
+",6
+"    for data in loader:
+        data = data.to(device)
+",6
+"optimizer = torch.optim.Adam(model.parameters(), lr=0.01, weight_decay=5e-4)
+
+
+def train():
+    model.train()
+",6
+"            Laplacian (default: :obj:`""sym""`):
+",6
+"    | 4      | :math:`\Delta \epsilon`          | Gap between :math:`\epsilon_{\textrm{HOMO}}` and :math:`\epsilon_{\textrm{LUMO}}` | :math:`\textrm{eV}`                         |
+    +--------+----------------------------------+-----------------------------------------------------------------------------------+---------------------------------------------+
+    | 5      | :math:`\langle R^2 \rangle`      | Electronic spatial extent                                                         | :math:`{a_0}^2`                             |
+",6
+"        sample a fixed number of points on the mesh faces according to their
+        face area.
+
+    Args:
+        root (string): Root directory where the dataset should be saved.
+",6
+"
+        Since intermediate node representations are pre-computed, this operator
+        is able to scale well to large graphs via classic mini-batching.
+        For an example of using SIGN, see `examples/sign.py
+        <https://github.com/rusty1s/pytorch_geometric/blob/master/examples/
+",6
+"
+        for i, (embed_block, pool_block) in enumerate(
+",6
+"
+",6
+"    assert torch.allclose(
+",6
+"
+",6
+"    def __mu__(self):
+        return self.VGAE.__mu__
+
+    @property
+    def __logvar__(self):
+",6
+"    files = glob.glob(osp.join(folder, '{}_*.txt'.format(prefix)))
+",6
+"        super(DiffPool, self).__init__()
+
+",6
+"        self.register_buffer('atomic_mass', atomic_mass)
+
+",6
+"
+    @property
+",6
+"def intersection_and_union(pred, target, num_classes, batch=None):
+    r""""""Computes intersection and union of predictions.
+
+",6
+"        for key, value in feat_dict.items():
+            data[key] = [value] if i == 0 else data[key] + [value]
+",6
+"permute_masks = random_planetoid_splits if args.random_splits else None
+run(dataset, Net(dataset), args.runs, args.epochs, args.lr, args.weight_decay,
+    args.early_stopping, permute_masks)
+__debug_flag__ = {'enabled': False}
+",6
+"    loss = loss + (1 / data.num_nodes) * model.kl_loss()
+    loss.backward()
+",6
+"        super(FeaStConv, self).__init__(aggr='mean', **kwargs)
+
+",6
+"]
+",6
+"        loss = -log_logits[node_idx, pred_label[node_idx]]
+
+        m = self.edge_mask.sigmoid()
+        loss = loss + self.coeffs['edge_size'] * m.sum()
+        ent = -m * torch.log(m + EPS) - (1 - m) * torch.log(1 - m + EPS)
+",6
+"        self.lin3 = torch.nn.Linear(hidden_channels, out_channels)
+
+    def forward(self, x):
+        x = F.relu(self.lin1(x))
+",6
+"        return data
+
+    def __repr__(self):
+        return '{}()'.format(self.__class__.__name__)
+",6
+"        pre_filter (callable, optional): A function that takes in an
+            :obj:`torch_geometric.data.Data` object and returns a boolean
+            value, indicating whether the data object should be included in the
+            final dataset. (default: :obj:`None`)
+    """"""
+",6
+"    def reset_parameters(self):
+        super(ARGA, self).reset_parameters()
+",6
+"            :obj:`None`)
+",6
+"    'CoraFull',
+    'Coauthor',
+    'Amazon',
+    'PPI',
+    'Reddit',
+",6
+"norm = torch.pow(g.in_degrees().float(), -0.5)
+norm[torch.isinf(norm)] = 0
+g.ndata['norm'] = norm.unsqueeze(1).to(device)
+",6
+"        indices = []
+        for i, data in enumerate(dataset):
+            if data.num_nodes <= num_nodes:
+                indices.append(i)
+        dataset = dataset[torch.tensor(indices)]
+",6
+"
+",6
+"    Args:
+        in_channels (int): Size of each input sample.
+        out_channels (int): Size of each output sample.
+        nn (torch.nn.Module): A neural network :math:`h_{\mathbf{\Theta}}` that
+            maps edge features :obj:`edge_attr` of shape :obj:`[-1,
+",6
+"from torch_geometric.data.makedirs import makedirs
+from torch_geometric.transforms import ToSLIC
+",6
+"
+max_nodes = 150
+
+",6
+"        and positive edges :obj:`pos_edge_index` and negative nedges
+        :obj:`neg_edge_index`.
+",6
+"    adj = torch.tensor([
+        [1, 1, 1, 0, 1, 0],
+        [1, 1, 0, 1, 0, 1],
+",6
+"    data = data.coalesce()
+    assert data.is_coalesced()
+",6
+"        super(GINEConv, self).__init__(aggr='add', **kwargs)
+",6
+"    r""""""The crystal graph convolutional operator from the
+    `""Crystal Graph Convolutional Neural Networks for an
+    Accurate and Interpretable Prediction of Material Properties""
+    <https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.120.145301>`_
+    paper
+",6
+"    pos = torch.Tensor([[0, 0, 0], [0, 0, 1]])
+    edge_index = torch.tensor([[0, 1], [1, 0]])
+
+    data = Data(edge_index=edge_index, pos=pos)
+    data = Spherical(norm=False)(data)
+",6
+"    :rtype: (:class:`LongTensor`, :class:`Tensor`)
+    """"""
+    num_nodes = maybe_num_nodes(edge_index, num_nodes)
+
+",6
+"from torch_scatter import scatter_add
+",6
+"        h_{\mathbf{\Theta}}(\mathbf{e}_{i,j}),
+
+    where :math:`h_{\mathbf{\Theta}}` denotes a neural network, *.i.e.*
+    a MLP.
+
+",6
+"    neighboring node features and edge features.
+    In addition, :math:`\sigma` and :math:`g` denote the sigmoid and softplus
+",6
+"def test_arma_conv():
+    in_channels, out_channels = (16, 32)
+    num_stacks, num_layers = 8, 4
+    edge_index = torch.tensor([[0, 0, 0, 1, 2, 3], [1, 2, 3, 0, 0, 0]])
+",6
+"    num_layers=5,
+    heads=8,
+    groups=16)
+model, data = model.to(device), data.to(device)
+optimizer = torch.optim.Adam(model.parameters(), lr=0.005, weight_decay=0.0005)
+",6
+"            D = degree(hyperedge_index[0], x.size(0), x.dtype)
+        else:
+",6
+"try:
+    import gdist
+",6
+"import torch
+import torch.nn.functional as F
+",6
+"    for subset in [idx, mask, indices]:
+        out = subgraph(subset, edge_index, edge_attr)
+        assert out[0].tolist() == [[3, 4, 4, 5], [4, 3, 5, 4]]
+        assert out[1].tolist() == [7, 8, 9, 10]
+",6
+"    def forward(self, x, edge_index, edge_weight=None):
+        """"""""""""
+        # x: [num_nodes, num_layers, channels]
+",6
+"
+",6
+"    @property
+    def raw_file_names(self):
+        return ['training.pt', 'test.pt']
+
+    @property
+",6
+"        self.max = max_value
+",6
+"        x = F.relu(self.lin1(x))
+        x = F.dropout(x, p=0.5, training=self.training)
+        x = F.relu(self.lin2(x))
+",6
+"    dynamically constructed using nearest neighbors.
+    The neighbors are constructed in a learnable low-dimensional projection of
+",6
+"        for param_group in optimizer.param_groups:
+",6
+"    """"""
+",6
+"
+",6
+"    def raw_file_names(self):
+        return list(self.category_ids.values()) + ['train_test_split']
+
+    @property
+    def processed_file_names(self):
+",6
+"            x = interaction_block(x, rbf, sbf, idx_kj, idx_ji)
+            P += output_block(x, rbf, i)
+",6
+"
+def test_arga():
+    model = ARGA(encoder=lambda x: x, discriminator=lambda x: T([0.5]))
+    model.reset_parameters()
+
+",6
+"        self.g = g
+",6
+"
+parser = argparse.ArgumentParser()
+parser.add_argument('--epochs', type=int, default=200)
+",6
+"
+def train(epoch):
+    model.train()
+
+    if epoch == 61:
+",6
+"        self.reset_parameters()
+
+    def reset_parameters(self):
+        glorot(self.weight)
+",6
+"        x3 = self.bn(3, F.relu(self.conv3(x2, adj, mask, self.add_loop)))
+
+        x = torch.cat([x1, x2, x3], dim=-1)
+",6
+"
+",6
+"        num_edges (int): The number of edges from a new node to existing nodes.
+    """"""
+
+    assert num_edges > 0 and num_edges < num_nodes
+",6
+"
+html_logo = '_static/img/pyg_logo_text.svg'
+html_static_path = ['_static']
+html_context = {'css_files': ['_static/css/custom.css']}
+",6
+"import os.path as osp
+
+",6
+"    map goods to their respective product category.
+
+",6
+"    'GEDDataset',
+    'MNISTSuperpixels',
+    'FAUST',
+",6
+"                    ('Node features should hold {} elements in the first '
+                     'dimension but found {}').format(self.num_nodes,
+                                                      self.x.size(0)))
+",6
+"        start (float or [float] or Tensor, optional): Start coordinates of the
+            grid (in each dimension). If set to :obj:`None`, will be set to the
+",6
+"
+",6
+"        nn (torch.nn.Module): A neural network :math:`h_{\mathbf{\Theta}}` that
+            maps pair-wise concatenated node features :obj:`x` of shape
+",6
+"        ""UnpoolDescription"",
+        [""edge_index"", ""cluster"", ""batch"", ""new_edge_score""])
+
+    def __init__(self, in_channels, edge_score_method=None, dropout=0,
+                 add_to_edge_score=0.5):
+",6
+"import torch_geometric.transforms as T
+from torch_geometric.data import DataLoader
+from torch_geometric.nn import GINConv, GCNConv, SAGPooling
+from torch_geometric.nn import global_max_pool
+",6
+"    Args:
+        batch_size (int): The number of walks to sample per batch.
+        walk_length (int): The length of each random walk.
+    """"""
+",6
+"        'lips_back',
+",6
+"    ('paper', 'published in', 'venue'),
+    ('venue', 'published', 'paper'),
+",6
+"    for data in loader:
+        assert len(data) == 4
+        assert list(data.x.size()) == [600, 126, 3]
+        assert list(data.adj.size()) == [600, 126, 126]
+        assert list(data.mask.size()) == [600, 126]
+",6
+"
+    def forward(self, x, edge_index):
+        x = self.conv1(x, edge_index)
+        x = torch.nn.functional.relu(x)
+",6
+"    for data in train_loader:
+        data = data.to(device)
+        optimizer.zero_grad()
+",6
+"from gcn import GCN, GCNWithJK
+from graph_sage import GraphSAGE, GraphSAGEWithJK
+from gin import GIN0, GIN0WithJK, GIN, GINWithJK
+from graclus import Graclus
+from top_k import TopK
+",6
+"        alpha_eps = alpha * eps
+        js = []
+        vals = []
+        for inode in range(len(out_degree)):
+            p = {inode: 0.0}
+",6
+"
+
+",6
+"
+    Args:
+",6
+"        normalizer_tmp = 1 / np.array(normalizer_tmp)**0.5
+",6
+"    def __repr__(self):
+        return self.__class__.__name__
+from .datasets import get_dataset
+from .train_eval import cross_validation_with_val_set
+
+",6
+"        circles = []
+        circles_batch = []
+        with open(circles_file, 'r') as f:
+            for i, circle in enumerate(f.read().split('\n')[:-1]):
+                circle = [int(idx_assoc[int(c)]) for c in circle.split()[1:]]
+",6
+"    def __init__(self, root, category, split='train', transform=None,
+                 pre_transform=None, pre_filter=None):
+
+        assert split in ['train', 'val', 'test']
+",6
+"            dataset.num_features,
+            args.hidden,
+            args.num_stacks,
+",6
+"        data (:class:`torch_geometric.data.Data`): The data object.
+        path (str): The path to the file.
+    """"""
+    num_nodes, num_faces = data.pos.size(0), data.face.size(1)
+",6
+"    assert x.size() == (10, 8)
+
+",6
