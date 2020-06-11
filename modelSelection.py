@@ -5,18 +5,27 @@ import numpy as np
 from matplotlib import pyplot as plt
 from tqdm import tqdm
 from sklearn.pipeline import Pipeline
-from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
-from sklearn.metrics import accuracy_score, confusion_matrix
-from sklearn.model_selection import KFold
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics import accuracy_score
 from sklearn.linear_model import LogisticRegression
 
 
 def calculate_accuracies(X_train, X_test, y_train, y_test,
-                         clasiffier, num_features=None):
+                         classifier, num_features=None):
+    """
+    calculate test and train accuracy
+    :param X_train: train sample
+    :param X_test: test sample
+    :param y_train: train lables
+    :param y_test: test lables
+    :param classifier: classifier learner
+    :param num_features: max features for word embedding
+    :return: test and train accuracy
+    """
     X_train, y_train = X_train, y_train
     X_test, y_test =  X_test, y_test
     pipe = Pipeline([('vectorizer', TfidfVectorizer(max_features=num_features)),
-                   ('clf', clasiffier),
+                   ('clf', classifier),
                   ])
     pipe.fit(X_train, y_train)
     y_pred = pipe.predict(X_test)
@@ -26,6 +35,11 @@ def calculate_accuracies(X_train, X_test, y_train, y_test,
 
 
 def test_svm(file, Cs):
+    """
+    apply cross validation with linear soft SVM
+    :param file: path to train\validation set
+    :param Cs: array of lambdas
+    """
     df_train = pd.read_csv(file)
     X_train, X_test, y_train, y_test = train_test_split(df_train['sample'], df_train['label'],
                                                            test_size=0.2)
@@ -50,6 +64,11 @@ def test_svm(file, Cs):
 
 
 def test_regression(file, Cs):
+    """
+    apply cross validation with logistic regression
+    :param file: path to train\validation set
+    :param Cs: array of lambdas
+    """
     df_train = pd.read_csv(file)
     X_train, X_test, y_train, y_test = train_test_split(df_train['sample'], df_train['label'],
                                                            test_size=0.2)
@@ -72,5 +91,7 @@ def test_regression(file, Cs):
     plt.savefig("logistic_cv")
     plt.show()
 
+
+# test both models and chose the better one
 test_svm("validation_train.csv", np.linspace(0.1, 3, 30))
-# test_regression("model_preprocess.csv", np.linspace(0.1, 5, 30))
+test_regression("model_preprocess.csv", np.linspace(0.1, 5, 30))
