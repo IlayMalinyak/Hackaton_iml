@@ -3,11 +3,10 @@
      Introduction to Machine Learning (67577)
              IML HACKATHON, June 2020
 
-Auther(s): Ilay malinyak, Yasmin Selah, Gal Fabelzon, Or Gershoni
+Auther(s): Ilay malinyak, Yasmin Selah, Gal Fibelman, Or Gershoni
 
 ===================================================
 """
-# import preprocessing as pre
 import joblib
 import nltk
 from sklearn.pipeline import Pipeline
