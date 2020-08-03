@@ -30,7 +30,7 @@ def clean_sentence_most_common(string):
 
 def data_summary(name, clean_most_common=False):
     """
-    plot word frequency plot and return dataframe of 30's most common words
+    return dataframe of 30's most common words
     :param name: name of repository
     :return: dataframe with words frequencies
     """
